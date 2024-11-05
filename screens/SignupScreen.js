@@ -9,18 +9,13 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import LinearGradient from 'react-native-linear-gradient';
-import {BlurView} from '@react-native-community/blur';
 import Background from '../assets/background-image-signup.png';
 
 function SignUpScreen({navigation}) {
   return (
     <ImageBackground source={Background} style={styles.background}>
       <View style={styles.cardContainer}>
-        <BlurView
-          style={styles.blurContainer}
-          blurType="dark"
-          blurAmount={50}
-          reducedTransparencyFallbackColor="white">
+        <View style={styles.overlay}>
           <View style={styles.card}>
             <Text style={styles.title}>Sign up</Text>
 
@@ -71,7 +66,7 @@ function SignUpScreen({navigation}) {
               </TouchableOpacity>
             </Text>
           </View>
-        </BlurView>
+        </View>
       </View>
     </ImageBackground>
   );
@@ -89,13 +84,12 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
   },
-  blurContainer: {
+  overlay: {
     width: '100%',
     padding: 25,
     borderRadius: 30,
-    overflow: 'hidden',
+    backgroundColor: 'rgba(0, 0, 0, 0.6)', // Replace blur effect with a semi-transparent background
   },
   title: {
     fontSize: 32,

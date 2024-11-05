@@ -71,7 +71,6 @@ export default function NotificationScreen() {
       blurRadius={Platform.OS === 'android' ? 20 : 0}>
       <View style={styles.overlay}>
         <View style={styles.headerContainer}>
-          <HeaderBackground />
           <Text style={styles.headerText}>Notifications</Text>
           <View style={styles.iconContainer}>
             <LinearGradient

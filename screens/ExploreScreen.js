@@ -6,6 +6,7 @@ import {
   StyleSheet,
   ScrollView,
   Dimensions,
+  TouchableOpacity,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {BlurView} from '@react-native-community/blur';
@@ -59,6 +60,12 @@ const popularCourses = [
     gradient: ['#6A4E90', '#BE4BDB', '#FF6DA0'],
   },
 ];
+const MenuButton = ({icon, label}) => (
+  <TouchableOpacity style={styles.menuButton}>
+    <Icon name={icon} size={24} color="#fff" style={styles.menuIcon} />
+    <Text style={styles.menuLabel}>{label}</Text>
+  </TouchableOpacity>
+);
 
 export default function ExploreScreen() {
   return (
@@ -96,23 +103,13 @@ export default function ExploreScreen() {
         </ScrollView>
 
         {/* Topics */}
-        <Text style={styles.sectionTitle}>Topics</Text>
-        <View style={styles.topicsContainer}>
-          {topics.map((topic, index) => (
-            <View key={topic.id} style={styles.topicItem}>
-              <Icon
-                name={topic.icon}
-                size={24}
-                color="#A3A3C2"
-                style={styles.topicIcon}
-              />
-              <Text style={styles.topicText}>{topic.name}</Text>
-              {index < topics.length - 1 && (
-                <View style={styles.topicDivider} />
-              )}
-            </View>
-          ))}
-        </View>
+        <LinearGradient
+          colors={['rgba(255, 255, 255, 0.1)', 'rgba(255, 255, 255, 0.05)']}
+          style={styles.menuContainer}>
+          <MenuButton icon="history" label="History" />
+          <MenuButton icon="star" label="Favorites" />
+          <MenuButton icon="download" label="Downloads" />
+        </LinearGradient>
 
         {/* Popular Courses */}
         <Text style={styles.sectionTitle}>Popular</Text>
@@ -144,6 +141,25 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     backgroundColor: '#25254b',
+  },
+  menuContainer: {
+    margin: 20,
+    borderRadius: 20,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.2)',
+  },
+  menuButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 15,
+  },
+  menuIcon: {
+    marginRight: 15,
+  },
+  menuLabel: {
+    color: '#fff',
+    fontSize: 16,
   },
   scrollViewContent: {
     paddingBottom: 20,

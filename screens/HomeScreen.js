@@ -5,9 +5,9 @@ import {
   Image,
   StyleSheet,
   ImageBackground,
-  FlatList,
   ScrollView,
   Dimensions,
+  TouchableOpacity,
 } from 'react-native';
 import BackgroundImage from '../assets/background-image-home.png';
 import LinearGradient from 'react-native-linear-gradient';
@@ -17,6 +17,7 @@ import PostureProgramImage from '../assets/posture-program.png';
 import ProfileImage from '../assets/profile-image.png';
 import {BlurView} from '@react-native-community/blur';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import VideoWidgetImage from '../assets/thumbnail-example1.png';
 
 const {width} = Dimensions.get('window');
 
@@ -34,6 +35,33 @@ const courses = [
     subtitle: '50 sections - 6 hours',
     image: CourseCardImage2,
     gradient: ['#6A4E90', '#BE4BDB', '#FF6DA0'],
+  },
+];
+
+const videoWidgets = [
+  {
+    id: '1',
+    label: 'NEW VIDEO',
+    title: 'Postural Balance & Alignment',
+    description:
+      'Discover effective techniques to build strength and maintain postural balance throughout the day.',
+    image: VideoWidgetImage,
+  },
+  {
+    id: '2',
+    label: 'JUST RELEASED',
+    title: 'Core Strengthening Exercises',
+    description:
+      'Learn exercises that will help strengthen your core for better posture and stability.',
+    image: VideoWidgetImage,
+  },
+  {
+    id: '3',
+    label: 'POPULAR',
+    title: 'Neck and Shoulder Pain Relief',
+    description:
+      'Get tips on relieving neck and shoulder pain through targeted posture exercises.',
+    image: VideoWidgetImage,
   },
 ];
 
@@ -77,14 +105,39 @@ export default function FeaturedScreen() {
                 key={course.id}
                 colors={course.gradient}
                 style={styles.courseCard}>
-                <View style={styles.courseCardContent}>
-                  <Image source={course.image} style={styles.courseCardIcon} />
-                  <Text style={styles.courseCardText}>{course.title}</Text>
-                  <Text style={styles.courseSubtitle}>{course.subtitle}</Text>
-                </View>
+                <TouchableOpacity>
+                  <View style={styles.courseCardContent}>
+                    <Image
+                      source={course.image}
+                      style={styles.courseCardIcon}
+                    />
+                    <Text style={styles.courseCardText}>{course.title}</Text>
+                    <Text style={styles.courseSubtitle}>{course.subtitle}</Text>
+                  </View>
+                </TouchableOpacity>
               </LinearGradient>
             ))}
           </View>
+
+          {/* Video Widget Section */}
+          {videoWidgets.map(widget => (
+            <TouchableOpacity
+              key={widget.id}
+              style={styles.videoWidget}
+              onPress={() => console.log(`Open video: ${widget.title}`)}>
+              <ImageBackground
+                source={widget.image}
+                style={styles.videoWidgetImage}>
+                <View style={styles.videoOverlay}>
+                  <Text style={styles.videoLabel}>{widget.label}</Text>
+                  <Text style={styles.videoTitle}>{widget.title}</Text>
+                  <Text style={styles.videoDescription}>
+                    {widget.description}
+                  </Text>
+                </View>
+              </ImageBackground>
+            </TouchableOpacity>
+          ))}
         </View>
       </ScrollView>
     </ImageBackground>
@@ -116,10 +169,10 @@ const styles = StyleSheet.create({
   searchIcon: {
     width: 40,
     height: 40,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)', // Adjust opacity for a translucent effect
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
     borderRadius: 15,
     justifyContent: 'center',
-    alignItems: 'center', // Center the search icon within the container
+    alignItems: 'center',
     marginRight: 10,
   },
   profileIcon: {
@@ -130,7 +183,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20,
-    paddingBottom: 20,
   },
   programImage: {
     width: '100%',
@@ -139,10 +191,10 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   glassContainer: {
-    backgroundColor: 'rgba(255, 255, 255, 0.3)', // Semi-transparent white background for glass effect
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
     borderRadius: 16,
     overflow: 'hidden',
-    marginBottom: 30,
+    marginBottom: 20,
     height: 400,
     padding: 20,
   },
@@ -204,16 +256,41 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#fff',
   },
-  tabBar: {
-    position: 'absolute',
-    bottom: 20,
-    left: 20,
-    right: 20,
-    height: 60,
+  videoWidget: {
+    width: '100%',
+    height: 450, // Increased height to accommodate more text
     borderRadius: 20,
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
+    overflow: 'hidden',
+    marginBottom: 0,
+  },
+  videoWidgetImage: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    borderRadius: 20,
+  },
+  videoOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingHorizontal: 25, // Increased padding for better readability
+    paddingVertical: 30,
+    borderRadius: 20,
+  },
+  videoLabel: {
+    fontSize: 16,
+    color: '#FFFFFF',
+    marginBottom: 10,
+    fontWeight: 'bold',
+  },
+  videoTitle: {
+    fontSize: 30, // Slightly increased font size for better visibility
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    marginBottom: 8,
+  },
+  videoDescription: {
+    fontSize: 16,
+    color: '#FFFFFF',
+    opacity: 0.9,
   },
 });

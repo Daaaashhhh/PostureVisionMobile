@@ -2,141 +2,233 @@ import React from 'react';
 import {
   View,
   Text,
-  TextInput,
-  TouchableOpacity,
-  ImageBackground,
   StyleSheet,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  StatusBar,
+  ImageBackground,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons'; // Ensure this is installed
-import Background from '../assets/background-image-signup.png';
+import LinearGradient from 'react-native-linear-gradient';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import ProfileImage from '../assets/profile-image.png';
+import BackgroundImage from '../assets/background-image-library.png';
 
-function LibraryScreen() {
-  return (
-    <ImageBackground
-      source={Background} // Replace with the path to your background image
-      style={styles.background}>
-      <View style={styles.card}>
-        <Text style={styles.title}>Sign up</Text>
+const CourseCard = ({title, subtitle, icon}) => (
+  <LinearGradient
+    colors={['rgba(255, 255, 255, 0.1)', 'rgba(255, 255, 255, 0.05)']}
+    start={{x: 0, y: 0}}
+    end={{x: 1, y: 1}}
+    style={styles.courseCard}>
+    <View style={styles.iconContainer}>
+      <Icon name={icon} size={24} color="#fff" />
+    </View>
+    <Text style={styles.courseTitle}>{title}</Text>
+    <Text style={styles.courseSubtitle}>{subtitle}</Text>
+  </LinearGradient>
+);
 
-        <View style={styles.inputContainer}>
-          <Icon
-            name="mail-outline"
-            size={20}
-            color="#fff"
-            style={styles.icon}
-          />
-          <TextInput
-            placeholder="Email address"
-            placeholderTextColor="#ddd"
-            style={styles.input}
-          />
-        </View>
+const MenuButton = ({icon, label}) => (
+  <TouchableOpacity style={styles.menuButton}>
+    <Icon name={icon} size={24} color="#fff" style={styles.menuIcon} />
+    <Text style={styles.menuLabel}>{label}</Text>
+  </TouchableOpacity>
+);
 
-        <View style={styles.inputContainer}>
-          <Icon
-            name="lock-closed-outline"
-            size={20}
-            color="#fff"
-            style={styles.icon}
-          />
-          <TextInput
-            placeholder="Password"
-            placeholderTextColor="#ddd"
-            secureTextEntry
-            style={styles.input}
-          />
-        </View>
-
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Create account</Text>
-        </TouchableOpacity>
-
-        <Text style={styles.agreementText}>
-          By clicking on Sign up, you agree to our Terms of service and Privacy
-          policy.
-        </Text>
-
-        <Text style={styles.signInText}>
-          Already have an account?{' '}
-          <Text style={styles.signInLink}>Sign in</Text>
-        </Text>
+const Certificate = () => (
+  <LinearGradient
+    colors={['#FF4B91', '#FF6B99']}
+    start={{x: 0, y: 0}}
+    end={{x: 1, y: 1}}
+    style={styles.certificateCard}>
+    <View style={styles.certificateContent}>
+      <View>
+        <Text style={styles.certificateTitle}>SwiftUI for iOS 15</Text>
+        <Text style={styles.certificateSubtitle}>Certificate</Text>
       </View>
+      <View style={styles.certificateIcon}>
+        <Icon name="chevron-right" size={24} color="#fff" />
+      </View>
+    </View>
+  </LinearGradient>
+);
+
+const LibraryScreen = () => {
+  return (
+    <ImageBackground source={BackgroundImage} style={styles.background}>
+      <StatusBar translucent backgroundColor="transparent" />
+
+      <ScrollView style={styles.scrollView}>
+        {/* Header */}
+        <View style={styles.headerContainer}>
+          <Text style={styles.headerText}>Library</Text>
+          <View style={styles.headerIcons}>
+            <TouchableOpacity style={styles.iconButton}>
+              <Icon name="magnify" size={20} color="#fff" />
+            </TouchableOpacity>
+            <Image source={ProfileImage} style={styles.profileIcon} />
+          </View>
+        </View>
+
+        {/* Course Cards */}
+        <View style={styles.courseContainer}>
+          <CourseCard
+            title="Comprehensive insights"
+            subtitle="Tailored posture programs"
+            icon="chart-line"
+          />
+          <CourseCard
+            title="Styled Components"
+            subtitle="React Advanced"
+            icon="react"
+          />
+        </View>
+
+        {/* Menu Section */}
+        <LinearGradient
+          colors={['rgba(255, 255, 255, 0.1)', 'rgba(255, 255, 255, 0.05)']}
+          style={styles.menuContainer}>
+          <MenuButton icon="history" label="History" />
+          <MenuButton icon="star" label="Favorites" />
+          <MenuButton icon="download" label="Downloads" />
+        </LinearGradient>
+
+        {/* Certificates Section */}
+        <View style={styles.certificatesSection}>
+          <Text style={styles.sectionTitle}>CERTIFICATES</Text>
+          <Certificate />
+        </View>
+      </ScrollView>
     </ImageBackground>
   );
-}
+};
 
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
-  card: {
-    width: '85%',
-    padding: 20,
-    borderRadius: 15,
-    backgroundColor: 'rgba(255, 255, 255, 0.1)', // Semi-transparent background for glass effect
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 10},
-    shadowOpacity: 0.25,
-    shadowRadius: 10,
-    elevation: 10,
-    borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.3)',
-    backdropFilter: 'blur(10px)', // Glass effect (only supported on web, ignored on mobile)
+  scrollView: {
+    flex: 1,
   },
-  title: {
-    fontSize: 24,
-    color: '#fff',
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  inputContainer: {
+  headerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.2)', // Glassy background for inputs
-    borderRadius: 10,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    marginBottom: 15,
-    width: '100%',
-  },
-  icon: {
-    marginRight: 10,
-  },
-  input: {
-    flex: 1,
-    color: '#fff',
-  },
-  button: {
-    backgroundColor: 'rgba(255, 255, 255, 0.2)', // Glassy button background
-    borderRadius: 10,
-    paddingVertical: 10,
+    justifyContent: 'space-between',
     paddingHorizontal: 20,
-    marginTop: 20,
-    width: '100%',
+    paddingTop: 40,
+    paddingBottom: 20,
+  },
+  headerText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+  },
+  headerIcons: {
+    flexDirection: 'row',
     alignItems: 'center',
   },
-  buttonText: {
+  iconButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 10,
+  },
+  profileIcon: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+  },
+  courseContainer: {
+    flexDirection: 'row',
+    paddingHorizontal: 20,
+    justifyContent: 'space-between',
+    marginBottom: 20,
+  },
+  courseCard: {
+    width: '48%',
+    padding: 20,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.2)',
+  },
+  courseTitle: {
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
-  },
-  agreementText: {
-    color: '#ddd',
-    fontSize: 12,
-    textAlign: 'center',
-    marginTop: 15,
-  },
-  signInText: {
-    color: '#ddd',
-    fontSize: 14,
     marginTop: 10,
   },
-  signInLink: {
+  courseSubtitle: {
+    color: 'rgba(255, 255, 255, 0.7)',
+    fontSize: 14,
+    marginTop: 5,
+  },
+  iconContainer: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  menuContainer: {
+    marginHorizontal: 20,
+    borderRadius: 20,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.2)',
+    marginBottom: 20,
+  },
+  menuButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 15,
+  },
+  menuIcon: {
+    marginRight: 15,
+  },
+  menuLabel: {
     color: '#fff',
+    fontSize: 16,
+  },
+  certificatesSection: {
+    paddingHorizontal: 20,
+    marginBottom: 20,
+  },
+  sectionTitle: {
+    color: 'rgba(255, 255, 255, 0.6)',
+    fontSize: 12,
+    marginBottom: 15,
+    letterSpacing: 1,
+  },
+  certificateCard: {
+    borderRadius: 20,
+    padding: 20,
+  },
+  certificateContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  certificateTitle: {
+    color: '#fff',
+    fontSize: 18,
     fontWeight: 'bold',
+  },
+  certificateSubtitle: {
+    color: 'rgba(255, 255, 255, 0.7)',
+    fontSize: 14,
+    marginTop: 5,
+  },
+  certificateIcon: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
