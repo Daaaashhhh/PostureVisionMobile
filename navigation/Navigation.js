@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {BlurView} from '@react-native-community/blur';
+import LinearGradient from 'react-native-linear-gradient';
 
 import SignUpScreen from '../screens/SignupScreen';
 import LoginScreen from '../screens/LoginScreen';
@@ -17,6 +18,8 @@ import HomeScreen from '../screens/HomeScreen';
 import ExploreScreen from '../screens/ExploreScreen.js';
 import NotificationScreen from '../screens/NotificationScreen';
 import LibraryScreen from '../screens/LibraryScreen';
+import CourseDetails from '../screens/CourseDetails.js';
+import CourseLesson from '../screens/CourseLesson.js';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -51,8 +54,8 @@ function MainTabs() {
           }
           return <Icon name={iconName} size={28} color={color} />;
         },
-        tabBarActiveTintColor: 'white',
-        tabBarInactiveTintColor: 'white',
+        tabBarActiveTintColor: '#96f4ff',
+        tabBarInactiveTintColor: 'rgba(255,255,255,0.6)',
       })}>
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Explore" component={ExploreScreen} />
@@ -65,12 +68,32 @@ function MainTabs() {
 function Navigation() {
   return (
     <>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar
+        barStyle="light-content"
+        translucent
+        backgroundColor="transparent"
+      />
       <Stack.Navigator
         initialRouteName="Auth"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Auth" component={AuthStack} />
         <Stack.Screen name="Main" component={MainTabs} />
+        <Stack.Screen
+          name="CourseDetails"
+          component={CourseDetails}
+          options={{
+            presentation: 'modal',
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="CourseLesson"
+          component={CourseLesson}
+          options={{
+            presentation: 'modal',
+            headerShown: false,
+          }}
+        />
       </Stack.Navigator>
     </>
   );
@@ -82,13 +105,15 @@ const styles = StyleSheet.create({
     bottom: 20,
     left: 20,
     right: 20,
-    height: 80,
-    borderRadius: 20,
+    height: 84,
+    borderRadius: 24,
     overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.2)',
   },
   blurContainer: {
     flex: 1,
-    borderRadius: 20,
+    borderRadius: 24,
     overflow: 'hidden',
   },
   tabItemsContainer: {
@@ -96,15 +121,19 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     flex: 1,
+    paddingHorizontal: 8,
   },
   tabItem: {
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 8,
+    borderRadius: 16,
   },
   tabLabel: {
-    fontSize: 14,
-    color: '#8792eb',
-    marginTop: 4,
+    fontSize: 12,
+    fontWeight: '600',
+    color: 'rgba(255,255,255,0.6)',
+    marginTop: 6,
   },
   tabLabelFocused: {
     color: '#96f4ff',
@@ -113,12 +142,16 @@ const styles = StyleSheet.create({
 
 function CustomTabBar({state, descriptors, navigation}) {
   return (
-    <View style={[styles.tabBar, {backgroundColor: 'transparent'}]}>
+    <View style={[styles.tabBar]}>
       <BlurView
         style={StyleSheet.absoluteFill}
-        blurType="light"
-        blurAmount={15}
-        reducedTransparencyFallbackColor="white"
+        blurType="dark"
+        blurAmount={20}
+        reducedTransparencyFallbackColor="rgba(15,15,15,0.8)"
+      />
+      <LinearGradient
+        colors={['rgba(255,255,255,0.1)', 'rgba(255,255,255,0.05)']}
+        style={StyleSheet.absoluteFill}
       />
       <View style={styles.tabItemsContainer}>
         {state.routes.map((route, index) => {
@@ -141,24 +174,36 @@ function CustomTabBar({state, descriptors, navigation}) {
               navigation.navigate(route.name);
             }
           };
-          const color = isFocused ? '#96f4ff' : '#8792eb';
+          const color = isFocused ? '#96f4ff' : 'rgba(255,255,255,0.6)';
 
           return (
             <TouchableOpacity
               key={index}
-              style={styles.tabItem}
-              onPress={onPress}>
+              style={[
+                styles.tabItem,
+                isFocused && {backgroundColor: 'rgba(150, 244, 255, 0.1)'},
+              ]}
+              onPress={onPress}
+              activeOpacity={0.7}>
               <Icon
                 name={
                   route.name === 'Home'
-                    ? 'home'
+                    ? isFocused
+                      ? 'home'
+                      : 'home-outline'
                     : route.name === 'Explore'
-                    ? 'compass'
+                    ? isFocused
+                      ? 'compass'
+                      : 'compass-outline'
                     : route.name === 'Notifications'
-                    ? 'notifications'
-                    : 'library'
+                    ? isFocused
+                      ? 'notifications'
+                      : 'notifications-outline'
+                    : isFocused
+                    ? 'library'
+                    : 'library-outline'
                 }
-                size={28}
+                size={24}
                 color={color}
               />
               <Text

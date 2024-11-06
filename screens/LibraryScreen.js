@@ -8,24 +8,28 @@ import {
   TouchableOpacity,
   StatusBar,
   ImageBackground,
+  Dimensions,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ProfileImage from '../assets/profile-image.png';
 import BackgroundImage from '../assets/background-image-library.png';
+import {BlurView} from '@react-native-community/blur';
 
 const CourseCard = ({title, subtitle, icon}) => (
-  <LinearGradient
-    colors={['rgba(255, 255, 255, 0.1)', 'rgba(255, 255, 255, 0.05)']}
-    start={{x: 0, y: 0}}
-    end={{x: 1, y: 1}}
-    style={styles.courseCard}>
+  <View style={styles.courseCard}>
+    <BlurView
+      style={StyleSheet.absoluteFill}
+      blurType="dark"
+      blurAmount={10}
+      reducedTransparencyFallbackColor="rgba(255, 255, 255, 0.1)"
+    />
     <View style={styles.iconContainer}>
       <Icon name={icon} size={24} color="#fff" />
     </View>
     <Text style={styles.courseTitle}>{title}</Text>
     <Text style={styles.courseSubtitle}>{subtitle}</Text>
-  </LinearGradient>
+  </View>
 );
 
 const MenuButton = ({icon, label}) => (
@@ -36,11 +40,20 @@ const MenuButton = ({icon, label}) => (
 );
 
 const Certificate = () => (
-  <LinearGradient
-    colors={['#FF4B91', '#FF6B99']}
-    start={{x: 0, y: 0}}
-    end={{x: 1, y: 1}}
-    style={styles.certificateCard}>
+  <View style={styles.certificateCard}>
+    <BlurView
+      style={StyleSheet.absoluteFill}
+      blurType="dark"
+      blurAmount={10}
+      reducedTransparencyFallbackColor="rgba(255, 255, 255, 0.1)"
+    />
+    <LinearGradient
+      colors={['#FF4B91', '#FF6B99']}
+      start={{x: 0, y: 0}}
+      end={{x: 1, y: 1}}
+      style={StyleSheet.absoluteFill}
+      opacity={0.7}
+    />
     <View style={styles.certificateContent}>
       <View>
         <Text style={styles.certificateTitle}>SwiftUI for iOS 15</Text>
@@ -50,7 +63,7 @@ const Certificate = () => (
         <Icon name="chevron-right" size={24} color="#fff" />
       </View>
     </View>
-  </LinearGradient>
+  </View>
 );
 
 const LibraryScreen = () => {
@@ -71,7 +84,11 @@ const LibraryScreen = () => {
         </View>
 
         {/* Course Cards */}
-        <View style={styles.courseContainer}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={styles.courseContainer}
+          contentContainerStyle={styles.courseContentContainer}>
           <CourseCard
             title="Comprehensive insights"
             subtitle="Tailored posture programs"
@@ -82,16 +99,25 @@ const LibraryScreen = () => {
             subtitle="React Advanced"
             icon="react"
           />
-        </View>
+          <CourseCard
+            title="Advanced Techniques"
+            subtitle="Posture Mastery"
+            icon="shield-check"
+          />
+        </ScrollView>
 
         {/* Menu Section */}
-        <LinearGradient
-          colors={['rgba(255, 255, 255, 0.1)', 'rgba(255, 255, 255, 0.05)']}
-          style={styles.menuContainer}>
+        <View style={styles.menuContainer}>
+          <BlurView
+            style={StyleSheet.absoluteFill}
+            blurType="dark"
+            blurAmount={10}
+            reducedTransparencyFallbackColor="rgba(255, 255, 255, 0.1)"
+          />
           <MenuButton icon="history" label="History" />
           <MenuButton icon="star" label="Favorites" />
           <MenuButton icon="download" label="Downloads" />
-        </LinearGradient>
+        </View>
 
         {/* Certificates Section */}
         <View style={styles.certificatesSection}>
@@ -142,17 +168,20 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   courseContainer: {
-    flexDirection: 'row',
-    paddingHorizontal: 20,
-    justifyContent: 'space-between',
+    paddingLeft: 20,
     marginBottom: 20,
   },
+  courseContentContainer: {
+    paddingRight: 20,
+    gap: 15,
+  },
   courseCard: {
-    width: '48%',
+    width: Dimensions.get('window').width * 0.7,
     padding: 20,
     borderRadius: 20,
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.2)',
+    overflow: 'hidden',
   },
   courseTitle: {
     color: '#fff',
@@ -180,6 +209,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.2)',
     marginBottom: 20,
+    overflow: 'hidden',
   },
   menuButton: {
     flexDirection: 'row',
@@ -206,6 +236,7 @@ const styles = StyleSheet.create({
   certificateCard: {
     borderRadius: 20,
     padding: 20,
+    overflow: 'hidden',
   },
   certificateContent: {
     flexDirection: 'row',

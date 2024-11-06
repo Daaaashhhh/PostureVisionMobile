@@ -10,6 +10,7 @@ import {
   Platform,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import {BlurView} from '@react-native-community/blur';
 import BackgroundImage from '../assets/background-image-notification.png';
 import ProfileImage from '../assets/profile-image.png';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -57,31 +58,25 @@ const GlassmorphicCard = ({children}) => (
 );
 
 export default function NotificationScreen() {
-  const HeaderBackground = () => (
-    <LinearGradient
-      colors={['rgba(255, 255, 255, 0.2)', 'rgba(255, 255, 255, 0.1)']}
-      style={styles.headerGradient}
-    />
-  );
-
   return (
-    <ImageBackground
-      source={BackgroundImage}
-      style={styles.background}
-      blurRadius={Platform.OS === 'android' ? 20 : 0}>
-      <View style={styles.overlay}>
-        <View style={styles.headerContainer}>
-          <Text style={styles.headerText}>Notifications</Text>
-          <View style={styles.iconContainer}>
-            <LinearGradient
-              colors={['rgba(255, 255, 255, 0.3)', 'rgba(255, 255, 255, 0.1)']}
-              style={styles.searchIconGradient}>
-              <Icon name="search" size={16} color="#fff" />
-            </LinearGradient>
-            <Image source={ProfileImage} style={styles.profileIcon} />
+    <ImageBackground source={BackgroundImage} style={styles.container}>
+      <View style={styles.headerContainer}>
+        <Text style={styles.headerText}>Notifications</Text>
+        <View style={styles.iconContainer}>
+          <View style={styles.searchIconContainer}>
+            <Icon name="search" size={24} color="#fff" />
           </View>
+          <Image source={ProfileImage} style={styles.profileIcon} />
         </View>
+      </View>
 
+      <View style={styles.listContainer}>
+        <BlurView
+          style={StyleSheet.absoluteFill}
+          blurType="dark"
+          blurAmount={20}
+          reducedTransparencyFallbackColor="rgba(255, 255, 255, 0.15)"
+        />
         <FlatList
           data={notifications}
           keyExtractor={item => item.id}
@@ -111,13 +106,9 @@ export default function NotificationScreen() {
 }
 
 const styles = StyleSheet.create({
-  background: {
+  container: {
     flex: 1,
-    resizeMode: 'cover',
-  },
-  overlay: {
-    flex: 1,
-    backgroundColor: 'rgba(43, 43, 61, 0.3)',
+    backgroundColor: '#2B2B3D',
   },
   headerContainer: {
     flexDirection: 'row',
@@ -126,16 +117,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 40,
     paddingBottom: 20,
-    position: 'relative',
-  },
-  headerGradient: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(255, 255, 255, 0.1)',
   },
   headerText: {
     fontSize: 24,
@@ -146,28 +127,34 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  searchIconGradient: {
+  searchIconContainer: {
     width: 40,
     height: 40,
     borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 10,
-    borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.2)',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
   },
   profileIcon: {
     width: 40,
     height: 40,
     borderRadius: 15,
   },
+  listContainer: {
+    flex: 1,
+    margin: 20,
+    borderRadius: 25,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.1)',
+  },
   notificationList: {
-    paddingHorizontal: 20,
-    paddingTop: 10,
+    padding: 15,
   },
   gradientCard: {
     borderRadius: 16,
-    marginBottom: 20,
+    marginBottom: 15,
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.2)',
     overflow: 'hidden',
@@ -176,7 +163,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 15,
-    backgroundColor: 'rgba(255, 255, 255, 0.05)', // Glass effect background
+    backgroundColor: 'rgba(255, 255, 255, 0.05)',
   },
   iconWrapper: {
     width: 40,

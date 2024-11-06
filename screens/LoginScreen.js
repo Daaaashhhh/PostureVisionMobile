@@ -11,16 +11,17 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import LinearGradient from 'react-native-linear-gradient';
 import Background from '../assets/bg-img-login.png';
 
-function SignUpScreen({navigation}) {
+function LoginScreen({navigation}) {
   return (
     <ImageBackground source={Background} style={styles.background}>
       <View style={styles.cardContainer}>
-        <View style={styles.overlay}>
+        <LinearGradient
+          colors={['rgba(0, 0, 0, 0.7)', 'rgba(0, 0, 0, 0.85)']}
+          style={styles.overlay}>
           <View style={styles.card}>
-            <Text style={styles.title}>Sign In</Text>
+            <Text style={styles.title}>Welcome Back</Text>
             <Text style={styles.subTitle}>
-              Access 120+ hours of posture correction courses, tutorials, and
-              live sessions.{' '}
+              Access your personalized posture correction journey
             </Text>
 
             <View style={styles.inputContainer}>
@@ -29,7 +30,7 @@ function SignUpScreen({navigation}) {
               </View>
               <TextInput
                 placeholder="Email address"
-                placeholderTextColor="#ed76ff"
+                placeholderTextColor="rgba(255, 255, 255, 0.6)"
                 style={styles.input}
               />
             </View>
@@ -39,8 +40,8 @@ function SignUpScreen({navigation}) {
                 <Icon name="lock" size={20} color="#fff" />
               </View>
               <TextInput
-                placeholder="*****"
-                placeholderTextColor="#ed76ff"
+                placeholder="Password"
+                placeholderTextColor="rgba(255, 255, 255, 0.6)"
                 secureTextEntry
                 style={styles.input}
               />
@@ -50,22 +51,24 @@ function SignUpScreen({navigation}) {
               style={styles.buttonContainer}
               onPress={() => navigation.navigate('Main')}>
               <LinearGradient
-                colors={['#a726e5', '#b58aff', '#2a49de']}
+                colors={['#a726e5', '#b58aff']}
                 start={{x: 0, y: 0}}
-                end={{x: 1, y: 1}}
+                end={{x: 1, y: 0}}
                 style={styles.button}>
                 <Text style={styles.buttonText}>Sign In</Text>
               </LinearGradient>
             </TouchableOpacity>
 
-            <Text style={styles.signInText}>
-              No account yet?{' '}
-              <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
-                <Text style={styles.signInLink}>Sign Up</Text>
-              </TouchableOpacity>
-            </Text>
+            <View style={styles.footerContainer}>
+              <Text style={styles.footerText}>
+                Don't have an account?{' '}
+                <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+                  <Text style={styles.signUpLink}>Sign Up</Text>
+                </TouchableOpacity>
+              </Text>
+            </View>
           </View>
-        </View>
+        </LinearGradient>
       </View>
     </ImageBackground>
   );
@@ -74,99 +77,86 @@ function SignUpScreen({navigation}) {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   cardContainer: {
-    width: '85%',
-    borderRadius: 30,
-    overflow: 'hidden',
+    flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    padding: 20,
   },
   overlay: {
-    width: '100%',
-    padding: 25,
     borderRadius: 30,
-    backgroundColor: 'rgba(0, 0, 0, 0.6)', // Replace blur effect with a semi-transparent background
+    padding: 25,
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+  },
+  card: {
+    width: '100%',
   },
   title: {
-    fontSize: 32,
-    color: '#fba5ee',
-    fontWeight: 'bold',
-    marginBottom: 5,
-    textShadowColor: 'rgba(0, 0, 0, 0.5)',
-    textShadowOffset: {width: 1, height: 1},
-    textShadowRadius: 4,
+    fontSize: 36,
+    color: '#fff',
+    fontWeight: '800',
+    marginBottom: 10,
+    textAlign: 'center',
   },
   subTitle: {
-    fontSize: 14,
-    color: '#FFFFFF',
-    marginBottom: 30,
-    textShadowColor: 'rgba(0, 0, 0, 0.5)',
-    textShadowOffset: {width: 1, height: 1},
-    textShadowRadius: 4,
+    fontSize: 16,
+    color: 'rgba(255, 255, 255, 0.8)',
+    marginBottom: 40,
+    textAlign: 'center',
+    lineHeight: 24,
   },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
-    borderRadius: 25,
-    paddingHorizontal: 15,
-    paddingVertical: 8,
-    marginBottom: 15,
-    width: '100%',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    borderRadius: 15,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.2)',
   },
   iconContainer: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 10,
+    padding: 15,
+    borderRightWidth: 1,
+    borderRightColor: 'rgba(255, 255, 255, 0.1)',
   },
   input: {
     flex: 1,
     color: '#fff',
-    fontSize: 18,
+    fontSize: 16,
+    paddingVertical: 15,
+    paddingHorizontal: 15,
   },
   buttonContainer: {
-    width: '100%',
-    borderRadius: 25,
+    marginTop: 20,
+    borderRadius: 15,
     overflow: 'hidden',
+    elevation: 5,
     shadowColor: '#a726e5',
-    shadowOffset: {width: 0, height: 10},
-    shadowOpacity: 0.7,
-    shadowRadius: 20,
+    shadowOffset: {width: 0, height: 4},
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
   },
   button: {
-    paddingVertical: 12,
+    paddingVertical: 15,
     alignItems: 'center',
   },
   buttonText: {
     color: '#fff',
-    fontSize: 20,
-    fontWeight: 'bold',
-    textShadowColor: 'rgba(0, 0, 0, 0.3)',
-    textShadowOffset: {width: 1, height: 1},
-    textShadowRadius: 4,
+    fontSize: 18,
+    fontWeight: '700',
   },
-  agreementText: {
-    color: '#e5e2ef',
-    fontSize: 12,
-    marginTop: 15,
-    paddingHorizontal: 10,
+  footerContainer: {
+    marginTop: 30,
+    alignItems: 'center',
   },
-  signInText: {
-    color: '#e5e2ef',
-    fontSize: 14,
-    marginTop: 10,
+  footerText: {
+    color: 'rgba(255, 255, 255, 0.8)',
+    fontSize: 16,
   },
-  signInLink: {
-    color: '#e5e2ef',
-    fontWeight: 'bold',
+  signUpLink: {
+    color: '#b58aff',
+    fontWeight: '700',
   },
 });
 
-export default SignUpScreen;
+export default LoginScreen;
