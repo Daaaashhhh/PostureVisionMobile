@@ -15,21 +15,29 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ProfileImage from '../assets/profile-image.png';
 import BackgroundImage from '../assets/background-image-library.png';
 import {BlurView} from '@react-native-community/blur';
+import PlayButton from '../assets/play-button.png';
 
-const CourseCard = ({title, subtitle, icon}) => (
-  <View style={styles.courseCard}>
-    <BlurView
-      style={StyleSheet.absoluteFill}
-      blurType="dark"
-      blurAmount={10}
-      reducedTransparencyFallbackColor="rgba(255, 255, 255, 0.1)"
-    />
-    <View style={styles.iconContainer}>
-      <Icon name={icon} size={24} color="#fff" />
-    </View>
-    <Text style={styles.courseTitle}>{title}</Text>
-    <Text style={styles.courseSubtitle}>{subtitle}</Text>
-  </View>
+const CourseCard = ({title, subtitle, icon, onPress}) => (
+  <TouchableOpacity onPress={onPress}>
+    <LinearGradient
+      colors={['rgba(255, 255, 255, 0.1)', 'rgba(255, 255, 255, 0.05)']}
+      start={{x: 0, y: 0}}
+      end={{x: 1, y: 1}}
+      style={styles.courseCard}>
+      <View
+        style={[
+          styles.iconContainer,
+          {alignItems: 'center', justifyContent: 'center'},
+        ]}>
+        <Image
+          source={PlayButton}
+          style={{width: 175, height: 100, borderRadius: 25}}
+        />
+      </View>
+      <Text style={styles.courseTitle}>{title}</Text>
+      <Text style={styles.courseSubtitle}>{subtitle}</Text>
+    </LinearGradient>
+  </TouchableOpacity>
 );
 
 const MenuButton = ({icon, label}) => (
@@ -66,7 +74,7 @@ const Certificate = () => (
   </View>
 );
 
-const LibraryScreen = () => {
+const LibraryScreen = ({navigation}) => {
   return (
     <ImageBackground source={BackgroundImage} style={styles.background}>
       <StatusBar translucent backgroundColor="transparent" />
@@ -76,10 +84,16 @@ const LibraryScreen = () => {
         <View style={styles.headerContainer}>
           <Text style={styles.headerText}>Library</Text>
           <View style={styles.headerIcons}>
-            <TouchableOpacity style={styles.iconButton}>
+            <TouchableOpacity
+              style={styles.iconButton}
+              onPress={() => navigation.navigate('Search')}>
               <Icon name="magnify" size={20} color="#fff" />
             </TouchableOpacity>
-            <Image source={ProfileImage} style={styles.profileIcon} />
+            <TouchableOpacity
+              style={styles.searchIcon}
+              onPress={() => navigation.navigate('Profile')}>
+              <Image source={ProfileImage} style={styles.profileIcon} />
+            </TouchableOpacity>
           </View>
         </View>
 
@@ -176,7 +190,7 @@ const styles = StyleSheet.create({
     gap: 15,
   },
   courseCard: {
-    width: Dimensions.get('window').width * 0.7,
+    width: Dimensions.get('window').width * 0.5,
     padding: 20,
     borderRadius: 20,
     borderWidth: 1,
@@ -195,12 +209,9 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   iconContainer: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    justifyContent: 'center',
+    flexDirection: 'row',
     alignItems: 'center',
+    gap: 12,
   },
   menuContainer: {
     marginHorizontal: 20,

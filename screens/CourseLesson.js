@@ -7,11 +7,14 @@ import {
   Image,
   ImageBackground,
   Dimensions,
+  ScrollView,
 } from 'react-native';
 import Video from 'react-native-video';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import VideoThumbnail from '../assets/thumbnail-example1.png';
 import Instructor from '../assets/profile-image.png';
+import {BlurView} from '@react-native-community/blur';
+import BackgroundImage from '../assets/bg-image-coursedetails.png';
 
 const {width} = Dimensions.get('window');
 const videoHeight = width * 0.6; // 16:9 aspect ratio
@@ -24,6 +27,7 @@ const CourseLesson = ({navigation, route}) => {
     lessonId = '1',
     lessonTitle = 'Lesson Title',
     lessonSubtitle = 'Lesson Description',
+    videoUrl = 'https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
   } = route.params || {};
 
   const handlePlayPress = () => {
@@ -37,110 +41,158 @@ const CourseLesson = ({navigation, route}) => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.videoContainer}>
-        {/* Video Player */}
-        <TouchableOpacity
-          activeOpacity={1}
-          onPress={handleVideoPress}
-          style={styles.videoWrapper}>
-          {!isPlaying ? (
-            <ImageBackground
-              source={VideoThumbnail}
-              style={styles.thumbnail}
-              imageStyle={styles.thumbnailImage}>
-              {showPlayButton && (
-                <TouchableOpacity
-                  style={styles.playButton}
-                  onPress={handlePlayPress}>
-                  <View style={styles.playButtonInner}>
-                    <FontAwesome5
-                      name="play"
-                      size={30}
-                      color="#fff"
-                      style={styles.playIcon}
-                    />
-                    <Text style={styles.duration}>12:08</Text>
-                  </View>
-                </TouchableOpacity>
-              )}
-            </ImageBackground>
-          ) : (
-            <Video
-              source={{uri: 'YOUR_VIDEO_URL'}}
-              style={styles.video}
-              controls={true}
-              paused={!isPlaying}
-              resizeMode="cover"
-            />
-          )}
-
-          {/* Top Controls */}
-          <View style={styles.topControls}>
-            <TouchableOpacity
-              style={styles.iconButton}
-              onPress={() => navigation.goBack()}>
-              <FontAwesome5 name="arrow-left" size={20} color="#fff" />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.iconButton}
-              onPress={() => navigation.navigate('Main')}>
-              <FontAwesome5 name="times" size={20} color="#fff" />
-            </TouchableOpacity>
-          </View>
-        </TouchableOpacity>
-      </View>
-
-      {/* Course Details */}
-      <View style={styles.courseDetails}>
-        <View style={styles.courseHeader}>
-          <Text style={styles.courseTitle}>{lessonTitle}</Text>
-          <Text style={styles.courseDuration}>Section {lessonId}</Text>
-          <Text style={styles.courseDescription}>{lessonSubtitle}</Text>
-
-          {/* Instructors */}
-          <View style={styles.instructors}>
-            <View style={styles.avatarContainer}>
-              <Image source={Instructor} style={styles.instructorAvatar} />
-              <Image
-                source={Instructor}
-                style={[styles.instructorAvatar, styles.secondAvatar]}
+    <ImageBackground
+      source={BackgroundImage}
+      style={styles.container}
+      resizeMode="cover">
+      <ScrollView style={styles.scrollView}>
+        <View style={styles.videoContainer}>
+          {/* Video Player */}
+          <TouchableOpacity
+            activeOpacity={1}
+            onPress={handleVideoPress}
+            style={styles.videoWrapper}>
+            {!isPlaying ? (
+              <ImageBackground
+                source={VideoThumbnail}
+                style={styles.thumbnail}
+                imageStyle={styles.thumbnailImage}>
+                {showPlayButton && (
+                  <TouchableOpacity
+                    style={styles.playButton}
+                    onPress={handlePlayPress}>
+                    <View style={styles.playButtonInner}>
+                      <FontAwesome5
+                        name="play"
+                        size={30}
+                        color="#fff"
+                        style={styles.playIcon}
+                      />
+                      <Text style={styles.duration}>12:08</Text>
+                    </View>
+                  </TouchableOpacity>
+                )}
+              </ImageBackground>
+            ) : (
+              <Video
+                source={{uri: videoUrl}}
+                style={styles.video}
+                controls={true}
+                paused={!isPlaying}
+                resizeMode="cover"
+                onError={error => console.log('Video Error:', error)}
+                onLoad={() => console.log('Video loaded')}
               />
-            </View>
-            <Text style={styles.instructorText}>
-              Taught by: Dr. Brian Hutcheson and Stephanie Diep
-            </Text>
-          </View>
+            )}
 
-          {/* Actions */}
-          <View style={styles.actions}>
+            {/* Top Controls */}
+            <View style={styles.topControls}>
+              <TouchableOpacity
+                style={styles.iconButton}
+                onPress={() => navigation.goBack()}>
+                <FontAwesome5 name="arrow-left" size={20} color="#fff" />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.iconButton}
+                onPress={() => navigation.navigate('Main')}>
+                <FontAwesome5 name="times" size={20} color="#fff" />
+              </TouchableOpacity>
+            </View>
+          </TouchableOpacity>
+        </View>
+
+        {/* Course Details with Glassmorphism */}
+        <View style={styles.courseDetails}>
+          <BlurView
+            style={StyleSheet.absoluteFill}
+            blurType="dark"
+            blurAmount={20}
+            reducedTransparencyFallbackColor="white"
+          />
+          <View style={styles.courseHeader}>
+            {/* Course Details */}
+            <Text style={styles.courseTitle}>{lessonTitle}</Text>
+            <Text style={styles.courseDuration}>Section {lessonId}</Text>
+            <Text style={styles.courseDescription}>{lessonSubtitle}</Text>
+
+            {/* Instructors */}
+            <View style={styles.instructors}>
+              <View style={styles.avatarContainer}>
+                <Image source={Instructor} style={styles.instructorAvatar} />
+                <Image
+                  source={Instructor}
+                  style={[styles.instructorAvatar, styles.secondAvatar]}
+                />
+              </View>
+              <Text style={styles.instructorText}>
+                Taught by: Dr. Brian Hutcheson and Stephanie Diep
+              </Text>
+            </View>
+          </View>
+        </View>
+
+        {/* Actions with separate Glassmorphism */}
+        <View style={styles.actionsRow}>
+          {/* Favorite Button */}
+          <View style={styles.actionContainer}>
+            <BlurView
+              style={StyleSheet.absoluteFill}
+              blurType="dark"
+              blurAmount={20}
+              reducedTransparencyFallbackColor="white"
+            />
             <TouchableOpacity style={styles.actionButton}>
               <FontAwesome5 name="star" size={20} color="#6B4EFF" />
               <Text style={styles.actionText}>Favorite</Text>
             </TouchableOpacity>
+          </View>
+
+          {/* Comments Button */}
+          <View style={styles.actionContainer}>
+            <BlurView
+              style={StyleSheet.absoluteFill}
+              blurType="dark"
+              blurAmount={20}
+              reducedTransparencyFallbackColor="white"
+            />
             <TouchableOpacity style={styles.actionButton}>
               <FontAwesome5 name="comment" size={20} color="#6B4EFF" />
               <Text style={styles.actionText}>Comments (20)</Text>
             </TouchableOpacity>
           </View>
+        </View>
 
-          {/* Course Description */}
-          <Text style={styles.descriptionTitle}>About This Course</Text>
+        {/* About This Course section - Now outside glassmorphism */}
+        <View style={styles.aboutSection}>
           <Text style={styles.descriptionText}>
             Good posture is essential for overall well-being. This program helps
             you build habits that improve your posture, reduce discomfort, and
             enhance your physical health.
           </Text>
+          <Text style={styles.descriptionTitle}>About This Course</Text>
+          <Text style={styles.descriptionText}>
+            This course is unlike any other. We care about helping you build
+            sustainable habits and feel your best every day. Whether you work at
+            a desk or stay active, these techniques will support your journey to
+            better posture.
+          </Text>
+          <Text style={styles.descriptionText}>
+            SwiftUI makes it super easy to animate and add gestures to your app.
+            The code is lightweight and easy to understand, even for newcomers
+            who come from React or Flutter.
+          </Text>
         </View>
-      </View>
-    </View>
+      </ScrollView>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1F1F47',
+  },
+  scrollView: {
+    flex: 1,
   },
   videoContainer: {
     height: videoHeight,
@@ -197,8 +249,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   courseDetails: {
-    flex: 1,
-    backgroundColor: '#1F1F47',
+    backgroundColor: 'transparent',
+    borderRadius: 40,
+    margin: 16,
+    marginBottom: 8,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.2)',
   },
   courseHeader: {
     padding: 20,
@@ -242,19 +299,28 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: 'rgba(255, 255, 255, 0.8)',
   },
-  actions: {
+  actionsRow: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
-    gap: 24,
-    marginBottom: 24,
+    marginHorizontal: 16,
+    gap: 12,
+  },
+  actionContainer: {
+    flex: 1,
+    backgroundColor: 'transparent',
+    borderRadius: 20,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.2)',
   },
   actionButton: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
+    padding: 16,
+    justifyContent: 'center',
   },
   actionText: {
-    color: '#6B4EFF',
+    color: '#fff',
     fontSize: 16,
   },
   descriptionTitle: {
@@ -264,9 +330,15 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   descriptionText: {
-    fontSize: 16,
-    color: 'rgba(255, 255, 255, 0.8)',
+    fontSize: 20,
+    color: 'rgba(255, 255, 255, 0.9)',
     lineHeight: 24,
+    marginBottom: 20,
+  },
+  aboutSection: {
+    padding: 20,
+    margin: 16,
+    marginTop: 8,
   },
 });
 

@@ -14,6 +14,7 @@ import CourseCardImage from '../assets/course-card.png';
 import CourseCardImage2 from '../assets/course-card-2.png';
 import ProfileImage from '../assets/profile-image.png';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import PlayButton from '../assets/play-button.png';
 
 const {width} = Dimensions.get('window');
 
@@ -69,31 +70,46 @@ const MenuButton = ({icon, label}) => (
     <Text style={styles.menuLabel}>{label}</Text>
   </TouchableOpacity>
 );
-const CourseCard = ({title, subtitle, icon}) => (
-  <LinearGradient
-    colors={['rgba(255, 255, 255, 0.1)', 'rgba(255, 255, 255, 0.05)']}
-    start={{x: 0, y: 0}}
-    end={{x: 1, y: 1}}
-    style={styles.courseCard}>
-    <View style={styles.iconContainer}>
-      <Icon name={icon} size={24} color="#fff" />
-    </View>
-    <Text style={styles.courseTitle}>{title}</Text>
-    <Text style={styles.courseSubtitle}>{subtitle}</Text>
-  </LinearGradient>
+const CourseCard = ({title, subtitle, icon, onPress}) => (
+  <TouchableOpacity onPress={onPress}>
+    <LinearGradient
+      colors={['rgba(255, 255, 255, 0.1)', 'rgba(255, 255, 255, 0.05)']}
+      start={{x: 0, y: 0}}
+      end={{x: 1, y: 1}}
+      style={styles.courseCard}>
+      <View
+        style={[
+          styles.iconContainer,
+          {alignItems: 'center', justifyContent: 'center'},
+        ]}>
+        <Image
+          source={PlayButton}
+          style={{width: 250, height: 125, borderRadius: 25}}
+        />
+      </View>
+      <Text style={styles.courseTitle}>{title}</Text>
+      <Text style={styles.courseSubtitle}>{subtitle}</Text>
+    </LinearGradient>
+  </TouchableOpacity>
 );
 
-export default function ExploreScreen() {
+export default function ExploreScreen({navigation}) {
   return (
     <View style={styles.background}>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.headerContainer}>
           <Text style={styles.featuredText}>Explore</Text>
           <View style={styles.iconContainer}>
-            <TouchableOpacity style={styles.searchIcon}>
+            <TouchableOpacity
+              style={styles.searchIcon}
+              onPress={() => navigation.navigate('Search')}>
               <Icon name="search" size={16} color="#fff" />
             </TouchableOpacity>
-            <Image source={ProfileImage} style={styles.profileIcon} />
+            <TouchableOpacity
+              style={styles.searchIcon}
+              onPress={() => navigation.navigate('Profile')}>
+              <Image source={ProfileImage} style={styles.profileIcon} />
+            </TouchableOpacity>
           </View>
         </View>
 
@@ -137,7 +153,9 @@ export default function ExploreScreen() {
               key={course.id}
               colors={course.gradient}
               style={styles.popularCourseCard}>
-              <TouchableOpacity style={styles.popularCourseCardContent}>
+              <TouchableOpacity
+                style={styles.popularCourseCardContent}
+                onPress={() => navigation.navigate('CourseDetails')}>
                 <Image
                   source={course.image}
                   style={styles.popularCourseCardIcon}

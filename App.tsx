@@ -1,18 +1,17 @@
-/**
- * @format
- */
-
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {StatusBar} from 'react-native';
-import Navigation from './navigation/Navigation'; // Import your separate navigation component
+import Navigation from './navigation/Navigation';
+import {ThemeProvider} from './ThemeContext';
 
-function App(): React.JSX.Element {
+function App() {
   return (
-    <NavigationContainer>
-      <StatusBar barStyle="dark-content" />
-      <Navigation />
-    </NavigationContainer>
+    <ThemeProvider>
+      <NavigationContainer>
+        <StatusBar barStyle="dark-content" />
+        <Navigation />
+      </NavigationContainer>
+    </ThemeProvider>
   );
 }
 

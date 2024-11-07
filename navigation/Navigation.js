@@ -20,6 +20,8 @@ import NotificationScreen from '../screens/NotificationScreen';
 import LibraryScreen from '../screens/LibraryScreen';
 import CourseDetails from '../screens/CourseDetails.js';
 import CourseLesson from '../screens/CourseLesson.js';
+import SearchScreen from '../screens/SearchScreen.js';
+import ProfileScreen from '../screens/ProfileScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -79,6 +81,14 @@ function Navigation() {
         <Stack.Screen name="Auth" component={AuthStack} />
         <Stack.Screen name="Main" component={MainTabs} />
         <Stack.Screen
+          name="Search"
+          component={SearchScreen}
+          options={{
+            headerShown: false,
+            presentation: 'modal',
+          }}
+        />
+        <Stack.Screen
           name="CourseDetails"
           component={CourseDetails}
           options={{
@@ -89,6 +99,14 @@ function Navigation() {
         <Stack.Screen
           name="CourseLesson"
           component={CourseLesson}
+          options={{
+            presentation: 'modal',
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Profile"
+          component={ProfileScreen}
           options={{
             presentation: 'modal',
             headerShown: false,

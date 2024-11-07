@@ -1,12 +1,12 @@
 import React from 'react';
 import {
   View,
-  Text,
-  Image,
   StyleSheet,
   ImageBackground,
   ScrollView,
   Dimensions,
+  Image,
+  Text,
   TouchableOpacity,
 } from 'react-native';
 import BackgroundImage from '../assets/background-image-home.png';
@@ -20,7 +20,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import VideoWidgetImage from '../assets/thumbnail-example1.png';
 import VideoWidgetImage2 from '../assets/thumbnail-example2.png';
 import VideoWidgetImage3 from '../assets/thumbnail-example3.png';
-import Navigation from '../navigation/Navigation';
+import CustomText from '../CustomText.js';
 
 const {width} = Dimensions.get('window');
 
@@ -73,18 +73,26 @@ export default function FeaturedScreen({navigation}) {
     <ImageBackground source={BackgroundImage} style={styles.background}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.headerContainer}>
-          <Text style={styles.featuredText}>Featured</Text>
+          <CustomText style={styles.featuredText}>Featured</CustomText>
           <View style={styles.iconContainer}>
-            <TouchableOpacity style={styles.searchIcon}>
+            <TouchableOpacity
+              style={styles.searchIcon}
+              onPress={() => navigation.navigate('Search')}>
               <Icon name="search" size={16} color="#fff" />
             </TouchableOpacity>
-            <Image source={ProfileImage} style={styles.profileIcon} />
+            <TouchableOpacity
+              style={styles.searchIcon}
+              onPress={() => navigation.navigate('Profile')}>
+              <Image source={ProfileImage} style={styles.profileIcon} />
+            </TouchableOpacity>
           </View>
         </View>
 
         <View style={styles.container}>
           {/* Main Course Container with Glassmorphism */}
-          <TouchableOpacity style={styles.glassContainer}>
+          <TouchableOpacity
+            style={styles.glassContainer}
+            onPress={() => navigation.navigate('CourseDetails')}>
             <BlurView
               style={styles.blurView}
               blurType="dark"
@@ -92,15 +100,21 @@ export default function FeaturedScreen({navigation}) {
               reducedTransparencyFallbackColor="rgba(255, 255, 255, 0.3)"
             />
             <Image source={PostureProgramImage} style={styles.programImage} />
-            <Text style={styles.courseTitle}>Posture Correction Program</Text>
-            <Text style={styles.courseDetails}>20 SECTIONS - 3 HOURS</Text>
-            <Text style={styles.courseDescription}>
+            <CustomText style={styles.courseTitle}>
+              Posture Correction Program
+            </CustomText>
+            <CustomText style={styles.courseDetails}>
+              20 SECTIONS - 3 HOURS
+            </CustomText>
+            <CustomText style={styles.courseDescription}>
               Improve your posture with guided exercises, tips, and insights for
               better alignment and well-being.
-            </Text>
+            </CustomText>
           </TouchableOpacity>
 
-          <Text style={styles.recentCoursesText}>RECENT COURSES</Text>
+          <CustomText style={styles.recentCoursesText}>
+            RECENT COURSES
+          </CustomText>
 
           <View style={styles.courseGrid}>
             {courses.map(course => (
@@ -108,19 +122,27 @@ export default function FeaturedScreen({navigation}) {
                 key={course.id}
                 colors={course.gradient}
                 style={styles.courseCard}>
-                <TouchableOpacity style={styles.courseCardContent}>
+                <TouchableOpacity
+                  style={styles.courseCardContent}
+                  onPress={() => navigation.navigate('CourseDetails')}>
                   <Image
                     source={course.image}
                     style={styles.courseCardIcon}
                     resizeMode="contain"
                   />
-                  <Text style={styles.courseCardText}>{course.title}</Text>
-                  <Text style={styles.courseSubtitle}>{course.subtitle}</Text>
+                  <CustomText style={styles.courseCardText}>
+                    {course.title}
+                  </CustomText>
+                  <CustomText style={styles.courseSubtitle}>
+                    {course.subtitle}
+                  </CustomText>
                 </TouchableOpacity>
               </LinearGradient>
             ))}
           </View>
-          <Text style={styles.recentCoursesText}>RECENT TUTORIALS</Text>
+          <CustomText style={styles.recentCoursesText}>
+            RECENT TUTORIALS
+          </CustomText>
           {/* Video Widget Section */}
           <View style={styles.videoSection}>
             {videoWidgets.map(widget => (
@@ -137,11 +159,15 @@ export default function FeaturedScreen({navigation}) {
                   <LinearGradient
                     colors={['rgba(0,0,0,0.1)', 'rgba(0,0,0,0.7)']}
                     style={styles.videoOverlay}>
-                    <Text style={styles.videoLabel}>{widget.label}</Text>
-                    <Text style={styles.videoTitle}>{widget.title}</Text>
-                    <Text style={styles.videoDescription}>
+                    <CustomText style={styles.videoLabel}>
+                      {widget.label}
+                    </CustomText>
+                    <CustomText style={styles.videoTitle}>
+                      {widget.title}
+                    </CustomText>
+                    <CustomText style={styles.videoDescription}>
                       {widget.description}
-                    </Text>
+                    </CustomText>
                   </LinearGradient>
                 </ImageBackground>
               </TouchableOpacity>
@@ -217,7 +243,6 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     color: '#FFFFFF',
     marginBottom: 12,
-    letterSpacing: 0.5,
   },
   courseDetails: {
     fontSize: 15,

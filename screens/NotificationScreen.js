@@ -7,6 +7,7 @@ import {
   ImageBackground,
   FlatList,
   Dimensions,
+  TouchableOpacity,
   Platform,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
@@ -57,16 +58,22 @@ const GlassmorphicCard = ({children}) => (
   </LinearGradient>
 );
 
-export default function NotificationScreen() {
+export default function NotificationScreen({navigation}) {
   return (
     <ImageBackground source={BackgroundImage} style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>Notifications</Text>
         <View style={styles.iconContainer}>
-          <View style={styles.searchIconContainer}>
+          <TouchableOpacity
+            style={styles.searchIconContainer}
+            onPress={() => navigation.navigate('Search')}>
             <Icon name="search" size={24} color="#fff" />
-          </View>
-          <Image source={ProfileImage} style={styles.profileIcon} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.searchIcon}
+            onPress={() => navigation.navigate('Profile')}>
+            <Image source={ProfileImage} style={styles.profileIcon} />
+          </TouchableOpacity>
         </View>
       </View>
 

@@ -14,6 +14,8 @@ import SwiftIcon from '../assets/swiftui.png';
 import CourseDetailsBackground from '../assets/course-details-bg.png';
 import ProfileImage from '../assets/profile-image.png';
 import {BlurView} from '@react-native-community/blur';
+import SampleVideo from '../assets/sample-video.mp4';
+import Video from 'react-native-video';
 
 const CourseDetails = ({navigation}) => {
   const menuItems = [
@@ -29,30 +31,40 @@ const CourseDetails = ({navigation}) => {
       title: 'Advanced Custom Layout',
       subtitle: 'BUILD AN IOS APP FOR IOS 15 WITH CUSTOM LAYOUTS...',
       icon: SwiftIcon,
+      videoUrl:
+        'https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
     },
     {
       id: '2',
       title: 'Coding the Home View',
       subtitle: 'LEARN ABOUT THE FORMATTED(DATE/TIME:) METHOD AND ASYNCIMAGE',
       icon: SwiftIcon,
+      videoUrl:
+        'https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
     },
     {
       id: '3',
       title: 'Coding the Home View',
       subtitle: 'LEARN ABOUT THE FORMATTED(DATE/TIME:) METHOD AND ASYNCIMAGE',
       icon: SwiftIcon,
+      videoUrl:
+        'https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
     },
     {
       id: '4',
       title: 'Coding the Home View',
       subtitle: 'LEARN ABOUT THE FORMATTED(DATE/TIME:) METHOD AND ASYNCIMAGE',
       icon: SwiftIcon,
+      videoUrl:
+        'https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
     },
     {
       id: '5',
       title: 'Coding the Home View',
       subtitle: 'LEARN ABOUT THE FORMATTED(DATE/TIME:) METHOD AND ASYNCIMAGE',
       icon: SwiftIcon,
+      videoUrl:
+        'https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
     },
   ];
 
@@ -64,6 +76,7 @@ const CourseDetails = ({navigation}) => {
           lessonId: item.id,
           lessonTitle: item.title,
           lessonSubtitle: item.subtitle,
+          videoUrl: item.videoUrl,
         });
       }}>
       <Image source={item.icon} style={styles.itemIcon} />
@@ -145,6 +158,7 @@ const CourseDetails = ({navigation}) => {
         </View>
 
         {/* Course Items */}
+        <Text style={styles.recentCoursesText}>RECENT COURSES</Text>
         <ScrollView style={styles.courseItemsContainer}>
           <BlurView
             style={StyleSheet.absoluteFill}
@@ -178,6 +192,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: 20,
+  },
+  recentCoursesText: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#FFFFFF',
+    marginTop: 20,
+    letterSpacing: 1,
   },
   iconButton: {
     width: 40,
