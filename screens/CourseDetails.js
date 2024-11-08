@@ -14,8 +14,6 @@ import SwiftIcon from '../assets/swiftui.png';
 import CourseDetailsBackground from '../assets/course-details-bg.png';
 import ProfileImage from '../assets/profile-image.png';
 import {BlurView} from '@react-native-community/blur';
-import SampleVideo from '../assets/sample-video.mp4';
-import Video from 'react-native-video';
 
 const CourseDetails = ({navigation}) => {
   const menuItems = [
