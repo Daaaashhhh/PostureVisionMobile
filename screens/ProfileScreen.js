@@ -36,15 +36,18 @@ const ProfileScreen = () => {
           <View style={styles.statsContainer}>
             <View style={styles.statItem}>
               <Text style={styles.statNumber}>12</Text>
-              <Text style={styles.statLabel}>Courses</Text>
-            </View>
-            <View style={styles.statItem}>
-              <Text style={styles.statNumber}>156</Text>
+              <Text style={styles.statLabel}>Connected Posture</Text>
               <Text style={styles.statLabel}>Hours</Text>
             </View>
             <View style={styles.statItem}>
+              <Text style={styles.statNumber}>156</Text>
+              <Text style={styles.statLabel}>Total Posture</Text>
+              <Text style={styles.statLabel}>Sessions</Text>
+            </View>
+            <View style={styles.statItem}>
               <Text style={styles.statNumber}>23</Text>
-              <Text style={styles.statLabel}>Certificates</Text>
+              <Text style={styles.statLabel}>Posture Mastery</Text>
+              <Text style={styles.statLabel}>Certifications</Text>
             </View>
           </View>
 
@@ -58,13 +61,13 @@ const ProfileScreen = () => {
 
             <TouchableOpacity style={styles.menuItem}>
               <Icon name="book-outline" size={24} color="#96f4ff" />
-              <Text style={styles.menuText}>My Courses</Text>
+              <Text style={styles.menuText}>My Posture Courses</Text>
               <Icon name="chevron-forward" size={24} color="#96f4ff" />
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.menuItem}>
               <Icon name="ribbon-outline" size={24} color="#96f4ff" />
-              <Text style={styles.menuText}>Certificates</Text>
+              <Text style={styles.menuText}>Posture Certifications</Text>
               <Icon name="chevron-forward" size={24} color="#96f4ff" />
             </TouchableOpacity>
 

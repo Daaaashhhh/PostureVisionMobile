@@ -40,8 +40,10 @@ const CourseCard = ({title, subtitle, icon, onPress}) => (
   </TouchableOpacity>
 );
 
-const MenuButton = ({icon, label}) => (
-  <TouchableOpacity style={styles.menuButton}>
+const MenuButton = ({icon, label, navigation, screen}) => (
+  <TouchableOpacity
+    style={styles.menuButton}
+    onPress={() => navigation.navigate(screen)}>
     <Icon name={icon} size={24} color="#fff" style={styles.menuIcon} />
     <Text style={styles.menuLabel}>{label}</Text>
   </TouchableOpacity>
@@ -128,9 +130,24 @@ const LibraryScreen = ({navigation}) => {
             blurAmount={10}
             reducedTransparencyFallbackColor="rgba(255, 255, 255, 0.1)"
           />
-          <MenuButton icon="history" label="History" />
-          <MenuButton icon="star" label="Favorites" />
-          <MenuButton icon="download" label="Downloads" />
+          <MenuButton
+            icon="history"
+            label="History"
+            navigation={navigation}
+            screen="HistoryScreen"
+          />
+          <MenuButton
+            icon="star"
+            label="Favorites"
+            navigation={navigation}
+            screen="FavoriteScreen"
+          />
+          <MenuButton
+            icon="download"
+            label="Downloads"
+            navigation={navigation}
+            screen="DownloadsScreen"
+          />
         </View>
 
         {/* Certificates Section */}

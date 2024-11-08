@@ -64,8 +64,10 @@ const popularCourses = [
     gradient: ['#29234d', '#663383', '#953a84'],
   },
 ];
-const MenuButton = ({icon, label}) => (
-  <TouchableOpacity style={styles.menuButton}>
+const MenuButton = ({icon, label, navigation, screen}) => (
+  <TouchableOpacity
+    style={styles.menuButton}
+    onPress={() => navigation.navigate(screen)}>
     <Icon name={icon} size={24} color="#fff" style={styles.menuIcon} />
     <Text style={styles.menuLabel}>{label}</Text>
   </TouchableOpacity>
@@ -140,9 +142,24 @@ export default function ExploreScreen({navigation}) {
         <LinearGradient
           colors={['rgba(255, 255, 255, 0.1)', 'rgba(255, 255, 255, 0.05)']}
           style={styles.menuContainer}>
-          <MenuButton icon="history" label="History" />
-          <MenuButton icon="star" label="Favorites" />
-          <MenuButton icon="download" label="Downloads" />
+          <MenuButton
+            icon="history"
+            label="History"
+            navigation={navigation}
+            screen="HistoryScreen"
+          />
+          <MenuButton
+            icon="star"
+            label="Favorites"
+            navigation={navigation}
+            screen="FavoriteScreen"
+          />
+          <MenuButton
+            icon="download"
+            label="Downloads"
+            navigation={navigation}
+            screen="DownloadsScreen"
+          />
         </LinearGradient>
 
         {/* Popular Courses */}

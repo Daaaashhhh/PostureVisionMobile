@@ -22,6 +22,9 @@ import CourseDetails from '../screens/CourseDetails.js';
 import CourseLesson from '../screens/CourseLesson.js';
 import SearchScreen from '../screens/SearchScreen.js';
 import ProfileScreen from '../screens/ProfileScreen';
+import HistoryScreen from '../screens/HistoryScreen.js';
+import FavoriteScreen from '../screens/FavoritesScreen.js';
+import DownloadsScreen from '../screens/DownloadsScreen.js';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -107,6 +110,30 @@ function Navigation() {
         <Stack.Screen
           name="Profile"
           component={ProfileScreen}
+          options={{
+            presentation: 'modal',
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="HistoryScreen"
+          component={HistoryScreen}
+          options={{
+            presentation: 'modal',
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="FavoriteScreen"
+          component={FavoriteScreen}
+          options={{
+            presentation: 'modal',
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="DownloadsScreen"
+          component={DownloadsScreen}
           options={{
             presentation: 'modal',
             headerShown: false,

@@ -17,49 +17,49 @@ import {BlurView} from '@react-native-community/blur';
 
 const CourseDetails = ({navigation}) => {
   const menuItems = [
-    {icon: 'share', label: 'Share'},
-    {icon: 'pen', label: 'Take Test'},
-    {icon: 'download', label: 'Download'},
-    {icon: 'comments', label: 'Forums'},
+    {icon: 'share', label: 'Share Your Progress'},
+    {icon: 'pen', label: 'Track Your Posture'},
+    {icon: 'download', label: 'Download Exercises'},
+    {icon: 'comments', label: 'Join the Discussion'},
   ];
 
   const courseItems = [
     {
       id: '1',
-      title: 'Advanced Custom Layout',
-      subtitle: 'BUILD AN IOS APP FOR IOS 15 WITH CUSTOM LAYOUTS...',
+      title: 'Correcting Forward Head Posture',
+      subtitle: 'LEARN HOW TO IMPROVE YOUR POSTURE WITH SIMPLE EXERCISES...',
       icon: SwiftIcon,
       videoUrl:
         'https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
     },
     {
       id: '2',
-      title: 'Coding the Home View',
-      subtitle: 'LEARN ABOUT THE FORMATTED(DATE/TIME:) METHOD AND ASYNCIMAGE',
+      title: 'Strengthening Your Core',
+      subtitle: 'DISCOVER THE IMPORTANCE OF CORE STRENGTH FOR GOOD POSTURE',
       icon: SwiftIcon,
       videoUrl:
         'https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
     },
     {
       id: '3',
-      title: 'Coding the Home View',
-      subtitle: 'LEARN ABOUT THE FORMATTED(DATE/TIME:) METHOD AND ASYNCIMAGE',
+      title: 'Correcting Forward Head Posture',
+      subtitle: 'LEARN HOW TO IMPROVE YOUR POSTURE WITH SIMPLE EXERCISES...',
       icon: SwiftIcon,
       videoUrl:
         'https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
     },
     {
       id: '4',
-      title: 'Coding the Home View',
-      subtitle: 'LEARN ABOUT THE FORMATTED(DATE/TIME:) METHOD AND ASYNCIMAGE',
+      title: 'Strengthening Your Core',
+      subtitle: 'DISCOVER THE IMPORTANCE OF CORE STRENGTH FOR GOOD POSTURE',
       icon: SwiftIcon,
       videoUrl:
         'https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
     },
     {
       id: '5',
-      title: 'Coding the Home View',
-      subtitle: 'LEARN ABOUT THE FORMATTED(DATE/TIME:) METHOD AND ASYNCIMAGE',
+      title: 'Correcting Forward Head Posture',
+      subtitle: 'LEARN HOW TO IMPROVE YOUR POSTURE WITH SIMPLE EXERCISES...',
       icon: SwiftIcon,
       videoUrl:
         'https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
@@ -131,12 +131,13 @@ const CourseDetails = ({navigation}) => {
           />
           <View style={styles.courseHeader}>
             <Text style={styles.courseTitle}>
-              <Text style={styles.purpleText}>Flutter</Text> for designers
+              <Text style={styles.purpleText}>Posture Correction</Text> for a
+              Healthier You
             </Text>
-            <Text style={styles.courseSubtitle}>20 SECTIONS - 3 HOURS</Text>
+            <Text style={styles.courseSubtitle}>20 LESSONS - 3 HOURS</Text>
             <Text style={styles.courseDescription}>
-              Build an iOS app for iOS 15 with custom layouts, animations and
-              ...
+              Learn how to correct your posture and improve your overall
+              well-being.
             </Text>
 
             {/* Instructors */}
@@ -149,7 +150,7 @@ const CourseDetails = ({navigation}) => {
                 />
               </View>
               <Text style={styles.instructorText}>
-                Taught by Meng To and Stephanie Diep
+                Taught by Dr. Jane Smith and Dr. John Doe
               </Text>
             </View>
           </View>
