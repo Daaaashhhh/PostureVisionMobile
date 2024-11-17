@@ -34,8 +34,11 @@ const CourseCard = ({title, subtitle, icon, onPress}) => (
           style={{width: 175, height: 100, borderRadius: 25}}
         />
       </View>
+      <View style={styles.courseContent}>
       <Text style={styles.courseTitle}>{title}</Text>
       <Text style={styles.courseSubtitle}>{subtitle}</Text>
+      </View>
+ 
     </LinearGradient>
   </TouchableOpacity>
 );
@@ -49,8 +52,8 @@ const MenuButton = ({icon, label, navigation, screen}) => (
   </TouchableOpacity>
 );
 
-const Certificate = () => (
-  <View style={styles.certificateCard}>
+const Analysis = () => (
+  <View style={styles.analysisCard}>
     <BlurView
       style={StyleSheet.absoluteFill}
       blurType="dark"
@@ -64,12 +67,12 @@ const Certificate = () => (
       style={StyleSheet.absoluteFill}
       opacity={0.7}
     />
-    <View style={styles.certificateContent}>
+    <View style={styles.analysisContent}>
       <View>
-        <Text style={styles.certificateTitle}>SwiftUI for iOS 15</Text>
-        <Text style={styles.certificateSubtitle}>Certificate</Text>
+        <Text style={styles.analysisTitle}>Posture Analysis</Text>
+        <Text style={styles.analysisSubtitle}>Analysis</Text>
       </View>
-      <View style={styles.certificateIcon}>
+      <View style={styles.analysisIcon}>
         <Icon name="chevron-right" size={24} color="#fff" />
       </View>
     </View>
@@ -111,8 +114,8 @@ const LibraryScreen = ({navigation}) => {
             icon="chart-line"
           />
           <CourseCard
-            title="Styled Components"
-            subtitle="React Advanced"
+            title="Analysis"
+            subtitle="Advanced Analysis"
             icon="react"
           />
           <CourseCard
@@ -150,10 +153,10 @@ const LibraryScreen = ({navigation}) => {
           />
         </View>
 
-        {/* Certificates Section */}
-        <View style={styles.certificatesSection}>
-          <Text style={styles.sectionTitle}>CERTIFICATES</Text>
-          <Certificate />
+        {/* Analysis Section */}
+        <View style={styles.analysisSection}>
+          <Text style={styles.sectionTitle}>ANALYSIS</Text>
+          <Analysis />
         </View>
       </ScrollView>
     </ImageBackground>
@@ -193,6 +196,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: 10,
   },
+  courseContent: {
+    paddingHorizontal: 20,
+    paddingVertical: 14,
+  },
   profileIcon: {
     width: 40,
     height: 40,
@@ -208,7 +215,7 @@ const styles = StyleSheet.create({
   },
   courseCard: {
     width: Dimensions.get('window').width * 0.5,
-    padding: 20,
+
     borderRadius: 20,
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.2)',
@@ -229,6 +236,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
+    padding: 20,
   },
   menuContainer: {
     marginHorizontal: 20,
@@ -251,7 +259,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
   },
-  certificatesSection: {
+  analysisSection: {
     paddingHorizontal: 20,
     marginBottom: 20,
   },
@@ -261,27 +269,27 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     letterSpacing: 1,
   },
-  certificateCard: {
+  analysisCard: {
     borderRadius: 20,
     padding: 20,
     overflow: 'hidden',
   },
-  certificateContent: {
+  analysisContent: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  certificateTitle: {
+  analysisTitle: {
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
   },
-  certificateSubtitle: {
+  analysisSubtitle: {
     color: 'rgba(255, 255, 255, 0.7)',
     fontSize: 14,
     marginTop: 5,
   },
-  certificateIcon: {
+  analysisIcon: {
     width: 40,
     height: 40,
     borderRadius: 20,

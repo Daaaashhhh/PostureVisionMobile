@@ -41,22 +41,24 @@ function AuthStack() {
 }
 
 function MainTabs() {
+  const getTabIcon = (routeName, focused) => {
+    const icons = {
+      Home: {active: 'home', inactive: 'home-outline'},
+      Explore: {active: 'compass', inactive: 'compass-outline'},
+      Notifications: {active: 'notifications', inactive: 'notifications-outline'},
+      Library: {active: 'library', inactive: 'library-outline'},
+    };
+    
+    return focused ? icons[routeName].active : icons[routeName].inactive;
+  };
+
   return (
     <Tab.Navigator
       tabBar={props => <CustomTabBar {...props} />}
       screenOptions={({route}) => ({
         headerShown: false,
         tabBarIcon: ({focused, color, size}) => {
-          let iconName;
-          if (route.name === 'Home') {
-            iconName = focused ? 'home' : 'home-outline';
-          } else if (route.name === 'Explore') {
-            iconName = focused ? 'compass' : 'compass-outline';
-          } else if (route.name === 'Notifications') {
-            iconName = focused ? 'notifications' : 'notifications-outline';
-          } else if (route.name === 'Library') {
-            iconName = focused ? 'library' : 'library-outline';
-          }
+          const iconName = getTabIcon(route.name, focused);
           return <Icon name={iconName} size={28} color={color} />;
         },
         tabBarActiveTintColor: '#96f4ff',
@@ -186,6 +188,17 @@ const styles = StyleSheet.create({
 });
 
 function CustomTabBar({state, descriptors, navigation}) {
+  const getTabIcon = (routeName, focused) => {
+    const icons = {
+      Home: {active: 'home', inactive: 'home-outline'},
+      Explore: {active: 'compass', inactive: 'compass-outline'},
+      Notifications: {active: 'notifications', inactive: 'notifications-outline'},
+      Library: {active: 'library', inactive: 'library-outline'},
+    };
+    
+    return focused ? icons[routeName].active : icons[routeName].inactive;
+  };
+
   return (
     <View style={[styles.tabBar]}>
       <BlurView
@@ -220,6 +233,7 @@ function CustomTabBar({state, descriptors, navigation}) {
             }
           };
           const color = isFocused ? '#96f4ff' : 'rgba(255,255,255,0.6)';
+          const iconName = getTabIcon(route.name, isFocused);
 
           return (
             <TouchableOpacity
@@ -230,27 +244,7 @@ function CustomTabBar({state, descriptors, navigation}) {
               ]}
               onPress={onPress}
               activeOpacity={0.7}>
-              <Icon
-                name={
-                  route.name === 'Home'
-                    ? isFocused
-                      ? 'home'
-                      : 'home-outline'
-                    : route.name === 'Explore'
-                    ? isFocused
-                      ? 'compass'
-                      : 'compass-outline'
-                    : route.name === 'Notifications'
-                    ? isFocused
-                      ? 'notifications'
-                      : 'notifications-outline'
-                    : isFocused
-                    ? 'library'
-                    : 'library-outline'
-                }
-                size={24}
-                color={color}
-              />
+              <Icon name={iconName} size={24} color={color} />
               <Text
                 style={[styles.tabLabel, isFocused && styles.tabLabelFocused]}>
                 {label}

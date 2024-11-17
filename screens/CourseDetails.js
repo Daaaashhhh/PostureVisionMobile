@@ -17,53 +17,28 @@ import {BlurView} from '@react-native-community/blur';
 
 const CourseDetails = ({navigation}) => {
   const menuItems = [
-    {icon: 'share', label: 'Share Your Progress'},
-    {icon: 'pen', label: 'Track Your Posture'},
-    {icon: 'download', label: 'Download Exercises'},
-    {icon: 'comments', label: 'Join the Discussion'},
+    {icon: 'camera', label: 'Start Analysis'},
+    {icon: 'chart-line', label: 'View Progress'},
+    {icon: 'download', label: 'Save Results'},
+    {icon: 'share', label: 'Share Report'},
   ];
 
-  const courseItems = [
+  const analysisItems = [
     {
       id: '1',
-      title: 'Correcting Forward Head Posture',
-      subtitle: 'LEARN HOW TO IMPROVE YOUR POSTURE WITH SIMPLE EXERCISES...',
+      title: 'Full Body Posture Analysis',
+      subtitle: 'AI-POWERED FULL BODY ALIGNMENT ASSESSMENT...',
       icon: SwiftIcon,
-      videoUrl:
-        'https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      analysisType: 'fullBody',
     },
     {
       id: '2',
-      title: 'Strengthening Your Core',
-      subtitle: 'DISCOVER THE IMPORTANCE OF CORE STRENGTH FOR GOOD POSTURE',
+      title: 'Spine Alignment Check',
+      subtitle: 'ADVANCED SPINE CURVATURE ANALYSIS',
       icon: SwiftIcon,
-      videoUrl:
-        'https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+      analysisType: 'spine',
     },
-    {
-      id: '3',
-      title: 'Correcting Forward Head Posture',
-      subtitle: 'LEARN HOW TO IMPROVE YOUR POSTURE WITH SIMPLE EXERCISES...',
-      icon: SwiftIcon,
-      videoUrl:
-        'https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-    },
-    {
-      id: '4',
-      title: 'Strengthening Your Core',
-      subtitle: 'DISCOVER THE IMPORTANCE OF CORE STRENGTH FOR GOOD POSTURE',
-      icon: SwiftIcon,
-      videoUrl:
-        'https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
-    },
-    {
-      id: '5',
-      title: 'Correcting Forward Head Posture',
-      subtitle: 'LEARN HOW TO IMPROVE YOUR POSTURE WITH SIMPLE EXERCISES...',
-      icon: SwiftIcon,
-      videoUrl:
-        'https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-    },
+    // ... more analysis types
   ];
 
   const renderCourseItem = ({item}) => (
@@ -157,7 +132,7 @@ const CourseDetails = ({navigation}) => {
         </View>
 
         {/* Course Items */}
-        <Text style={styles.recentCoursesText}>RECENT COURSES</Text>
+        <Text style={styles.recentCoursesText}>Analysis</Text>
         <ScrollView style={styles.courseItemsContainer}>
           <BlurView
             style={StyleSheet.absoluteFill}
@@ -166,7 +141,7 @@ const CourseDetails = ({navigation}) => {
             reducedTransparencyFallbackColor="white"
           />
           <View style={styles.courseItems}>
-            {courseItems.map((item, index) => renderCourseItem({item, index}))}
+            {analysisItems.map((item, index) => renderCourseItem({item, index}))}
           </View>
         </ScrollView>
       </ImageBackground>

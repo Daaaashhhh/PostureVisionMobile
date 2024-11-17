@@ -40,14 +40,14 @@ const ProfileScreen = () => {
               <Text style={styles.statLabel}>Hours</Text>
             </View>
             <View style={styles.statItem}>
-              <Text style={styles.statNumber}>156</Text>
-              <Text style={styles.statLabel}>Total Posture</Text>
-              <Text style={styles.statLabel}>Sessions</Text>
+              <Text style={styles.statNumber}>85%</Text>
+              <Text style={styles.statLabel}>Posture</Text>
+              <Text style={styles.statLabel}>Accuracy</Text>
             </View>
             <View style={styles.statItem}>
-              <Text style={styles.statNumber}>23</Text>
-              <Text style={styles.statLabel}>Posture Mastery</Text>
-              <Text style={styles.statLabel}>Certifications</Text>
+              <Text style={styles.statNumber}>28</Text>
+              <Text style={styles.statLabel}>Posture Issues</Text>
+              <Text style={styles.statLabel}>Detected</Text>
             </View>
           </View>
 
@@ -60,14 +60,20 @@ const ProfileScreen = () => {
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.menuItem}>
-              <Icon name="book-outline" size={24} color="#96f4ff" />
-              <Text style={styles.menuText}>My Posture Courses</Text>
+              <Icon name="analytics-outline" size={24} color="#96f4ff" />
+              <Text style={styles.menuText}>Posture Analysis History</Text>
               <Icon name="chevron-forward" size={24} color="#96f4ff" />
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.menuItem}>
-              <Icon name="ribbon-outline" size={24} color="#96f4ff" />
-              <Text style={styles.menuText}>Posture Certifications</Text>
+              <Icon name="trending-up-outline" size={24} color="#96f4ff" />
+              <Text style={styles.menuText}>Progress Reports</Text>
+              <Icon name="chevron-forward" size={24} color="#96f4ff" />
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.menuItem}>
+              <Icon name="notifications-outline" size={24} color="#96f4ff" />
+              <Text style={styles.menuText}>AI Alert Settings</Text>
               <Icon name="chevron-forward" size={24} color="#96f4ff" />
             </TouchableOpacity>
 

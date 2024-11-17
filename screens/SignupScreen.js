@@ -49,7 +49,8 @@ function SignUpScreen({navigation}) {
                 colors={['#a726e5', '#b58aff', '#2a49de']}
                 start={{x: 0, y: 0}}
                 end={{x: 1, y: 1}}
-                style={styles.button}>
+                style={styles.button}
+                >
                 <Text style={styles.buttonText}>Create account</Text>
               </LinearGradient>
             </TouchableOpacity>
@@ -132,9 +133,10 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 10},
     shadowOpacity: 0.7,
     shadowRadius: 20,
+    elevation: 5, // Add elevation for Android
+    zIndex: 1, // Add zIndex for iOS
   },
   button: {
-    paddingVertical: 12,
     alignItems: 'center',
   },
   buttonText: {
@@ -144,11 +146,12 @@ const styles = StyleSheet.create({
     textShadowColor: 'rgba(0, 0, 0, 0.3)',
     textShadowOffset: {width: 1, height: 1},
     textShadowRadius: 4,
+    paddingVertical: 12,
   },
   agreementText: {
     color: '#e5e2ef',
     fontSize: 12,
-    marginTop: 15,
+    marginTop: 25,
     paddingHorizontal: 10,
   },
   signInText: {

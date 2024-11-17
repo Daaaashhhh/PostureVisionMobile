@@ -17,7 +17,10 @@ function LoginScreen({navigation}) {
       <View style={styles.cardContainer}>
         <LinearGradient
           colors={['rgba(0, 0, 0, 0.7)', 'rgba(0, 0, 0, 0.85)']}
-          style={styles.overlay}>
+          style={styles.overlay}
+          useAngle={true}
+          angle={45}
+          angleCenter={{x: 0.5, y: 0.5}}>
           <View style={styles.card}>
             <Text style={styles.title}>Welcome Back</Text>
             <Text style={styles.subTitle}>
@@ -52,8 +55,10 @@ function LoginScreen({navigation}) {
               onPress={() => navigation.navigate('Main')}>
               <LinearGradient
                 colors={['#a726e5', '#b58aff']}
-                start={{x: 0, y: 0}}
-                end={{x: 1, y: 0}}
+                start={{x: 0, y: 0.5}}
+                end={{x: 1, y: 0.5}}
+                useAngle={true}
+                angle={90}
                 style={styles.button}>
                 <Text style={styles.buttonText}>Sign In</Text>
               </LinearGradient>
@@ -85,11 +90,12 @@ const styles = StyleSheet.create({
   },
   overlay: {
     borderRadius: 30,
-    padding: 25,
+
     backgroundColor: 'rgba(0, 0, 0, 0.6)',
   },
   card: {
     width: '100%',
+    padding: 25,
   },
   title: {
     fontSize: 36,
@@ -135,15 +141,17 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 4},
     shadowOpacity: 0.3,
     shadowRadius: 10,
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
   },
   button: {
-    paddingVertical: 15,
+
     alignItems: 'center',
   },
   buttonText: {
     color: '#fff',
     fontSize: 18,
     fontWeight: '700',
+    paddingVertical: 15,
   },
   footerContainer: {
     marginTop: 30,

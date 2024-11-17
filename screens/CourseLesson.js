@@ -101,19 +101,18 @@ const CourseLesson = ({navigation, route}) => {
           </TouchableOpacity>
         </View>
 
-        {/* Course Details with Glassmorphism */}
-        <View style={styles.courseDetails}>
+        {/* Posture Analysis Details with Glassmorphism */}
+        <View style={styles.analysisDetails}>
           <BlurView
             style={StyleSheet.absoluteFill}
             blurType="dark"
             blurAmount={20}
             reducedTransparencyFallbackColor="white"
           />
-          <View style={styles.courseHeader}>
-            {/* Course Details */}
-            <Text style={styles.courseTitle}>{lessonTitle}</Text>
-            <Text style={styles.courseDuration}>Section {lessonId}</Text>
-            <Text style={styles.courseDescription}>{lessonSubtitle}</Text>
+          <View style={styles.analysisHeader}>
+            <Text style={styles.analysisTitle}>{lessonTitle}</Text>
+            <Text style={styles.analysisDuration}>Section {lessonId}</Text>
+            <Text style={styles.analysisDescription}>{lessonSubtitle}</Text>
 
             {/* Instructors */}
             <View style={styles.instructors}>
@@ -125,7 +124,7 @@ const CourseLesson = ({navigation, route}) => {
                 />
               </View>
               <Text style={styles.instructorText}>
-                Taught by: Dr. Brian Hutcheson and Stephanie Diep
+                Analyzed by: Dr. Brian Hutcheson and Stephanie Diep
               </Text>
             </View>
           </View>
@@ -162,24 +161,24 @@ const CourseLesson = ({navigation, route}) => {
           </View>
         </View>
 
-        {/* About This Course section - Now outside glassmorphism */}
+        {/* About This Analysis section - Now outside glassmorphism */}
         <View style={styles.aboutSection}>
           <Text style={styles.descriptionText}>
-            Good posture is essential for overall well-being. This program helps
-            you build habits that improve your posture, reduce discomfort, and
+            Good posture is essential for overall well-being. This analysis helps
+            you identify habits that improve your posture, reduce discomfort, and
             enhance your physical health.
           </Text>
-          <Text style={styles.descriptionTitle}>About This Course</Text>
+          <Text style={styles.descriptionTitle}>About This Analysis</Text>
           <Text style={styles.descriptionText}>
-            This course is unlike any other. We care about helping you build
+            This posture analysis is unlike any other. We care about helping you build
             sustainable habits and feel your best every day. Whether you work at
             a desk or stay active, these techniques will support your journey to
             better posture.
           </Text>
           <Text style={styles.descriptionText}>
-            SwiftUI makes it super easy to animate and add gestures to your app.
-            The code is lightweight and easy to understand, even for newcomers
-            who come from React or Flutter.
+            Our comprehensive analysis makes it easy to understand and improve your posture.
+            The recommendations are practical and easy to implement, even for those
+            who are new to posture correction.
           </Text>
         </View>
       </ScrollView>
@@ -248,7 +247,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  courseDetails: {
+  analysisDetails: {
     backgroundColor: 'transparent',
     borderRadius: 40,
     margin: 16,
@@ -257,21 +256,21 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.2)',
   },
-  courseHeader: {
+  analysisHeader: {
     padding: 20,
   },
-  courseTitle: {
+  analysisTitle: {
     fontSize: 24,
     fontWeight: 'bold',
     color: '#fff',
     marginBottom: 8,
   },
-  courseDuration: {
+  analysisDuration: {
     fontSize: 14,
     color: 'rgba(255, 255, 255, 0.6)',
     marginBottom: 12,
   },
-  courseDescription: {
+  analysisDescription: {
     fontSize: 16,
     color: 'rgba(255, 255, 255, 0.8)',
     marginBottom: 16,

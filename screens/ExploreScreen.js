@@ -18,48 +18,48 @@ import PlayButton from '../assets/play-button.png';
 
 const {width} = Dimensions.get('window');
 
-const recentCourses = [
+const postureSections = [
   {
     id: '1',
-    title: 'Posture Mastery',
-    subtitle: 'Advanced Techniques for Proper Alignment',
+    title: 'Real-time Analysis',
+    subtitle: 'AI-powered posture tracking',
     image: CourseCardImage,
     gradient: ['#432371', '#79398A', '#FF5678'],
   },
   {
     id: '2',
-    title: 'Postural Concurrency',
-    subtitle: 'Achieving Balanced Posture Throughout the Day',
+    title: 'Gait Analysis',
+    subtitle: 'Walking pattern assessment',
     image: CourseCardImage2,
     gradient: ['#6A4E90', '#BE4BDB', '#FF6DA0'],
   },
   {
     id: '3',
-    title: 'Posture Mastery',
-    subtitle: 'Advanced Techniques for Proper Alignment',
+    title: 'Ergonomic Analysis',
+    subtitle: 'Workspace posture evaluation',
     image: CourseCardImage,
     gradient: ['#432371', '#79398A', '#FF5678'],
   },
 ];
 
-const topics = [
-  {id: '1', name: 'Posture Development', icon: 'heartbeat'},
-  {id: '2', name: 'Body Alignment Design', icon: 'ruler-combined'},
-  {id: '3', name: 'Wellness Optimization', icon: 'spa'},
+const analysisFeatures = [
+  {id: '1', name: 'Posture Detection', icon: 'camera'},
+  {id: '2', name: 'Movement Analysis', icon: 'running'},
+  {id: '3', name: 'Progress Tracking', icon: 'chart-line'},
 ];
 
-const popularCourses = [
+const popularAnalyses = [
   {
     id: '1',
-    title: 'Posture Handbook',
-    subtitle: '80 sections - 9 hours',
+    title: 'Spine Alignment',
+    subtitle: 'Real-time AI analysis',
     image: CourseCardImage,
     gradient: ['#2b1e4e', '#492785', '#443a94'],
   },
   {
     id: '2',
-    title: 'Advanced Posture',
-    subtitle: '50 sections - 6 hours',
+    title: 'Neck Posture',
+    subtitle: 'Forward head detection',
     image: CourseCardImage2,
     gradient: ['#29234d', '#663383', '#953a84'],
   },
@@ -89,8 +89,10 @@ const CourseCard = ({title, subtitle, icon, onPress}) => (
           style={{width: 250, height: 125, borderRadius: 25}}
         />
       </View>
+      <View style={styles.courseContent}>
       <Text style={styles.courseTitle}>{title}</Text>
       <Text style={styles.courseSubtitle}>{subtitle}</Text>
+      </View>
     </LinearGradient>
   </TouchableOpacity>
 );
@@ -163,9 +165,9 @@ export default function ExploreScreen({navigation}) {
         </LinearGradient>
 
         {/* Popular Courses */}
-        <Text style={styles.sectionTitle}>Popular Courses</Text>
+        <Text style={styles.sectionTitle}>Popular Treatment</Text>
         <View style={styles.popularCoursesContainer}>
-          {popularCourses.map(course => (
+          {popularAnalyses.map(course => (
             <LinearGradient
               key={course.id}
               colors={course.gradient}
@@ -215,11 +217,16 @@ const styles = StyleSheet.create({
   iconContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    paddingTop: 20,
     gap: 12,
+  },
+  courseContent: {
+    paddingHorizontal: 20,
+    paddingVertical: 14,
   },
   courseCard: {
     width: Dimensions.get('window').width * 0.7,
-    padding: 20,
+   
     borderRadius: 20,
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.2)',

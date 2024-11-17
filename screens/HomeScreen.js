@@ -24,46 +24,46 @@ import CustomText from '../CustomText.js';
 
 const {width} = Dimensions.get('window');
 
-const courses = [
+const analysisFeatures = [
   {
     id: '1',
-    title: 'Posture Handbook',
-    subtitle: '80 sections - 9 hours',
+    title: 'Posture Scanner',
+    subtitle: 'AI-powered analysis',
     image: CourseCardImage,
     gradient: ['#2b1e4e', '#492785', '#443a94'],
   },
   {
     id: '2',
-    title: 'Advanced Posture',
-    subtitle: '50 sections - 6 hours',
+    title: 'Movement Tracker',
+    subtitle: 'Real-time monitoring',
     image: CourseCardImage2,
     gradient: ['#29234d', '#663383', '#953a84'],
   },
 ];
 
-const videoWidgets = [
+const analysisWidgets = [
   {
     id: '1',
-    label: 'NEW VIDEO',
-    title: 'Postural Balance & Alignment',
+    label: 'NEW FEATURE',
+    title: 'Real-time Posture Detection',
     description:
-      'Discover effective techniques to build strength and maintain postural balance throughout the day.',
+      'Advanced AI analysis of your posture in real-time. Get instant feedback on your alignment.',
     image: VideoWidgetImage,
   },
   {
     id: '2',
-    label: 'JUST RELEASED',
-    title: 'Core Strengthening Exercises',
+    label: 'ADVANCED ANALYSIS',
+    title: 'Gait Analysis',
     description:
-      'Learn exercises that will help strengthen your core for better posture and stability.',
+      'AI-powered analysis of your walking pattern and body mechanics while moving.',
     image: VideoWidgetImage2,
   },
   {
     id: '3',
     label: 'POPULAR',
-    title: 'Neck and Shoulder Pain Relief',
+    title: 'Workspace Ergonomics',
     description:
-      'Get tips on relieving neck and shoulder pain through targeted posture exercises.',
+      'AI assessment of your desk setup and sitting posture during work hours.',
     image: VideoWidgetImage3,
   },
 ];
@@ -103,9 +103,7 @@ export default function FeaturedScreen({navigation}) {
             <CustomText style={styles.courseTitle}>
               Posture Correction Program
             </CustomText>
-            <CustomText style={styles.courseDetails}>
-              20 SECTIONS - 3 HOURS
-            </CustomText>
+        
             <CustomText style={styles.courseDescription}>
               Improve your posture with guided exercises, tips, and insights for
               better alignment and well-being.
@@ -113,11 +111,11 @@ export default function FeaturedScreen({navigation}) {
           </TouchableOpacity>
 
           <CustomText style={styles.recentCoursesText}>
-            RECENT COURSES
+            RECENT PROGRAMS
           </CustomText>
 
           <View style={styles.courseGrid}>
-            {courses.map(course => (
+            {analysisFeatures.map(course => (
               <LinearGradient
                 key={course.id}
                 colors={course.gradient}
@@ -141,11 +139,11 @@ export default function FeaturedScreen({navigation}) {
             ))}
           </View>
           <CustomText style={styles.recentCoursesText}>
-            RECENT TUTORIALS
+            RECENT TREATMENTS
           </CustomText>
           {/* Video Widget Section */}
           <View style={styles.videoSection}>
-            {videoWidgets.map(widget => (
+            {analysisWidgets.map(widget => (
               <TouchableOpacity
                 key={widget.id}
                 style={styles.videoWidget}
@@ -159,6 +157,7 @@ export default function FeaturedScreen({navigation}) {
                   <LinearGradient
                     colors={['rgba(0,0,0,0.1)', 'rgba(0,0,0,0.7)']}
                     style={styles.videoOverlay}>
+                    <View style={styles.videoContent}>
                     <CustomText style={styles.videoLabel}>
                       {widget.label}
                     </CustomText>
@@ -168,6 +167,8 @@ export default function FeaturedScreen({navigation}) {
                     <CustomText style={styles.videoDescription}>
                       {widget.description}
                     </CustomText>
+                    </View>
+               
                   </LinearGradient>
                 </ImageBackground>
               </TouchableOpacity>
@@ -202,6 +203,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 12,
   },
+  videoContent: {
+    paddingHorizontal: 10,
+    paddingVertical: 14,
+  },
   searchIcon: {
     width: 44,
     height: 44,
@@ -221,8 +226,8 @@ const styles = StyleSheet.create({
   },
   programImage: {
     width: '100%',
-    height: 140,
-    resizeMode: 'contain',
+    height: 100,
+    resizeMode: 'cover',
     marginBottom: 16,
   },
   glassContainer: {
@@ -230,7 +235,7 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     overflow: 'hidden',
     marginBottom: 32,
-    height: 420,
+    height: 320,
     padding: 24,
     elevation: 5,
   },
@@ -274,6 +279,7 @@ const styles = StyleSheet.create({
     width: '48%',
     height: 280,
     borderRadius: 20,
+    backgroundColor: 'rgba(0, 0, 0, 0.1)', // Add this line
     shadowColor: '#000',
     shadowOffset: {width: 0, height: 8},
     shadowOpacity: 0.3,
@@ -321,7 +327,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   videoOverlay: {
-    padding: 24,
     borderRadius: 20,
   },
   videoLabel: {
