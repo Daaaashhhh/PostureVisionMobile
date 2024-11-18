@@ -25,8 +25,8 @@ const CourseLesson = ({navigation, route}) => {
 
   const {
     lessonId = '1',
-    lessonTitle = 'Lesson Title',
-    lessonSubtitle = 'Lesson Description',
+    lessonTitle = 'Analysis Title',
+    lessonSubtitle = 'Analysis Description',
     videoUrl = 'https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
   } = route.params || {};
 

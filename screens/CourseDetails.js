@@ -106,12 +106,12 @@ const CourseDetails = ({navigation}) => {
           />
           <View style={styles.courseHeader}>
             <Text style={styles.courseTitle}>
-              <Text style={styles.purpleText}>Posture Correction</Text> for a
-              Healthier You
+              <Text style={styles.purpleText}>Posture Improvement</Text> for a
+              Healthier Life
             </Text>
-            <Text style={styles.courseSubtitle}>20 LESSONS - 3 HOURS</Text>
+            <Text style={styles.courseSubtitle}>20 SESSIONS - 3 HOURS</Text>
             <Text style={styles.courseDescription}>
-              Learn how to correct your posture and improve your overall
+              Discover techniques to improve your posture and enhance your overall
               well-being.
             </Text>
 
