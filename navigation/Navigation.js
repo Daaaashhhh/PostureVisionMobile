@@ -22,6 +22,7 @@ import CourseDetails from '../screens/CourseDetails.js';
 import CourseLesson from '../screens/CourseLesson.js';
 import SearchScreen from '../screens/SearchScreen.js';
 import ProfileScreen from '../screens/ProfileScreen';
+import PoseModel from '../screens/PoseModel.tsx';
 import HistoryScreen from '../screens/HistoryScreen.js';
 import FavoriteScreen from '../screens/FavoritesScreen.js';
 import DownloadsScreen from '../screens/DownloadsScreen.js';
@@ -111,7 +112,7 @@ function Navigation() {
         />
         <Stack.Screen
           name="Profile"
-          component={ProfileScreen}
+          component={PoseModel}
           options={{
             presentation: 'modal',
             headerShown: false,
