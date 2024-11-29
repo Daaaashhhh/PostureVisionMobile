@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { StyleSheet, Text, View, Dimensions, Platform } from 'react-native';
 
-import { Camera, useCameraDevice, useCameraDevices } from 'react-native-vision-camera';
+import { Camera, useCameraDevice, useCameraDevices, useFrameProcessor } from 'react-native-vision-camera';
 
 import * as tf from '@tensorflow/tfjs';
 import * as posedetection from '@tensorflow-models/pose-detection';
@@ -13,7 +13,6 @@ import {
 import Svg, { Circle } from 'react-native-svg';
 import { ExpoWebGLRenderingContext } from 'expo-gl';
 import { useDeviceOrientation } from '@react-native-community/hooks';
-import {fetch} from '@tensorflow/tfjs-react-native';
 
 // tslint:disable-next-line: variable-name
 const TensorCamera = cameraWithTensors(Camera);
@@ -78,7 +77,7 @@ function PoseModel() {
 
         // Wait for tfjs to initialize the backend.
         await tf.ready();
-        console.log('FETCH ',fetch);
+       // console.log('FETCH ',fetch);
         // Load movenet model.
         // https://github.com/tensorflow/tfjs-models/tree/master/pose-detection
         const movenetModelConfig: posedetection.MoveNetModelConfig = {

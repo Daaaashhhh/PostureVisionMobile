@@ -9,6 +9,9 @@ PODS:
   - hermes-engine (0.76.0):
     - hermes-engine/Pre-built (= 0.76.0)
   - hermes-engine/Pre-built (0.76.0)
+  - MediaPipeTasksCommon (0.10.14)
+  - MediaPipeTasksVision (0.10.14):
+    - MediaPipeTasksCommon (= 0.10.14)
   - RCT-Folly (2024.01.01.00):
     - boost
     - DoubleConversion
@@ -1331,35 +1334,15 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-video (6.8.0):
+  - react-native-skia (1.5.10):
     - DoubleConversion
     - glog
     - hermes-engine
     - RCT-Folly (= 2024.01.01.00)
     - RCTRequired
     - RCTTypeSafety
-    - React-Core
-    - React-debug
-    - React-Fabric
-    - React-featureflags
-    - React-graphics
-    - React-ImageManager
-    - react-native-video/Video (= 6.8.0)
-    - React-NativeModulesApple
-    - React-RCTFabric
-    - React-rendererdebug
-    - React-utils
-    - ReactCodegen
-    - ReactCommon/turbomodule/bridging
-    - ReactCommon/turbomodule/core
-    - Yoga
-  - react-native-video/Fabric (6.8.0):
-    - DoubleConversion
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTRequired
-    - RCTTypeSafety
+    - React
+    - React-callinvoker
     - React-Core
     - React-debug
     - React-Fabric
@@ -1374,7 +1357,50 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-video/Video (6.8.0):
+  - react-native-video (6.8.2):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.01.01.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - react-native-video/Video (= 6.8.2)
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
+  - react-native-video/Fabric (6.8.2):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.01.01.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
+  - react-native-video/Video (6.8.2):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1388,6 +1414,27 @@ PODS:
     - React-graphics
     - React-ImageManager
     - react-native-video/Fabric
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
+  - react-native-worklets-core (1.5.0):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.01.01.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
     - React-NativeModulesApple
     - React-RCTFabric
     - React-rendererdebug
@@ -1665,7 +1712,7 @@ PODS:
     - React-utils (= 0.76.0)
   - RNCMaskedView (0.1.11):
     - React
-  - RNGestureHandler (2.21.1):
+  - RNGestureHandler (2.21.2):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1686,7 +1733,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNReanimated (3.16.1):
+  - RNReanimated (3.16.3):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1706,10 +1753,10 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNReanimated/reanimated (= 3.16.1)
-    - RNReanimated/worklets (= 3.16.1)
+    - RNReanimated/reanimated (= 3.16.3)
+    - RNReanimated/worklets (= 3.16.3)
     - Yoga
-  - RNReanimated/reanimated (3.16.1):
+  - RNReanimated/reanimated (3.16.3):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1729,9 +1776,9 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNReanimated/reanimated/apple (= 3.16.1)
+    - RNReanimated/reanimated/apple (= 3.16.3)
     - Yoga
-  - RNReanimated/reanimated/apple (3.16.1):
+  - RNReanimated/reanimated/apple (3.16.3):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1752,7 +1799,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNReanimated/worklets (3.16.1):
+  - RNReanimated/worklets (3.16.3):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1883,12 +1930,18 @@ PODS:
     - ReactCommon/turbomodule/core
     - Yoga
   - SocketRocket (0.7.1)
-  - VisionCamera (4.6.1):
-    - VisionCamera/Core (= 4.6.1)
-    - VisionCamera/React (= 4.6.1)
-  - VisionCamera/Core (4.6.1)
-  - VisionCamera/React (4.6.1):
+  - VisionCamera (4.6.3):
+    - VisionCamera/Core (= 4.6.3)
+    - VisionCamera/FrameProcessors (= 4.6.3)
+    - VisionCamera/React (= 4.6.3)
+  - VisionCamera/Core (4.6.3)
+  - VisionCamera/FrameProcessors (4.6.3):
+    - React
+    - React-callinvoker
+    - react-native-worklets-core
+  - VisionCamera/React (4.6.3):
     - React-Core
+    - VisionCamera/FrameProcessors
   - Yoga (0.0.0)
 
 DEPENDENCIES:
@@ -1899,6 +1952,7 @@ DEPENDENCIES:
   - fmt (from `../node_modules/react-native/third-party-podspecs/fmt.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
+  - MediaPipeTasksVision (= 0.10.14)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCT-Folly/Fabric (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCTDeprecation (from `../node_modules/react-native/ReactApple/Libraries/RCTFoundation/RCTDeprecation`)
@@ -1932,7 +1986,9 @@ DEPENDENCIES:
   - React-microtasksnativemodule (from `../node_modules/react-native/ReactCommon/react/nativemodule/microtasks`)
   - "react-native-blur (from `../node_modules/@react-native-community/blur`)"
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - "react-native-skia (from `../node_modules/@shopify/react-native-skia`)"
   - react-native-video (from `../node_modules/react-native-video`)
+  - react-native-worklets-core (from `../node_modules/react-native-worklets-core`)
   - React-nativeconfig (from `../node_modules/react-native/ReactCommon`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
@@ -1971,6 +2027,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - MediaPipeTasksCommon
+    - MediaPipeTasksVision
     - SocketRocket
 
 EXTERNAL SOURCES:
@@ -2051,8 +2109,12 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/blur"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-skia:
+    :path: "../node_modules/@shopify/react-native-skia"
   react-native-video:
     :path: "../node_modules/react-native-video"
+  react-native-worklets-core:
+    :path: "../node_modules/react-native-worklets-core"
   React-nativeconfig:
     :path: "../node_modules/react-native/ReactCommon"
   React-NativeModulesApple:
@@ -2132,6 +2194,8 @@ SPEC CHECKSUMS:
   fmt: 10c6e61f4be25dc963c36bd73fc7b1705fe975be
   glog: 08b301085f15bcbb6ff8632a8ebaf239aae04e6a
   hermes-engine: 9de51d2f67336348a6cd5b686330e436d1dbd522
+  MediaPipeTasksCommon: 5660099c2dd81f7ac4a7a5f51055785ead8e0e64
+  MediaPipeTasksVision: 0fac0db83c0b45e4d7811a9227be5e571403cf83
   RCT-Folly: bf5c0376ffe4dd2cf438dcf86db385df9fdce648
   RCTDeprecation: 4c2c4a088b6f0ccfcbd53c9d5614b0238ad57909
   RCTRequired: 2d8a683a7848bc0baf5883f0792c1ac43f6267b5
@@ -2163,7 +2227,9 @@ SPEC CHECKSUMS:
   React-microtasksnativemodule: 0b7db04c18f6bb01ef5b1f9007c3229abecc35dd
   react-native-blur: 28b0a731ed804bed3e88757c2414305896e6b47e
   react-native-safe-area-context: 2500e4fe998caad50ad3bc51ec23ef951308569e
-  react-native-video: c5406d9a3ca189723445d8ababae0d4a65521cce
+  react-native-skia: a3c899c5b95053ac04dd173f5ae559cf8e6ca657
+  react-native-video: 02120ed628f1ca8956b1e67e4e2ec8825e2f2710
+  react-native-worklets-core: 7186c6632dc36ebec96b2e205388ea0ac224dd91
   React-nativeconfig: 72c10ff34863148ef90df9c9c8eacba99d2faaaa
   React-NativeModulesApple: 5ec49182fa000b2215ee1bed03e2867f8323ccf5
   React-perflogger: 073c7a8a436b3fe724f1df34e9d1f3db1d25fe74
@@ -2192,15 +2258,15 @@ SPEC CHECKSUMS:
   ReactCodegen: dbfef1fef26f42c900bb1884fa149d49d501d64d
   ReactCommon: 429ca28cd813c31359c73ffac6dc24f93347d522
   RNCMaskedView: 0e1bc4bfa8365eba5fbbb71e07fbdc0555249489
-  RNGestureHandler: a3822e519fd1e9885b92d8c9bd82a7a0be305fe3
-  RNReanimated: 77242c6d67416988a2fd9f5cf574bb3e60016362
+  RNGestureHandler: 0e5ae8d72ef4afb855e98dcdbe60f27d938abe13
+  RNReanimated: 006a5d3961bf09c1e96d62ed436e02b2e43b89bb
   RNScreens: e389d6a6a66a4f0d3662924ecae803073ccce8ec
   RNSVG: b2fbe96b2bb3887752f8abc1f495953847e90384
   RNVectorIcons: 07792a9538e8577c1263fcad187712e90d65d8fb
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
-  VisionCamera: c95a8ad535f527562be1fb05fb2fd324578e769c
+  VisionCamera: 88df4dae7196c93ecd331f105f0e5d7d95702cb3
   Yoga: f8ec45ce98bba1bc93dd28f2ee37215180e6d2b6
 
-PODFILE CHECKSUM: e4aa9daeecfdfd6cdb005221e01d420344a6f30d
+PODFILE CHECKSUM: 63918950e83e651a3b5dd09336e5905103d34eda
 
 COCOAPODS: 1.15.2
