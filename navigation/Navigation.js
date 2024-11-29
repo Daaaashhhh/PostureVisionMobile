@@ -25,6 +25,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import PoseModel from '../screens/PoseModel.tsx';
 import ImageModel from '../screens/ImageModel.js';
 import HandModel from '../screens/HandModel.tsx';
+import PoseMediaPipeModel from '../screens/PoseMediaPipeModel.tsx';
 import HistoryScreen from '../screens/HistoryScreen.js';
 import FavoriteScreen from '../screens/FavoritesScreen.js';
 import DownloadsScreen from '../screens/DownloadsScreen.js';
@@ -90,7 +91,7 @@ function Navigation() {
         <Stack.Screen name="Main" component={MainTabs} />
         <Stack.Screen
           name="Search"
-          component={SearchScreen}
+          component={PoseMediaPipeModel}
           options={{
             headerShown: false,
             presentation: 'modal',

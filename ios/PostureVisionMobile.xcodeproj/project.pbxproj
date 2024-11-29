@@ -9,27 +9,33 @@
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* PostureVisionMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PostureVisionMobileTests.m */; };
 		0772C46D5AEA474CBF53153F /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA42978EBDD04917ACA7F1E6 /* Roboto-MediumItalic.ttf */; };
-		0C80B921A6F3F58F76C31292 /* libPods-PostureVisionMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-PostureVisionMobile.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		14727BDF5FD949C094D6A358 /* PoseLandmarksFrameProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED40245A72042EFB6064FBE /* PoseLandmarksFrameProcessor.m */; };
 		186544FF3948459D92BCAE97 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F790E2A66D1E415990CFAAA9 /* Roboto-Italic.ttf */; };
 		314719E9CFF3425BB8976B7F /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D72D1DE15DD744D89E31D55C /* Roboto-Regular.ttf */; };
+		3FE158EC61114DF298FA470F /* HolisticLandmarksFrameProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAA1E123B894DB8B1B12C8C /* HolisticLandmarksFrameProcessor.swift */; };
 		4DC91F8C2CFA0C760099EAF0 /* hand_landmarker.task in Resources */ = {isa = PBXBuildFile; fileRef = 4DC91F8B2CFA0C760099EAF0 /* hand_landmarker.task */; };
+		4DDD91AD2CFA2ADF00418FB4 /* pose_landmarker_full.task in Resources */ = {isa = PBXBuildFile; fileRef = 4DDD91AC2CFA2ADF00418FB4 /* pose_landmarker_full.task */; };
+		4DDD91AF2CFA360000418FB4 /* holistic_landmarker.task in Resources */ = {isa = PBXBuildFile; fileRef = 4DDD91AE2CFA360000418FB4 /* holistic_landmarker.task */; };
 		572414601CE241F6892A29BA /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6A69E4379CC407E9D7E5590 /* Roboto-Medium.ttf */; };
 		5BF37C862020495BB5BA74C4 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA5F0ED526534F79B411A097 /* Roboto-Black.ttf */; };
 		6AFF0657D3FA43DDB4AF07E7 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6576663DE6A47A3BB7B6F98 /* Roboto-BlackItalic.ttf */; };
-		7699B88040F8A987B510C191 /* libPods-PostureVisionMobile-PostureVisionMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-PostureVisionMobile-PostureVisionMobileTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		89E4982301E247B3B40FD657 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4941A075A7E2407DA3263256 /* Roboto-LightItalic.ttf */; };
 		8D60BBFC67C5ED9B21E13BDF /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
 		8E0023AC013444B8BD39A0A5 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4FE02886F274E0FB59BFE45 /* Roboto-ThinItalic.ttf */; };
 		9191ED2C87FE48319F4D8100 /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFF4B9C9A706460891187FFF /* Roboto-BoldItalic.ttf */; };
+		9ECE96814EA79AD77A1F465C /* libPods-PostureVisionMobile-PostureVisionMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACB2B0A3BC9E938DE212944 /* libPods-PostureVisionMobile-PostureVisionMobileTests.a */; };
+		BC3B6CA7065B415DA6BE8A0E /* HolisticLandmarksFrameProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B2773DE5A49F99FB5F732 /* HolisticLandmarksFrameProcessor.m */; };
 		BD760C0B82604DF3A5C07FD0 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F51FCE5252846B285E6FBF1 /* Roboto-Bold.ttf */; };
 		BE1D9B71BBF1455D8EAD0FE0 /* HubotSans-VariableFont_wdth,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 971575102CFC436DBC546B09 /* HubotSans-VariableFont_wdth,wght.ttf */; };
 		BE452B30C90B4B40B819E5D7 /* HubotSans-Italic-VariableFont_wdth,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 780BA064C9B04564BF599D99 /* HubotSans-Italic-VariableFont_wdth,wght.ttf */; };
 		BEBDC0A2ED1D487DBCE477C8 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBF63442BBC04F329E785F33 /* Roboto-Thin.ttf */; };
 		C66663A8367C47F5B7F81206 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D8DC457EFCE4F3ABB3DFA1E /* Roboto-Light.ttf */; };
+		C8DEC89A14D236F63B7A3F9B /* libPods-PostureVisionMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C3F9389B75B12FDE0DA934C /* libPods-PostureVisionMobile.a */; };
+		CA78FC2883484DE98E3432F9 /* PoseLandmarksFrameProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F8065BC282496E8A442E80 /* PoseLandmarksFrameProcessor.swift */; };
 		DFAFAA9501E648B6AC527697 /* HandLandmarksFrameProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = CD39BDB768604D16B9FB32A8 /* HandLandmarksFrameProcessor.m */; };
 		F5B99460FE7B49988839B18E /* HandLandmarksFrameProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1671A4D55ECF47A5A187ECA0 /* HandLandmarksFrameProcessor.swift */; };
 /* End PBXBuildFile section */
@@ -56,9 +62,8 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = PostureVisionMobile/main.m; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = PostureVisionMobile/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		1671A4D55ECF47A5A187ECA0 /* HandLandmarksFrameProcessor.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; path = HandLandmarksFrameProcessor.swift; sourceTree = "<group>"; };
-		19F6CBCC0A4E27FBF8BF4A61 /* libPods-PostureVisionMobile-PostureVisionMobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PostureVisionMobile-PostureVisionMobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D8DC457EFCE4F3ABB3DFA1E /* Roboto-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Light.ttf"; path = "../assets/fonts/Roboto-Light.ttf"; sourceTree = "<group>"; };
-		3B4392A12AC88292D35C810B /* Pods-PostureVisionMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PostureVisionMobile.debug.xcconfig"; path = "Target Support Files/Pods-PostureVisionMobile/Pods-PostureVisionMobile.debug.xcconfig"; sourceTree = "<group>"; };
+		3ED40245A72042EFB6064FBE /* PoseLandmarksFrameProcessor.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; path = PoseLandmarksFrameProcessor.m; sourceTree = "<group>"; };
 		4941A075A7E2407DA3263256 /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-LightItalic.ttf"; path = "../assets/fonts/Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
 		4D10861B2CEB28D3005FE7DA /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		4D10861C2CEB28D3005FE7DA /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
@@ -80,20 +85,27 @@
 		4D10862C2CEB28D4005FE7DA /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		4D10862D2CEB28D4005FE7DA /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		4DC91F8B2CFA0C760099EAF0 /* hand_landmarker.task */ = {isa = PBXFileReference; lastKnownFileType = file; path = hand_landmarker.task; sourceTree = "<group>"; };
-		5709B34CF0A7D63546082F79 /* Pods-PostureVisionMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PostureVisionMobile.release.xcconfig"; path = "Target Support Files/Pods-PostureVisionMobile/Pods-PostureVisionMobile.release.xcconfig"; sourceTree = "<group>"; };
-		5B7EB9410499542E8C5724F5 /* Pods-PostureVisionMobile-PostureVisionMobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PostureVisionMobile-PostureVisionMobileTests.debug.xcconfig"; path = "Target Support Files/Pods-PostureVisionMobile-PostureVisionMobileTests/Pods-PostureVisionMobile-PostureVisionMobileTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5DCACB8F33CDC322A6C60F78 /* libPods-PostureVisionMobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PostureVisionMobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4DDD91AC2CFA2ADF00418FB4 /* pose_landmarker_full.task */ = {isa = PBXFileReference; lastKnownFileType = file; path = pose_landmarker_full.task; sourceTree = "<group>"; };
+		4DDD91AE2CFA360000418FB4 /* holistic_landmarker.task */ = {isa = PBXFileReference; lastKnownFileType = file; path = holistic_landmarker.task; sourceTree = "<group>"; };
 		5F51FCE5252846B285E6FBF1 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.ttf"; path = "../assets/fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		6C3F9389B75B12FDE0DA934C /* libPods-PostureVisionMobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PostureVisionMobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		780BA064C9B04564BF599D99 /* HubotSans-Italic-VariableFont_wdth,wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HubotSans-Italic-VariableFont_wdth,wght.ttf"; path = "../assets/fonts/HubotSans-Italic-VariableFont_wdth,wght.ttf"; sourceTree = "<group>"; };
+		7ACB2B0A3BC9E938DE212944 /* libPods-PostureVisionMobile-PostureVisionMobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PostureVisionMobile-PostureVisionMobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C8439C8B13AF7759E725521 /* Pods-PostureVisionMobile-PostureVisionMobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PostureVisionMobile-PostureVisionMobileTests.debug.xcconfig"; path = "Target Support Files/Pods-PostureVisionMobile-PostureVisionMobileTests/Pods-PostureVisionMobile-PostureVisionMobileTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7E744C8EFCFFF1067D2DC657 /* Pods-PostureVisionMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PostureVisionMobile.release.xcconfig"; path = "Target Support Files/Pods-PostureVisionMobile/Pods-PostureVisionMobile.release.xcconfig"; sourceTree = "<group>"; };
+		7F5B2773DE5A49F99FB5F732 /* HolisticLandmarksFrameProcessor.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; path = HolisticLandmarksFrameProcessor.m; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = PostureVisionMobile/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		89C6BE57DB24E9ADA2F236DE /* Pods-PostureVisionMobile-PostureVisionMobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PostureVisionMobile-PostureVisionMobileTests.release.xcconfig"; path = "Target Support Files/Pods-PostureVisionMobile-PostureVisionMobileTests/Pods-PostureVisionMobile-PostureVisionMobileTests.release.xcconfig"; sourceTree = "<group>"; };
 		971575102CFC436DBC546B09 /* HubotSans-VariableFont_wdth,wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HubotSans-VariableFont_wdth,wght.ttf"; path = "../assets/fonts/HubotSans-VariableFont_wdth,wght.ttf"; sourceTree = "<group>"; };
+		AE2D76425A5DF671BCB13DD7 /* Pods-PostureVisionMobile-PostureVisionMobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PostureVisionMobile-PostureVisionMobileTests.release.xcconfig"; path = "Target Support Files/Pods-PostureVisionMobile-PostureVisionMobileTests/Pods-PostureVisionMobile-PostureVisionMobileTests.release.xcconfig"; sourceTree = "<group>"; };
+		B2F8065BC282496E8A442E80 /* PoseLandmarksFrameProcessor.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; path = PoseLandmarksFrameProcessor.swift; sourceTree = "<group>"; };
+		BCAA1E123B894DB8B1B12C8C /* HolisticLandmarksFrameProcessor.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; path = HolisticLandmarksFrameProcessor.swift; sourceTree = "<group>"; };
 		C6576663DE6A47A3BB7B6F98 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-BlackItalic.ttf"; path = "../assets/fonts/Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
 		C6A69E4379CC407E9D7E5590 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Medium.ttf"; path = "../assets/fonts/Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		CBF63442BBC04F329E785F33 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Thin.ttf"; path = "../assets/fonts/Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		CD39BDB768604D16B9FB32A8 /* HandLandmarksFrameProcessor.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; path = HandLandmarksFrameProcessor.m; sourceTree = "<group>"; };
 		CFF4B9C9A706460891187FFF /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-BoldItalic.ttf"; path = "../assets/fonts/Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
 		D72D1DE15DD744D89E31D55C /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		D7FD2CB13AE6E4F9DC287D5D /* Pods-PostureVisionMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PostureVisionMobile.debug.xcconfig"; path = "Target Support Files/Pods-PostureVisionMobile/Pods-PostureVisionMobile.debug.xcconfig"; sourceTree = "<group>"; };
 		DA42978EBDD04917ACA7F1E6 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-MediumItalic.ttf"; path = "../assets/fonts/Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
 		E4FE02886F274E0FB59BFE45 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-ThinItalic.ttf"; path = "../assets/fonts/Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
 		EA5F0ED526534F79B411A097 /* Roboto-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Black.ttf"; path = "../assets/fonts/Roboto-Black.ttf"; sourceTree = "<group>"; };
@@ -106,7 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7699B88040F8A987B510C191 /* libPods-PostureVisionMobile-PostureVisionMobileTests.a in Frameworks */,
+				9ECE96814EA79AD77A1F465C /* libPods-PostureVisionMobile-PostureVisionMobileTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,7 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C80B921A6F3F58F76C31292 /* libPods-PostureVisionMobile.a in Frameworks */,
+				C8DEC89A14D236F63B7A3F9B /* libPods-PostureVisionMobile.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,8 +169,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				5DCACB8F33CDC322A6C60F78 /* libPods-PostureVisionMobile.a */,
-				19F6CBCC0A4E27FBF8BF4A61 /* libPods-PostureVisionMobile-PostureVisionMobileTests.a */,
+				6C3F9389B75B12FDE0DA934C /* libPods-PostureVisionMobile.a */,
+				7ACB2B0A3BC9E938DE212944 /* libPods-PostureVisionMobile-PostureVisionMobileTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -199,6 +211,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				4DDD91AE2CFA360000418FB4 /* holistic_landmarker.task */,
+				4DDD91AC2CFA2ADF00418FB4 /* pose_landmarker_full.task */,
 				4DC91F8B2CFA0C760099EAF0 /* hand_landmarker.task */,
 				13B07FAE1A68108700A75B9A /* PostureVisionMobile */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -208,6 +222,9 @@
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
 				B8425FFB369047CFB6F954D0 /* Resources */,
 				AE3F3A9230D041D2A616C099 /* HandLandmarksFrameProcessor */,
+				B8543FFC974549A48526EA96 /* PoseLandmarksFrameProcessor */,
+				E52B798637374B3FA94B7650 /* HolisticLandmarkFrameProcessor */,
+				1CC66CCBEFA348A9A2F84DAB /* HolisticLandmarksFrameProcessor */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -253,15 +270,42 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		B8543FFC974549A48526EA96 /* PoseLandmarksFrameProcessor */ = {
+			isa = PBXGroup;
+			children = (
+				3ED40245A72042EFB6064FBE /* PoseLandmarksFrameProcessor.m */,
+				B2F8065BC282496E8A442E80 /* PoseLandmarksFrameProcessor.swift */,
+			);
+			path = PoseLandmarksFrameProcessor;
+			sourceTree = "<group>";
+		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3B4392A12AC88292D35C810B /* Pods-PostureVisionMobile.debug.xcconfig */,
-				5709B34CF0A7D63546082F79 /* Pods-PostureVisionMobile.release.xcconfig */,
-				5B7EB9410499542E8C5724F5 /* Pods-PostureVisionMobile-PostureVisionMobileTests.debug.xcconfig */,
-				89C6BE57DB24E9ADA2F236DE /* Pods-PostureVisionMobile-PostureVisionMobileTests.release.xcconfig */,
+				D7FD2CB13AE6E4F9DC287D5D /* Pods-PostureVisionMobile.debug.xcconfig */,
+				7E744C8EFCFFF1067D2DC657 /* Pods-PostureVisionMobile.release.xcconfig */,
+				7C8439C8B13AF7759E725521 /* Pods-PostureVisionMobile-PostureVisionMobileTests.debug.xcconfig */,
+				AE2D76425A5DF671BCB13DD7 /* Pods-PostureVisionMobile-PostureVisionMobileTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E52B798637374B3FA94B7650 /* HolisticLandmarkFrameProcessor */ = {
+			isa = PBXGroup;
+			children = (
+				7F5B2773DE5A49F99FB5F732 /* HolisticLandmarksFrameProcessor.m */,
+				BCAA1E123B894DB8B1B12C8C /* HolisticLandmarksFrameProcessor.swift */,
+			);
+			name = HolisticLandmarkFrameProcessor;
+			path = HolisticLandmarksFrameProcessor;
+			sourceTree = "<group>";
+		};
+		1CC66CCBEFA348A9A2F84DAB /* HolisticLandmarksFrameProcessor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = HolisticLandmarksFrameProcessor;
+			path = HolisticLandmarksFrameProcessor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,12 +315,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "PostureVisionMobileTests" */;
 			buildPhases = (
-				A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */,
+				654B03ABD83A8B49DDE67A78 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */,
-				F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */,
+				3C095516A9E0584CFD8FC526 /* [CP] Embed Pods Frameworks */,
+				7115F9DC7D278EE12D01341E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -292,13 +336,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "PostureVisionMobile" */;
 			buildPhases = (
-				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
+				425ADC84007998E5F7875912 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
-				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
+				89C055170D1EF43AD00C83C8 /* [CP] Embed Pods Frameworks */,
+				9FE2E6F00D286EB5F54DAEEE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -365,9 +409,11 @@
 				6AFF0657D3FA43DDB4AF07E7 /* Roboto-BlackItalic.ttf in Resources */,
 				BD760C0B82604DF3A5C07FD0 /* Roboto-Bold.ttf in Resources */,
 				9191ED2C87FE48319F4D8100 /* Roboto-BoldItalic.ttf in Resources */,
+				4DDD91AD2CFA2ADF00418FB4 /* pose_landmarker_full.task in Resources */,
 				186544FF3948459D92BCAE97 /* Roboto-Italic.ttf in Resources */,
 				C66663A8367C47F5B7F81206 /* Roboto-Light.ttf in Resources */,
 				89E4982301E247B3B40FD657 /* Roboto-LightItalic.ttf in Resources */,
+				4DDD91AF2CFA360000418FB4 /* holistic_landmarker.task in Resources */,
 				572414601CE241F6892A29BA /* Roboto-Medium.ttf in Resources */,
 				4DC91F8C2CFA0C760099EAF0 /* hand_landmarker.task in Resources */,
 				0772C46D5AEA474CBF53153F /* Roboto-MediumItalic.ttf in Resources */,
@@ -398,46 +444,24 @@
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 			showEnvVarsInLog = 0;
 		};
-		00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */ = {
+		3C095516A9E0584CFD8FC526 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PostureVisionMobile/Pods-PostureVisionMobile-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-PostureVisionMobile-PostureVisionMobileTests/Pods-PostureVisionMobile-PostureVisionMobileTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PostureVisionMobile/Pods-PostureVisionMobile-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-PostureVisionMobile-PostureVisionMobileTests/Pods-PostureVisionMobile-PostureVisionMobileTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PostureVisionMobile/Pods-PostureVisionMobile-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PostureVisionMobile-PostureVisionMobileTests/Pods-PostureVisionMobile-PostureVisionMobileTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PostureVisionMobile-PostureVisionMobileTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */ = {
+		425ADC84007998E5F7875912 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -459,41 +483,29 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */ = {
+		654B03ABD83A8B49DDE67A78 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PostureVisionMobile-PostureVisionMobileTests/Pods-PostureVisionMobile-PostureVisionMobileTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PostureVisionMobile-PostureVisionMobileTests/Pods-PostureVisionMobile-PostureVisionMobileTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PostureVisionMobile-PostureVisionMobileTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PostureVisionMobile-PostureVisionMobileTests/Pods-PostureVisionMobile-PostureVisionMobileTests-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E235C05ADACE081382539298 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PostureVisionMobile/Pods-PostureVisionMobile-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PostureVisionMobile/Pods-PostureVisionMobile-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PostureVisionMobile/Pods-PostureVisionMobile-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */ = {
+		7115F9DC7D278EE12D01341E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -508,6 +520,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PostureVisionMobile-PostureVisionMobileTests/Pods-PostureVisionMobile-PostureVisionMobileTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		89C055170D1EF43AD00C83C8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PostureVisionMobile/Pods-PostureVisionMobile-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PostureVisionMobile/Pods-PostureVisionMobile-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PostureVisionMobile/Pods-PostureVisionMobile-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9FE2E6F00D286EB5F54DAEEE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PostureVisionMobile/Pods-PostureVisionMobile-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PostureVisionMobile/Pods-PostureVisionMobile-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PostureVisionMobile/Pods-PostureVisionMobile-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -529,6 +575,10 @@
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				DFAFAA9501E648B6AC527697 /* HandLandmarksFrameProcessor.m in Sources */,
 				F5B99460FE7B49988839B18E /* HandLandmarksFrameProcessor.swift in Sources */,
+				14727BDF5FD949C094D6A358 /* PoseLandmarksFrameProcessor.m in Sources */,
+				CA78FC2883484DE98E3432F9 /* PoseLandmarksFrameProcessor.swift in Sources */,
+				BC3B6CA7065B415DA6BE8A0E /* HolisticLandmarksFrameProcessor.m in Sources */,
+				3FE158EC61114DF298FA470F /* HolisticLandmarksFrameProcessor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,7 +595,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-PostureVisionMobile-PostureVisionMobileTests.debug.xcconfig */;
+			baseConfigurationReference = 7C8439C8B13AF7759E725521 /* Pods-PostureVisionMobile-PostureVisionMobileTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -572,7 +622,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-PostureVisionMobile-PostureVisionMobileTests.release.xcconfig */;
+			baseConfigurationReference = AE2D76425A5DF671BCB13DD7 /* Pods-PostureVisionMobile-PostureVisionMobileTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -596,7 +646,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-PostureVisionMobile.debug.xcconfig */;
+			baseConfigurationReference = D7FD2CB13AE6E4F9DC287D5D /* Pods-PostureVisionMobile.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -626,7 +676,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-PostureVisionMobile.release.xcconfig */;
+			baseConfigurationReference = 7E744C8EFCFFF1067D2DC657 /* Pods-PostureVisionMobile.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
