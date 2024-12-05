@@ -24,7 +24,9 @@ import SearchScreen from '../screens/SearchScreen.js';
 import ProfileScreen from '../screens/ProfileScreen';
 import PoseModel from '../screens/PoseModel.tsx';
 import ImageModel from '../screens/ImageModel.js';
+import GestureRecognizerModel from '../screens/GestureRecognizerModel.tsx';
 import HandModel from '../screens/HandModel.tsx';
+import PostureDetectorScreen from '../screens/PostureDetectorScreen.tsx';
 import PoseMediaPipeModel from '../screens/PoseMediaPipeModel.tsx';
 import HistoryScreen from '../screens/HistoryScreen.js';
 import FavoriteScreen from '../screens/FavoritesScreen.js';
@@ -91,7 +93,7 @@ function Navigation() {
         <Stack.Screen name="Main" component={MainTabs} />
         <Stack.Screen
           name="Search"
-          component={PoseMediaPipeModel}
+          component={PostureDetectorScreen}
           options={{
             headerShown: false,
             presentation: 'modal',

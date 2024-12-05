@@ -9,16 +9,19 @@
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* PostureVisionMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PostureVisionMobileTests.m */; };
 		0772C46D5AEA474CBF53153F /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA42978EBDD04917ACA7F1E6 /* Roboto-MediumItalic.ttf */; };
+		0BA977EB6EFF4C709E026347 /* YoloPostureFrameProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FB8C406C14763A88555F2 /* YoloPostureFrameProcessor.swift */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		14727BDF5FD949C094D6A358 /* PoseLandmarksFrameProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED40245A72042EFB6064FBE /* PoseLandmarksFrameProcessor.m */; };
+		18429F1213874201A2DE5444 /* GestureRecognizerMarksFrameProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EC342BA33E44B181637FC1 /* GestureRecognizerMarksFrameProcessor.swift */; };
 		186544FF3948459D92BCAE97 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F790E2A66D1E415990CFAAA9 /* Roboto-Italic.ttf */; };
 		314719E9CFF3425BB8976B7F /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D72D1DE15DD744D89E31D55C /* Roboto-Regular.ttf */; };
-		3FE158EC61114DF298FA470F /* HolisticLandmarksFrameProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAA1E123B894DB8B1B12C8C /* HolisticLandmarksFrameProcessor.swift */; };
+		4DBFB8442CFEFE5E00E177F1 /* gesture_recognizer.task in Resources */ = {isa = PBXBuildFile; fileRef = 4DBFB8432CFEFE5E00E177F1 /* gesture_recognizer.task */; };
 		4DC91F8C2CFA0C760099EAF0 /* hand_landmarker.task in Resources */ = {isa = PBXBuildFile; fileRef = 4DC91F8B2CFA0C760099EAF0 /* hand_landmarker.task */; };
 		4DDD91AD2CFA2ADF00418FB4 /* pose_landmarker_full.task in Resources */ = {isa = PBXBuildFile; fileRef = 4DDD91AC2CFA2ADF00418FB4 /* pose_landmarker_full.task */; };
 		4DDD91AF2CFA360000418FB4 /* holistic_landmarker.task in Resources */ = {isa = PBXBuildFile; fileRef = 4DDD91AE2CFA360000418FB4 /* holistic_landmarker.task */; };
+		4DFF86202D00B04000A42E81 /* best.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 4DFF861F2D00B04000A42E81 /* best.mlpackage */; };
 		572414601CE241F6892A29BA /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6A69E4379CC407E9D7E5590 /* Roboto-Medium.ttf */; };
 		5BF37C862020495BB5BA74C4 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA5F0ED526534F79B411A097 /* Roboto-Black.ttf */; };
 		6AFF0657D3FA43DDB4AF07E7 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6576663DE6A47A3BB7B6F98 /* Roboto-BlackItalic.ttf */; };
@@ -27,8 +30,9 @@
 		8D60BBFC67C5ED9B21E13BDF /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
 		8E0023AC013444B8BD39A0A5 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4FE02886F274E0FB59BFE45 /* Roboto-ThinItalic.ttf */; };
 		9191ED2C87FE48319F4D8100 /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFF4B9C9A706460891187FFF /* Roboto-BoldItalic.ttf */; };
+		9BC4AFABBF784963A530FA5D /* YoloPostureFrameProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE999FEB9CA4A1AB35D284E /* YoloPostureFrameProcessor.m */; };
 		9ECE96814EA79AD77A1F465C /* libPods-PostureVisionMobile-PostureVisionMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACB2B0A3BC9E938DE212944 /* libPods-PostureVisionMobile-PostureVisionMobileTests.a */; };
-		BC3B6CA7065B415DA6BE8A0E /* HolisticLandmarksFrameProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B2773DE5A49F99FB5F732 /* HolisticLandmarksFrameProcessor.m */; };
+		AEF5144DEEB54890BFE2624C /* GestureRecognizerMarksFrameProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06DF3015634C29A7B987D4 /* GestureRecognizerMarksFrameProcessor.m */; };
 		BD760C0B82604DF3A5C07FD0 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F51FCE5252846B285E6FBF1 /* Roboto-Bold.ttf */; };
 		BE1D9B71BBF1455D8EAD0FE0 /* HubotSans-VariableFont_wdth,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 971575102CFC436DBC546B09 /* HubotSans-VariableFont_wdth,wght.ttf */; };
 		BE452B30C90B4B40B819E5D7 /* HubotSans-Italic-VariableFont_wdth,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 780BA064C9B04564BF599D99 /* HubotSans-Italic-VariableFont_wdth,wght.ttf */; };
@@ -84,21 +88,23 @@
 		4D10862B2CEB28D4005FE7DA /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		4D10862C2CEB28D4005FE7DA /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		4D10862D2CEB28D4005FE7DA /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		4DBFB8432CFEFE5E00E177F1 /* gesture_recognizer.task */ = {isa = PBXFileReference; lastKnownFileType = file; path = gesture_recognizer.task; sourceTree = "<group>"; };
 		4DC91F8B2CFA0C760099EAF0 /* hand_landmarker.task */ = {isa = PBXFileReference; lastKnownFileType = file; path = hand_landmarker.task; sourceTree = "<group>"; };
 		4DDD91AC2CFA2ADF00418FB4 /* pose_landmarker_full.task */ = {isa = PBXFileReference; lastKnownFileType = file; path = pose_landmarker_full.task; sourceTree = "<group>"; };
 		4DDD91AE2CFA360000418FB4 /* holistic_landmarker.task */ = {isa = PBXFileReference; lastKnownFileType = file; path = holistic_landmarker.task; sourceTree = "<group>"; };
+		4DFF861F2D00B04000A42E81 /* best.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; name = best.mlpackage; path = ../best.mlpackage; sourceTree = "<group>"; };
 		5F51FCE5252846B285E6FBF1 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.ttf"; path = "../assets/fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		6C3F9389B75B12FDE0DA934C /* libPods-PostureVisionMobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PostureVisionMobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		780BA064C9B04564BF599D99 /* HubotSans-Italic-VariableFont_wdth,wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HubotSans-Italic-VariableFont_wdth,wght.ttf"; path = "../assets/fonts/HubotSans-Italic-VariableFont_wdth,wght.ttf"; sourceTree = "<group>"; };
 		7ACB2B0A3BC9E938DE212944 /* libPods-PostureVisionMobile-PostureVisionMobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PostureVisionMobile-PostureVisionMobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C8439C8B13AF7759E725521 /* Pods-PostureVisionMobile-PostureVisionMobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PostureVisionMobile-PostureVisionMobileTests.debug.xcconfig"; path = "Target Support Files/Pods-PostureVisionMobile-PostureVisionMobileTests/Pods-PostureVisionMobile-PostureVisionMobileTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7E744C8EFCFFF1067D2DC657 /* Pods-PostureVisionMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PostureVisionMobile.release.xcconfig"; path = "Target Support Files/Pods-PostureVisionMobile/Pods-PostureVisionMobile.release.xcconfig"; sourceTree = "<group>"; };
-		7F5B2773DE5A49F99FB5F732 /* HolisticLandmarksFrameProcessor.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; path = HolisticLandmarksFrameProcessor.m; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = PostureVisionMobile/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		971575102CFC436DBC546B09 /* HubotSans-VariableFont_wdth,wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HubotSans-VariableFont_wdth,wght.ttf"; path = "../assets/fonts/HubotSans-VariableFont_wdth,wght.ttf"; sourceTree = "<group>"; };
+		A5EC342BA33E44B181637FC1 /* GestureRecognizerMarksFrameProcessor.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; path = GestureRecognizerMarksFrameProcessor.swift; sourceTree = "<group>"; };
 		AE2D76425A5DF671BCB13DD7 /* Pods-PostureVisionMobile-PostureVisionMobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PostureVisionMobile-PostureVisionMobileTests.release.xcconfig"; path = "Target Support Files/Pods-PostureVisionMobile-PostureVisionMobileTests/Pods-PostureVisionMobile-PostureVisionMobileTests.release.xcconfig"; sourceTree = "<group>"; };
 		B2F8065BC282496E8A442E80 /* PoseLandmarksFrameProcessor.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; path = PoseLandmarksFrameProcessor.swift; sourceTree = "<group>"; };
-		BCAA1E123B894DB8B1B12C8C /* HolisticLandmarksFrameProcessor.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; path = HolisticLandmarksFrameProcessor.swift; sourceTree = "<group>"; };
+		BA06DF3015634C29A7B987D4 /* GestureRecognizerMarksFrameProcessor.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; path = GestureRecognizerMarksFrameProcessor.m; sourceTree = "<group>"; };
 		C6576663DE6A47A3BB7B6F98 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-BlackItalic.ttf"; path = "../assets/fonts/Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
 		C6A69E4379CC407E9D7E5590 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Medium.ttf"; path = "../assets/fonts/Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		CBF63442BBC04F329E785F33 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Thin.ttf"; path = "../assets/fonts/Roboto-Thin.ttf"; sourceTree = "<group>"; };
@@ -107,6 +113,8 @@
 		D72D1DE15DD744D89E31D55C /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		D7FD2CB13AE6E4F9DC287D5D /* Pods-PostureVisionMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PostureVisionMobile.debug.xcconfig"; path = "Target Support Files/Pods-PostureVisionMobile/Pods-PostureVisionMobile.debug.xcconfig"; sourceTree = "<group>"; };
 		DA42978EBDD04917ACA7F1E6 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-MediumItalic.ttf"; path = "../assets/fonts/Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
+		DDE999FEB9CA4A1AB35D284E /* YoloPostureFrameProcessor.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; path = YoloPostureFrameProcessor.m; sourceTree = "<group>"; };
+		DE1FB8C406C14763A88555F2 /* YoloPostureFrameProcessor.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; path = YoloPostureFrameProcessor.swift; sourceTree = "<group>"; };
 		E4FE02886F274E0FB59BFE45 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-ThinItalic.ttf"; path = "../assets/fonts/Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
 		EA5F0ED526534F79B411A097 /* Roboto-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Black.ttf"; path = "../assets/fonts/Roboto-Black.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -148,6 +156,15 @@
 				00E356F11AD99517003FC87E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0750350A3D464932A471AC50 /* GestureRecognizerMarksFrameProcessor */ = {
+			isa = PBXGroup;
+			children = (
+				BA06DF3015634C29A7B987D4 /* GestureRecognizerMarksFrameProcessor.m */,
+				A5EC342BA33E44B181637FC1 /* GestureRecognizerMarksFrameProcessor.swift */,
+			);
+			path = GestureRecognizerMarksFrameProcessor;
 			sourceTree = "<group>";
 		};
 		13B07FAE1A68108700A75B9A /* PostureVisionMobile */ = {
@@ -201,6 +218,15 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		6AF289E6E4A5405D9AF8CB4E /* YoloPostureFrameProcessor */ = {
+			isa = PBXGroup;
+			children = (
+				DDE999FEB9CA4A1AB35D284E /* YoloPostureFrameProcessor.m */,
+				DE1FB8C406C14763A88555F2 /* YoloPostureFrameProcessor.swift */,
+			);
+			path = YoloPostureFrameProcessor;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +237,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				4DFF861F2D00B04000A42E81 /* best.mlpackage */,
+				4DBFB8432CFEFE5E00E177F1 /* gesture_recognizer.task */,
 				4DDD91AE2CFA360000418FB4 /* holistic_landmarker.task */,
 				4DDD91AC2CFA2ADF00418FB4 /* pose_landmarker_full.task */,
 				4DC91F8B2CFA0C760099EAF0 /* hand_landmarker.task */,
@@ -223,8 +251,8 @@
 				B8425FFB369047CFB6F954D0 /* Resources */,
 				AE3F3A9230D041D2A616C099 /* HandLandmarksFrameProcessor */,
 				B8543FFC974549A48526EA96 /* PoseLandmarksFrameProcessor */,
-				E52B798637374B3FA94B7650 /* HolisticLandmarkFrameProcessor */,
-				1CC66CCBEFA348A9A2F84DAB /* HolisticLandmarksFrameProcessor */,
+				0750350A3D464932A471AC50 /* GestureRecognizerMarksFrameProcessor */,
+				6AF289E6E4A5405D9AF8CB4E /* YoloPostureFrameProcessor */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -288,24 +316,6 @@
 				AE2D76425A5DF671BCB13DD7 /* Pods-PostureVisionMobile-PostureVisionMobileTests.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		E52B798637374B3FA94B7650 /* HolisticLandmarkFrameProcessor */ = {
-			isa = PBXGroup;
-			children = (
-				7F5B2773DE5A49F99FB5F732 /* HolisticLandmarksFrameProcessor.m */,
-				BCAA1E123B894DB8B1B12C8C /* HolisticLandmarksFrameProcessor.swift */,
-			);
-			name = HolisticLandmarkFrameProcessor;
-			path = HolisticLandmarksFrameProcessor;
-			sourceTree = "<group>";
-		};
-		1CC66CCBEFA348A9A2F84DAB /* HolisticLandmarksFrameProcessor */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = HolisticLandmarksFrameProcessor;
-			path = HolisticLandmarksFrameProcessor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -410,6 +420,7 @@
 				BD760C0B82604DF3A5C07FD0 /* Roboto-Bold.ttf in Resources */,
 				9191ED2C87FE48319F4D8100 /* Roboto-BoldItalic.ttf in Resources */,
 				4DDD91AD2CFA2ADF00418FB4 /* pose_landmarker_full.task in Resources */,
+				4DBFB8442CFEFE5E00E177F1 /* gesture_recognizer.task in Resources */,
 				186544FF3948459D92BCAE97 /* Roboto-Italic.ttf in Resources */,
 				C66663A8367C47F5B7F81206 /* Roboto-Light.ttf in Resources */,
 				89E4982301E247B3B40FD657 /* Roboto-LightItalic.ttf in Resources */,
@@ -575,10 +586,13 @@
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				DFAFAA9501E648B6AC527697 /* HandLandmarksFrameProcessor.m in Sources */,
 				F5B99460FE7B49988839B18E /* HandLandmarksFrameProcessor.swift in Sources */,
+				4DFF86202D00B04000A42E81 /* best.mlpackage in Sources */,
 				14727BDF5FD949C094D6A358 /* PoseLandmarksFrameProcessor.m in Sources */,
 				CA78FC2883484DE98E3432F9 /* PoseLandmarksFrameProcessor.swift in Sources */,
-				BC3B6CA7065B415DA6BE8A0E /* HolisticLandmarksFrameProcessor.m in Sources */,
-				3FE158EC61114DF298FA470F /* HolisticLandmarksFrameProcessor.swift in Sources */,
+				AEF5144DEEB54890BFE2624C /* GestureRecognizerMarksFrameProcessor.m in Sources */,
+				18429F1213874201A2DE5444 /* GestureRecognizerMarksFrameProcessor.swift in Sources */,
+				9BC4AFABBF784963A530FA5D /* YoloPostureFrameProcessor.m in Sources */,
+				0BA977EB6EFF4C709E026347 /* YoloPostureFrameProcessor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
