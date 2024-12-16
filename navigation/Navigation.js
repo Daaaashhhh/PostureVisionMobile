@@ -22,15 +22,10 @@ import CourseDetails from '../screens/CourseDetails.js';
 import CourseLesson from '../screens/CourseLesson.js';
 import SearchScreen from '../screens/SearchScreen.js';
 import ProfileScreen from '../screens/ProfileScreen';
-import PoseModel from '../screens/PoseModel.tsx';
-import ImageModel from '../screens/ImageModel.js';
-import GestureRecognizerModel from '../screens/GestureRecognizerModel.tsx';
-import HandModel from '../screens/HandModel.tsx';
-import PostureDetectorScreen from '../screens/PostureDetectorScreen.tsx';
-import PoseMediaPipeModel from '../screens/PoseMediaPipeModel.tsx';
 import HistoryScreen from '../screens/HistoryScreen.js';
 import FavoriteScreen from '../screens/FavoritesScreen.js';
 import DownloadsScreen from '../screens/DownloadsScreen.js';
+import VideoCameraStream from '../screens/VideoCameraStream';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -93,7 +88,7 @@ function Navigation() {
         <Stack.Screen name="Main" component={MainTabs} />
         <Stack.Screen
           name="Search"
-          component={PostureDetectorScreen}
+          component={VideoCameraStream}
           options={{
             headerShown: false,
             presentation: 'modal',
@@ -117,7 +112,7 @@ function Navigation() {
         />
         <Stack.Screen
           name="Profile"
-          component={HandModel}
+          component={ProfileScreen}
           options={{
             presentation: 'modal',
             headerShown: false,

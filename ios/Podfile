@@ -19,8 +19,6 @@ end
 target 'PostureVisionMobile' do
   config = use_native_modules!
 
-  pod 'MediaPipeTasksVision', '0.10.14'
-
   use_react_native!(
     :path => config[:reactNativePath],
     # An absolute path to your application root.
@@ -28,7 +26,6 @@ target 'PostureVisionMobile' do
   )
 
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
-
   
   target 'PostureVisionMobileTests' do
     inherit! :complete

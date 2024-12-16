@@ -10,7 +10,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "@mediapipe/pose": "^0.5.1675469404",
     "@react-native-community/blur": "^4.4.1",
     "@react-native-community/hooks": "^3.0.0",
     "@react-native-community/masked-view": "^0.1.11",
@@ -18,15 +17,6 @@
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/stack": "^6.4.1",
     "@shopify/react-native-skia": "^1.5.10",
-    "@tensorflow-models/mobilenet": "^2.1.1",
-    "@tensorflow-models/pose-detection": "^2.1.3",
-    "@tensorflow/tfjs": "^4.22.0",
-    "@tensorflow/tfjs-react-native": "^1.0.0",
-    "expo-camera": "^13.4.4",
-    "expo-file-system": "^18.0.3",
-    "expo-gl": "^13.0.1",
-    "expo-gl-cpp": "^11.4.0",
-    "expo-screen-orientation": "^8.0.0",
     "react": "18.3.1",
     "react-native": "0.76.0",
     "react-native-gesture-handler": "^2.20.2",
@@ -38,8 +28,9 @@
     "react-native-vector-icons": "^10.2.0",
     "react-native-video": "^6.7.0",
     "react-native-video-thumbnails": "^0.0.0",
-    "react-native-vision-camera": "^4.6.1",
-    "react-native-worklets-core": "^1.5.0"
+    "react-native-vision-camera": "^4.6.3",
+    "react-native-worklets-core": "^1.5.0",
+    "socket.io-client": "^4.8.1"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

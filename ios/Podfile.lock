@@ -9,9 +9,6 @@ PODS:
   - hermes-engine (0.76.0):
     - hermes-engine/Pre-built (= 0.76.0)
   - hermes-engine/Pre-built (0.76.0)
-  - MediaPipeTasksCommon (0.10.14)
-  - MediaPipeTasksVision (0.10.14):
-    - MediaPipeTasksCommon (= 0.10.14)
   - RCT-Folly (2024.01.01.00):
     - boost
     - DoubleConversion
@@ -1268,7 +1265,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-safe-area-context (4.14.0):
+  - react-native-safe-area-context (4.14.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1281,8 +1278,8 @@ PODS:
     - React-featureflags
     - React-graphics
     - React-ImageManager
-    - react-native-safe-area-context/common (= 4.14.0)
-    - react-native-safe-area-context/fabric (= 4.14.0)
+    - react-native-safe-area-context/common (= 4.14.1)
+    - react-native-safe-area-context/fabric (= 4.14.1)
     - React-NativeModulesApple
     - React-RCTFabric
     - React-rendererdebug
@@ -1291,7 +1288,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-safe-area-context/common (4.14.0):
+  - react-native-safe-area-context/common (4.14.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1312,7 +1309,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-safe-area-context/fabric (4.14.0):
+  - react-native-safe-area-context/fabric (4.14.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1334,7 +1331,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-skia (1.5.10):
+  - react-native-skia (1.7.4):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1733,7 +1730,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNReanimated (3.16.3):
+  - RNReanimated (3.16.5):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1753,10 +1750,10 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNReanimated/reanimated (= 3.16.3)
-    - RNReanimated/worklets (= 3.16.3)
+    - RNReanimated/reanimated (= 3.16.5)
+    - RNReanimated/worklets (= 3.16.5)
     - Yoga
-  - RNReanimated/reanimated (3.16.3):
+  - RNReanimated/reanimated (3.16.5):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1776,9 +1773,9 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNReanimated/reanimated/apple (= 3.16.3)
+    - RNReanimated/reanimated/apple (= 3.16.5)
     - Yoga
-  - RNReanimated/reanimated/apple (3.16.3):
+  - RNReanimated/reanimated/apple (3.16.5):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1799,7 +1796,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNReanimated/worklets (3.16.3):
+  - RNReanimated/worklets (3.16.5):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1865,7 +1862,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNSVG (15.9.0):
+  - RNSVG (15.10.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1885,9 +1882,9 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNSVG/common (= 15.9.0)
+    - RNSVG/common (= 15.10.1)
     - Yoga
-  - RNSVG/common (15.9.0):
+  - RNSVG/common (15.10.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1952,7 +1949,6 @@ DEPENDENCIES:
   - fmt (from `../node_modules/react-native/third-party-podspecs/fmt.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
-  - MediaPipeTasksVision (= 0.10.14)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCT-Folly/Fabric (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCTDeprecation (from `../node_modules/react-native/ReactApple/Libraries/RCTFoundation/RCTDeprecation`)
@@ -2027,8 +2023,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - MediaPipeTasksCommon
-    - MediaPipeTasksVision
     - SocketRocket
 
 EXTERNAL SOURCES:
@@ -2194,8 +2188,6 @@ SPEC CHECKSUMS:
   fmt: 10c6e61f4be25dc963c36bd73fc7b1705fe975be
   glog: 08b301085f15bcbb6ff8632a8ebaf239aae04e6a
   hermes-engine: 9de51d2f67336348a6cd5b686330e436d1dbd522
-  MediaPipeTasksCommon: 5660099c2dd81f7ac4a7a5f51055785ead8e0e64
-  MediaPipeTasksVision: 0fac0db83c0b45e4d7811a9227be5e571403cf83
   RCT-Folly: bf5c0376ffe4dd2cf438dcf86db385df9fdce648
   RCTDeprecation: 4c2c4a088b6f0ccfcbd53c9d5614b0238ad57909
   RCTRequired: 2d8a683a7848bc0baf5883f0792c1ac43f6267b5
@@ -2226,8 +2218,8 @@ SPEC CHECKSUMS:
   React-Mapbuffer: b0b4ace5b62b269f3838df26ba2d8b4f39f90783
   React-microtasksnativemodule: 0b7db04c18f6bb01ef5b1f9007c3229abecc35dd
   react-native-blur: 28b0a731ed804bed3e88757c2414305896e6b47e
-  react-native-safe-area-context: 2500e4fe998caad50ad3bc51ec23ef951308569e
-  react-native-skia: a3c899c5b95053ac04dd173f5ae559cf8e6ca657
+  react-native-safe-area-context: 782fec0553f14a630a2bac87b116e512a9f35500
+  react-native-skia: b93a886fdcd23937a8260921adb810a78a3a6531
   react-native-video: 02120ed628f1ca8956b1e67e4e2ec8825e2f2710
   react-native-worklets-core: 7186c6632dc36ebec96b2e205388ea0ac224dd91
   React-nativeconfig: 72c10ff34863148ef90df9c9c8eacba99d2faaaa
@@ -2259,14 +2251,14 @@ SPEC CHECKSUMS:
   ReactCommon: 429ca28cd813c31359c73ffac6dc24f93347d522
   RNCMaskedView: 0e1bc4bfa8365eba5fbbb71e07fbdc0555249489
   RNGestureHandler: 0e5ae8d72ef4afb855e98dcdbe60f27d938abe13
-  RNReanimated: 006a5d3961bf09c1e96d62ed436e02b2e43b89bb
+  RNReanimated: eb3170ded1ec1f61d8129c6cc2df06778f99703f
   RNScreens: e389d6a6a66a4f0d3662924ecae803073ccce8ec
-  RNSVG: b2fbe96b2bb3887752f8abc1f495953847e90384
+  RNSVG: ec2e9d524612ee95db5df143a54518c5404d93f0
   RNVectorIcons: 07792a9538e8577c1263fcad187712e90d65d8fb
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   VisionCamera: 88df4dae7196c93ecd331f105f0e5d7d95702cb3
   Yoga: f8ec45ce98bba1bc93dd28f2ee37215180e6d2b6
 
-PODFILE CHECKSUM: 63918950e83e651a3b5dd09336e5905103d34eda
+PODFILE CHECKSUM: 55d872716cf0badb82e52ee5a75adbc315746ae0
 
 COCOAPODS: 1.15.2
