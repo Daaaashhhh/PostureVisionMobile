@@ -92,7 +92,7 @@ export default function FeaturedScreen({navigation}) {
           {/* Main Course Container with Glassmorphism */}
           <TouchableOpacity
             style={styles.glassContainer}
-            onPress={() => navigation.navigate('CourseDetails')}>
+            onPress={() => navigation.navigate('VideoCameraStream')}>
             <BlurView
               style={styles.blurView}
               blurType="dark"

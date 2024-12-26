@@ -17,10 +17,10 @@ import {BlurView} from '@react-native-community/blur';
 
 const CourseDetails = ({navigation}) => {
   const menuItems = [
-    {icon: 'camera', label: 'Start Analysis'},
-    {icon: 'chart-line', label: 'View Progress'},
-    {icon: 'download', label: 'Save Results'},
-    {icon: 'share', label: 'Share Report'},
+    {id: '1', icon: 'camera', label: 'Start Analysis'},
+    {id: '2', icon: 'chart-line', label: 'View Progress'},
+    {id: '3', icon: 'download', label: 'Save Results'},
+    {id: '4', icon: 'share', label: 'Share Report'},
   ];
 
   const analysisItems = [
@@ -81,20 +81,21 @@ const CourseDetails = ({navigation}) => {
         </View>
 
         {/* Menu Options */}
-        <View style={styles.menuContainer}>
+        {/* Menu container with blur effect background */}
+        {/* <View style={styles.menuContainer}>
           <BlurView
             style={StyleSheet.absoluteFill}
             blurType="light"
             blurAmount={20}
             reducedTransparencyFallbackColor="white"
           />
-          {menuItems.map((item, index) => (
-            <TouchableOpacity key={index} style={styles.menuItem}>
+          {menuItems.map((item) => (
+            <TouchableOpacity key={item.id} style={styles.menuItem}>
               <FontAwesome5 name={item.icon} size={20} color="#fff" />
               <Text style={styles.menuText}>{item.label}</Text>
             </TouchableOpacity>
           ))}
-        </View>
+        </View> */}
 
         {/* Course Title Section with Glassmorphism */}
         <View style={styles.courseHeaderContainer}>
@@ -141,7 +142,11 @@ const CourseDetails = ({navigation}) => {
             reducedTransparencyFallbackColor="white"
           />
           <View style={styles.courseItems}>
-            {analysisItems.map((item, index) => renderCourseItem({item, index}))}
+            {analysisItems.map((item) => (
+              <React.Fragment key={item.id}>
+                {renderCourseItem({item})}
+              </React.Fragment>
+            ))}
           </View>
         </ScrollView>
       </ImageBackground>

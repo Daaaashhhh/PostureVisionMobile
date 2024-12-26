@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -6,12 +6,41 @@ import {
   TouchableOpacity,
   ImageBackground,
   StyleSheet,
+  Alert,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import LinearGradient from 'react-native-linear-gradient';
 import Background from '../assets/bg-img-login.png';
 
 function LoginScreen({navigation}) {
+  const [formData, setFormData] = useState({
+    username: '',
+    password: '',
+  });
+
+  const handleLogin = async () => {
+    navigation.navigate('Main');
+    try {
+      const response = await fetch('http://209.38.17.88:5000/auth/login', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          username: formData.username,
+          password: formData.password,
+        }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        navigation.navigate('Main');
+      } else {
+        Alert.alert('Login Failed', data.error || 'Login failed.');
+      }
+    } catch (error) {
+      Alert.alert('Error', 'Network error occurred');
+    }
+  };
+
   return (
     <ImageBackground source={Background} style={styles.background}>
       <View style={styles.cardContainer}>
@@ -29,12 +58,14 @@ function LoginScreen({navigation}) {
 
             <View style={styles.inputContainer}>
               <View style={styles.iconContainer}>
-                <Icon name="envelope" size={20} color="#fff" />
+                <Icon name="user" size={20} color="#fff" />
               </View>
               <TextInput
-                placeholder="Email address"
+                placeholder="Username"
                 placeholderTextColor="rgba(255, 255, 255, 0.6)"
                 style={styles.input}
+                value={formData.username}
+                onChangeText={text => setFormData({...formData, username: text})}
               />
             </View>
 
@@ -47,12 +78,12 @@ function LoginScreen({navigation}) {
                 placeholderTextColor="rgba(255, 255, 255, 0.6)"
                 secureTextEntry
                 style={styles.input}
+                value={formData.password}
+                onChangeText={text => setFormData({...formData, password: text})}
               />
             </View>
 
-            <TouchableOpacity
-              style={styles.buttonContainer}
-              onPress={() => navigation.navigate('Main')}>
+            <TouchableOpacity style={styles.buttonContainer} onPress={handleLogin}>
               <LinearGradient
                 colors={['#a726e5', '#b58aff']}
                 start={{x: 0, y: 0.5}}
@@ -90,7 +121,6 @@ const styles = StyleSheet.create({
   },
   overlay: {
     borderRadius: 30,
-
     backgroundColor: 'rgba(0, 0, 0, 0.6)',
   },
   card: {
@@ -144,7 +174,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
   },
   button: {
-
     alignItems: 'center',
   },
   buttonText: {
