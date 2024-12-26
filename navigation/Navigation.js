@@ -33,7 +33,7 @@ const Tab = createBottomTabNavigator();
 function AuthStack() {
   return (
     <Stack.Navigator
-      initialRouteName="SignUp"
+      initialRouteName="Login"
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="SignUp" component={SignUpScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
@@ -88,6 +88,14 @@ function Navigation() {
         <Stack.Screen name="Main" component={MainTabs} />
         <Stack.Screen
           name="Search"
+          component={SearchScreen}
+          options={{
+            headerShown: false,
+            presentation: 'modal',
+          }}
+        />
+        <Stack.Screen
+          name="VideoCameraStream"
           component={VideoCameraStream}
           options={{
             headerShown: false,
