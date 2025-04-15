@@ -75,9 +75,6 @@ export default function FeaturedScreen({navigation}) {
   return (
     <ImageBackground source={BackgroundImage} style={styles.background}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        {showWebRTC && (
-          <WebRTCViewer onStop={() => setShowWebRTC(false)} />
-        )}
         <View style={styles.headerContainer}>
           <CustomText style={styles.featuredText}>Featured</CustomText>
           <View style={styles.iconContainer}>
@@ -95,28 +92,26 @@ export default function FeaturedScreen({navigation}) {
         </View>
 
         <View style={styles.container}>
-          {/* Main Course Container with Glassmorphism */}
-          <TouchableOpacity
-            style={styles.glassContainer}
-            onPress={() => navigation.navigate('CourseDetails')}>
+          {/* WebRTC Viewer Container */}
+          <View style={styles.glassContainer}>
             <BlurView
               style={styles.blurView}
               blurType="dark"
               blurAmount={20}
               reducedTransparencyFallbackColor="rgba(255, 255, 255, 0.3)"
             />
-            <Image source={PostureProgramImage} style={styles.programImage} />
-            <CustomText style={styles.courseTitle}>
-              Posture Correction Program
-            </CustomText>
-            <CustomText style={styles.courseDetails}>
-              20 SECTIONS - 3 HOURS
-            </CustomText>
-            <CustomText style={styles.courseDescription}>
-              Improve your posture with guided exercises, tips, and insights for
-              better alignment and well-being.
-            </CustomText>
-          </TouchableOpacity>
+            {!showWebRTC ? (
+              <TouchableOpacity
+                style={styles.startButton}
+                onPress={() => setShowWebRTC(true)}>
+                <CustomText style={styles.startButtonText}>
+                  Start Posture Analysis
+                </CustomText>
+              </TouchableOpacity>
+            ) : (
+              <WebRTCViewer onStop={() => setShowWebRTC(false)} />
+            )}
+          </View>
 
           <CustomText style={styles.recentCoursesText}>
             RECENT COURSES
@@ -225,12 +220,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
   },
-  programImage: {
-    width: '100%',
-    height: 140,
-    resizeMode: 'contain',
-    marginBottom: 16,
-  },
   glassContainer: {
     backgroundColor: 'rgba(255, 255, 255, 0.15)',
     borderRadius: 24,
@@ -244,25 +233,15 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     borderRadius: 24,
   },
-  courseTitle: {
-    fontSize: 32,
+  startButton: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  startButtonText: {
+    fontSize: 24,
     fontWeight: '800',
     color: '#FFFFFF',
-    marginBottom: 12,
-  },
-  courseDetails: {
-    fontSize: 15,
-    fontWeight: '600',
-    color: '#FFFFFF',
-    marginBottom: 16,
-    opacity: 0.8,
-    letterSpacing: 1,
-  },
-  courseDescription: {
-    fontSize: 18,
-    color: '#FFFFFF',
-    lineHeight: 26,
-    opacity: 0.9,
   },
   recentCoursesText: {
     fontSize: 16,

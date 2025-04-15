@@ -143,12 +143,10 @@ const WebRTCViewer = ({onStop}) => {
   }, [stream, onStop]);
 
   useEffect(() => {
-    start();
-
     return () => {
       stop();
     };
-  }, [start, stop]);
+  }, [stop]);
 
   return (
     <View style={styles.container}>
