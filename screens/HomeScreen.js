@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -21,6 +21,7 @@ import VideoWidgetImage from '../assets/thumbnail-example1.png';
 import VideoWidgetImage2 from '../assets/thumbnail-example2.png';
 import VideoWidgetImage3 from '../assets/thumbnail-example3.png';
 import CustomText from '../CustomText.js';
+import WebRTCViewer from './WebRTCViewer';
 
 const {width} = Dimensions.get('window');
 
@@ -69,9 +70,14 @@ const videoWidgets = [
 ];
 
 export default function FeaturedScreen({navigation}) {
+  const [showWebRTC, setShowWebRTC] = useState(true);
+
   return (
     <ImageBackground source={BackgroundImage} style={styles.background}>
       <ScrollView showsVerticalScrollIndicator={false}>
+        {showWebRTC && (
+          <WebRTCViewer onStop={() => setShowWebRTC(false)} />
+        )}
         <View style={styles.headerContainer}>
           <CustomText style={styles.featuredText}>Featured</CustomText>
           <View style={styles.iconContainer}>
