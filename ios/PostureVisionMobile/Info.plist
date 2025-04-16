@@ -32,7 +32,9 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string>We need access to your location to provide location-based services.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>We need access to your camera to analyze your posture and provide real-time feedback.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -64,7 +66,5 @@
 		<string>Roboto-Thin.ttf</string>
 		<string>Roboto-ThinItalic.ttf</string>
 	</array>
-	<key>NSCameraUsageDescription</key>
-	<string>We need access to your camera to analyze your posture and provide real-time feedback.</string>
 </dict>
 </plist>
