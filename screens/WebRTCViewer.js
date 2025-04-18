@@ -170,7 +170,9 @@ const WebRTCViewer = ({ onStop }) => {
             style={styles.canvas}
           />
 
-          <Button title="Close Camera" onPress={stop} color="#f44336" />
+          <View style={styles.buttonContainer}>
+            <Button title="Close Camera" onPress={stop} color="#f44336" />
+          </View>
         </View>
       </Modal>
 
@@ -192,6 +194,11 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     zIndex: 10
+  },
+  buttonContainer: {
+    position: 'absolute',
+    bottom: '30%',
+    zIndex: 20,
   },
   buttons: { flexDirection: 'row', gap: 10, marginTop: 20 },
   error: { color: '#f44336', margin: 10 }
