@@ -12,8 +12,12 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {BlurView} from '@react-native-community/blur';
 import LinearGradient from 'react-native-linear-gradient';
 
+import WelcomeScreen from '../screens/WelcomeScreen';
 import SignUpScreen from '../screens/SignupScreen';
 import LoginScreen from '../screens/LoginScreen';
+import CreateProfileScreen from '../screens/CreateProfileScreen';
+import IdentityVerificationScreen from '../screens/IdentityVerificationScreen';
+import PostureCaptureScreen from '../screens/PostureCaptureScreen';
 import HomeScreen from '../screens/HomeScreen';
 import ExploreScreen from '../screens/ExploreScreen.js';
 import NotificationScreen from '../screens/NotificationScreen';
@@ -32,10 +36,14 @@ const Tab = createBottomTabNavigator();
 function AuthStack() {
   return (
     <Stack.Navigator
-      initialRouteName="SignUp"
+      initialRouteName="Welcome"
       screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Welcome" component={WelcomeScreen} />
       <Stack.Screen name="SignUp" component={SignUpScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="CreateProfile" component={CreateProfileScreen} />
+      <Stack.Screen name="IdentityVerification" component={IdentityVerificationScreen} />
+      <Stack.Screen name="PostureCapture" component={PostureCaptureScreen} />
     </Stack.Navigator>
   );
 }

@@ -8,7 +8,6 @@ import {
   StyleSheet,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import LinearGradient from 'react-native-linear-gradient';
 import Background from '../assets/background-image-signup.png';
 
 function SignUpScreen({navigation}) {
@@ -43,15 +42,9 @@ function SignUpScreen({navigation}) {
             </View>
 
             <TouchableOpacity
-              style={styles.buttonContainer}
-              onPress={() => navigation.navigate('Main')}>
-              <LinearGradient
-                colors={['#a726e5', '#b58aff', '#2a49de']}
-                start={{x: 0, y: 0}}
-                end={{x: 1, y: 1}}
-                style={styles.button}>
-                <Text style={styles.buttonText}>Create account</Text>
-              </LinearGradient>
+              style={[styles.button, styles.primaryButton]}
+              onPress={() => navigation.navigate('CreateProfile')}>
+              <Text style={styles.buttonText}>Create account</Text>
             </TouchableOpacity>
 
             <Text style={styles.agreementText}>
@@ -89,13 +82,14 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: 25,
     borderRadius: 30,
-    backgroundColor: 'rgba(0, 0, 0, 0.6)', // Replace blur effect with a semi-transparent background
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
   },
   title: {
     fontSize: 32,
     color: '#fba5ee',
     fontWeight: 'bold',
     marginBottom: 30,
+    textAlign: 'center',
     textShadowColor: 'rgba(0, 0, 0, 0.5)',
     textShadowOffset: {width: 1, height: 1},
     textShadowRadius: 4,
@@ -124,37 +118,47 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
   },
-  buttonContainer: {
+  button: {
     width: '100%',
     borderRadius: 25,
-    overflow: 'hidden',
-    shadowColor: '#a726e5',
-    shadowOffset: {width: 0, height: 10},
-    shadowOpacity: 0.7,
-    shadowRadius: 20,
-  },
-  button: {
+    marginBottom: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    elevation: 5,
     paddingVertical: 12,
     alignItems: 'center',
+  },
+  primaryButton: {
+    backgroundColor: '#a726e5',
+    shadowColor: '#a726e5',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.6,
+    shadowRadius: 12,
   },
   buttonText: {
     color: '#fff',
     fontSize: 20,
     fontWeight: 'bold',
     textShadowColor: 'rgba(0, 0, 0, 0.3)',
-    textShadowOffset: {width: 1, height: 1},
+    textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 4,
   },
   agreementText: {
     color: '#e5e2ef',
     fontSize: 12,
+    textAlign: 'center',
     marginTop: 15,
+    marginBottom: 15,
     paddingHorizontal: 10,
+    lineHeight: 16,
   },
   signInText: {
     color: '#e5e2ef',
     fontSize: 14,
     marginTop: 10,
+    textAlign: 'center',
   },
   signInLink: {
     color: '#e5e2ef',
