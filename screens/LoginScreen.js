@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -6,11 +6,45 @@ import {
   TouchableOpacity,
   ImageBackground,
   StyleSheet,
+  Alert,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Background from '../assets/background-image-signup.png';
+import { apiPost } from '../utils/api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function LoginScreen({navigation}) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState('');
+
+  const handleLogin = async () => {
+    if (!email || !password) {
+      Alert.alert('Error', 'Please enter both email and password.');
+      return;
+    }
+    setIsLoading(true);
+    setMessage('');
+    try {
+      const res = await apiPost('/auth/login', { email, password });
+      if (res.access_token) {
+        await AsyncStorage.setItem('token', res.access_token);
+        setMessage('Login successful!');
+        navigation.navigate('Main');
+      } else {
+        throw new Error('Login failed: No token received.');
+      }
+    } catch (err) {
+      console.error('Login Error:', err);
+      const errorMessage = err.message || 'Login failed. Please check your credentials.';
+      setMessage(`Error: ${errorMessage}`);
+      Alert.alert('Login Failed', errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <ImageBackground source={Background} style={styles.background}>
       <View style={styles.cardContainer}>
@@ -27,6 +61,8 @@ function LoginScreen({navigation}) {
               style={styles.input}
               keyboardType="email-address"
               autoCapitalize="none"
+              value={email}
+              onChangeText={setEmail}
             />
           </View>
 
@@ -39,6 +75,8 @@ function LoginScreen({navigation}) {
               placeholderTextColor="#ed76ff"
               secureTextEntry
               style={styles.input}
+              value={password}
+              onChangeText={setPassword}
             />
           </View>
 
@@ -46,15 +84,23 @@ function LoginScreen({navigation}) {
             <TouchableOpacity onPress={() => { /* TODO: Implement Forgot Username */ }}>
               <Text style={styles.forgotLinkText}>Forgot Username?</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => { /* TODO: Implement Forgot Password */ }}>
+            <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
               <Text style={styles.forgotLinkText}>Forgot Password?</Text>
             </TouchableOpacity>
           </View>
 
+          {message ? (
+            <Text style={message.startsWith('Error:') ? styles.errorMessage : styles.successMessage}>
+              {message}
+            </Text>
+          ) : null}
+
           <TouchableOpacity
-            style={[styles.button, styles.primaryButton]}
-            onPress={() => navigation.navigate('Main')}>
-            <Text style={styles.buttonText}>Sign In</Text>
+            style={[styles.button, styles.primaryButton, isLoading && styles.buttonDisabled]}
+            onPress={handleLogin}
+            disabled={isLoading}
+          >
+            <Text style={styles.buttonText}>{isLoading ? 'Signing In...' : 'Sign In'}</Text>
           </TouchableOpacity>
 
           <Text style={styles.signInText}>
@@ -153,6 +199,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.6,
     shadowRadius: 12,
   },
+  buttonDisabled: {
+    backgroundColor: '#777',
+    shadowColor: '#777',
+  },
   buttonText: {
     color: '#fff',
     fontSize: 20,
@@ -170,6 +220,18 @@ const styles = StyleSheet.create({
   signInLink: {
     color: '#e5e2ef',
     fontWeight: 'bold',
+  },
+  successMessage: {
+    color: '#4CAF50',
+    marginBottom: 15,
+    textAlign: 'center',
+    fontSize: 14,
+  },
+  errorMessage: {
+    color: '#F44336',
+    marginBottom: 15,
+    textAlign: 'center',
+    fontSize: 14,
   },
 });
 

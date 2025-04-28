@@ -29,6 +29,8 @@ import ProfileScreen from '../screens/ProfileScreen';
 import HistoryScreen from '../screens/HistoryScreen.js';
 import FavoriteScreen from '../screens/FavoritesScreen.js';
 import DownloadsScreen from '../screens/DownloadsScreen.js';
+import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
+import ResetPasswordScreen from '../screens/ResetPasswordScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -41,6 +43,8 @@ function AuthStack() {
       <Stack.Screen name="Welcome" component={WelcomeScreen} />
       <Stack.Screen name="SignUp" component={SignUpScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+      <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
       <Stack.Screen name="CreateProfile" component={CreateProfileScreen} />
       <Stack.Screen name="IdentityVerification" component={IdentityVerificationScreen} />
       <Stack.Screen name="PostureCapture" component={PostureCaptureScreen} />
