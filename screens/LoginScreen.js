@@ -28,6 +28,7 @@ function LoginScreen({navigation}) {
     setMessage('');
     try {
       const res = await apiPost('/auth/login', { email, password });
+      console.log('res', res);
       if (res.access_token) {
         await AsyncStorage.setItem('token', res.access_token);
         setMessage('Login successful!');

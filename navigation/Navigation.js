@@ -31,6 +31,19 @@ import FavoriteScreen from '../screens/FavoritesScreen.js';
 import DownloadsScreen from '../screens/DownloadsScreen.js';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import ResetPasswordScreen from '../screens/ResetPasswordScreen';
+import PostureAnalysisScreen from '../screens/PostureAnalysisScreen';
+import ExercisePlanScreen from '../screens/ExercisePlanScreen';
+import ProgressTrackingScreen from '../screens/ProgressTrackingScreen';
+import AppointmentsScreen from '../screens/AppointmentsScreen';
+import MessagesScreen from '../screens/MessagesScreen';
+import FindingsReportScreen from '../screens/FindingsReportScreen';
+import CalibrationScreen from '../screens/CalibrationScreen';
+import RealTimeSessionScreen from '../screens/RealTimeSessionScreen';
+import PhotoCalibrationScreen from '../screens/PhotoCalibrationScreen';
+import SessionReportScreen from '../screens/SessionReportScreen';
+import AnalyticsScreen from '../screens/AnalyticsScreen';
+import SettingsScreen from '../screens/SettingsScreen';
+import UserPreferencesScreen from '../screens/UserPreferencesScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -146,6 +159,110 @@ function Navigation() {
         <Stack.Screen
           name="DownloadsScreen"
           component={DownloadsScreen}
+          options={{
+            presentation: 'modal',
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="PostureAnalysis"
+          component={PostureAnalysisScreen}
+          options={{
+            presentation: 'modal',
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="ExercisePlan"
+          component={ExercisePlanScreen}
+          options={{
+            presentation: 'modal',
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="ProgressTracking"
+          component={ProgressTrackingScreen}
+          options={{
+            presentation: 'modal',
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Appointments"
+          component={AppointmentsScreen}
+          options={{
+            presentation: 'modal',
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Messages"
+          component={MessagesScreen}
+          options={{
+            presentation: 'modal',
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="FindingsReport"
+          component={FindingsReportScreen}
+          options={{
+            presentation: 'modal',
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Calibration"
+          component={CalibrationScreen}
+          options={{
+            presentation: 'modal',
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="RealTimeSession"
+          component={RealTimeSessionScreen}
+          options={{
+            presentation: 'modal',
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="PhotoCalibration"
+          component={PhotoCalibrationScreen}
+          options={{
+            presentation: 'modal',
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="SessionReport"
+          component={SessionReportScreen}
+          options={{
+            presentation: 'modal',
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Analytics"
+          component={AnalyticsScreen}
+          options={{
+            presentation: 'modal',
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Settings"
+          component={SettingsScreen}
+          options={{
+            presentation: 'modal',
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="UserPreferences"
+          component={UserPreferencesScreen}
           options={{
             presentation: 'modal',
             headerShown: false,

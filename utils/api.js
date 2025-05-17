@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const BASE_URL = "http://3.25.66.145:8080";
+export const BASE_URL = "https://api.posture.vision";
 
 export async function apiPost(endpoint, data, includeAuth = false) {
   let token = null;

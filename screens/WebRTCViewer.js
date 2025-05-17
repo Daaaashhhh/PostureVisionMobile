@@ -1,23 +1,63 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Button, StyleSheet, Text, Modal, Platform } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet, Platform, Modal, Image } from 'react-native';
 import { mediaDevices, RTCView, RTCPeerConnection } from 'react-native-webrtc';
-import Canvas from 'react-native-canvas';
 import { check, PERMISSIONS, request, RESULTS } from 'react-native-permissions';
 
-const WebRTCViewer = ({ onStop }) => {
+const BACKEND_URL = "ec2-52-64-70-175.ap-southeast-2.compute.amazonaws.com:8000";
+
+const WebRTCViewer = ({ onStop, onPostureUpdate }) => {
   const [stream, setStream] = useState(null);
   const [isActive, setIsActive] = useState(false);
   const [error, setError] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
-  const canvasRef = useRef(null);
+  const [showTrackingPoints, setShowTrackingPoints] = useState(true);
+  const [availableDevices, setAvailableDevices] = useState([]);
+  const [selectedDeviceId, setSelectedDeviceId] = useState('');
+  const [calibratedImageSrc, setCalibratedImageSrc] = useState(null);
+  const [displayedStatus, setDisplayedStatus] = useState('Status: Waiting for video...');
+
   const peerRef = useRef(null);
   const peerSocketRef = useRef(null);
   const socketRef = useRef(null);
   const peerId = useRef(Math.floor(100000 + Math.random() * 900000)).current;
 
+  const getVideoDevices = async () => {
+    try {
+      const devices = await mediaDevices.enumerateDevices();
+      const videoDevices = devices.filter(device => device.kind === 'videoinput');
+      setAvailableDevices(videoDevices);
+      
+      if (videoDevices.length > 0 && !selectedDeviceId) {
+        setSelectedDeviceId(videoDevices[0].deviceId);
+      }
+    } catch (error) {
+      console.error('Error getting video devices:', error);
+      setError('Failed to get available cameras. Please check your device permissions.');
+    }
+  };
+
+  const handlePermissionError = (error) => {
+    console.error('Camera access error:', error);
+    let errorMessage = 'Failed to access camera: ';
+    
+    if (error.name === 'NotAllowedError') {
+      errorMessage += 'Camera access was denied. Please allow camera access in your device settings and try again.';
+    } else if (error.name === 'NotFoundError') {
+      errorMessage += 'No camera found. Please connect a camera and try again.';
+    } else if (error.name === 'NotReadableError') {
+      errorMessage += 'Camera is already in use by another application. Please close other applications using the camera and try again.';
+    } else {
+      errorMessage += error.message || 'Please ensure you have granted camera permissions.';
+    }
+    
+    setError(errorMessage);
+    setIsActive(false);
+  };
+
   const start = async () => {
     setError(null);
-    console.log('Start button pressed');
+    setCalibratedImageSrc(null);
+    
     try {
       // Check camera permissions
       const permission = Platform.select({
@@ -35,15 +75,21 @@ const WebRTCViewer = ({ onStop }) => {
 
       setIsActive(true);
       setModalVisible(true);
-      console.log('Starting camera...');
-      const localStream = await mediaDevices.getUserMedia({ video: true, audio: false });
+
+      const constraints = { 
+        video: {
+          ...(selectedDeviceId ? { deviceId: { exact: selectedDeviceId } } : {}),
+          frameRate: { ideal: 15, max: 15 } 
+        }
+      };
+      
+      const localStream = await mediaDevices.getUserMedia(constraints);
       setStream(localStream);
 
-      // Setup peer connection
-      peerSocketRef.current = new WebSocket(`wss://api.posture.vision/ws/${peerId}`);
+      // Setup WebRTC connection
+      peerSocketRef.current = new WebSocket(`wss://${BACKEND_URL}/ws/${peerId}`);
 
       peerSocketRef.current.onopen = () => {
-        console.log('WebSocket connected');
         peerRef.current = new RTCPeerConnection({
           iceServers: [{ urls: 'stun:stun.l.google.com:19302' }],
         });
@@ -64,7 +110,6 @@ const WebRTCViewer = ({ onStop }) => {
       };
 
       peerSocketRef.current.onmessage = event => {
-        console.log('onmessessage results connected');
         const data = JSON.parse(event.data);
         if (data.sdp) {
           peerRef.current.setRemoteDescription(data.sdp);
@@ -73,20 +118,24 @@ const WebRTCViewer = ({ onStop }) => {
         }
       };
 
-      // Connect to object detection WebSocket
-      socketRef.current = new WebSocket(`wss://api.posture.vision/results/${peerId}`);
+      // Connect to results WebSocket
+      socketRef.current = new WebSocket(`ws://${BACKEND_URL}/results/${peerId}`);
       socketRef.current.onopen = () => {
-        console.log("WebSocket connected to object detection server");
+        console.log('Connected to results server');
       };
 
       socketRef.current.onmessage = (event) => {
-        console.log('onmessage results connected');
-        const { boxes, poses } = JSON.parse(event.data);
-        drawBoxesAndKeypoints(boxes, poses);
+        const data = JSON.parse(event.data);
+        if (onPostureUpdate) {
+          const status = data.body_status || 'neutral';
+          const details = { poses: data.poses, boxes: data.boxes, rawData: data };
+          onPostureUpdate(status, details);
+        }
+        setDisplayedStatus(data.body_status ? `Status: ${data.body_status}` : 'Status: Processing...');
       };
-    } catch (err) {
-      console.error('Error accessing camera:', err);
-      setError('Failed to access camera. Please ensure you have granted permissions.');
+
+    } catch (error) {
+      handlePermissionError(error);
       setIsActive(false);
     }
   };
@@ -94,8 +143,11 @@ const WebRTCViewer = ({ onStop }) => {
   const stop = () => {
     setIsActive(false);
     setModalVisible(false);
-    stream?.getTracks().forEach(track => track.stop());
-    setStream(null);
+    
+    if (stream) {
+      stream.getTracks().forEach(track => track.stop());
+      setStream(null);
+    }
 
     if (peerSocketRef.current) {
       peerSocketRef.current.close();
@@ -112,42 +164,98 @@ const WebRTCViewer = ({ onStop }) => {
       socketRef.current = null;
     }
 
-    if (onStop) onStop();
+    if (onStop) {
+      onStop();
+    }
   };
 
-  const drawBoxesAndKeypoints = async (boxes, poses) => {
-    console.log('drawBoxesAndKeypoints');
-    const canvas = canvasRef.current;
-    if (canvas) {
-      const ctx = await canvas.getContext('2d');
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.strokeStyle = 'lime';
-      ctx.lineWidth = 2;
-
-      boxes.forEach(box => {
-        const x = canvas.width * (1 - box.x - box.w);
-        const y = canvas.height * box.y;
-        const w = canvas.width * box.w;
-        const h = canvas.height * box.h;
-        ctx.strokeRect(x, y, w, h);
-      });
-
-      poses.forEach((pose, i) => {
-        pose.forEach((point, idx) => {
-          ctx.beginPath();
-          ctx.fillStyle = 'red';
-          const x = canvas.width * (1 - point.x);
-          const y = canvas.height * point.y;
-          ctx.arc(x, y, 3, 0, 2 * Math.PI);
-          ctx.fill();
-        });
-      });
+  const handleCalibrate = async () => {
+    if (!peerId) {
+      setError("Cannot calibrate: Peer ID not available. Please start the camera first.");
+      return;
     }
+    setError(null);
+    try {
+      const response = await fetch(`http://${BACKEND_URL}/calibrate/${peerId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+      if (!response.ok) {
+        const errorData = await response.text();
+        throw new Error(`Calibration failed: ${response.status} ${errorData || response.statusText}`);
+      }
+      const data = await response.json();
+      if (data && data.image) {
+        setCalibratedImageSrc(data.image);
+      } else {
+        throw new Error("Calibration response did not include an image.");
+      }
+    } catch (err) {
+      console.error('Error during calibration:', err);
+      setError(`Calibration error: ${err.message}`);
+      setCalibratedImageSrc(null);
+    }
+  };
+
+  const toggleTrackingPoints = () => {
+    setShowTrackingPoints(prevShow => !prevShow);
   };
 
   return (
     <View style={styles.container}>
-      {error && <Text style={styles.error}>{error}</Text>}
+      {error && (
+        <View style={styles.errorContainer}>
+          <Text style={styles.errorText}>{error}</Text>
+          <TouchableOpacity 
+            style={styles.retryButton}
+            onPress={() => {
+              setError(null);
+              start();
+            }}
+          >
+            <Text style={styles.retryButtonText}>Retry</Text>
+          </TouchableOpacity>
+        </View>
+      )}
+
+      <View style={styles.controlsContainer}>
+        <View style={[styles.statusIndicator, { backgroundColor: isActive ? '#4CAF50' : '#f44336' }]} />
+        
+        <TouchableOpacity
+          style={[styles.button, styles.startButton, isActive && styles.buttonDisabled]}
+          onPress={start}
+          disabled={isActive}
+        >
+          <Text style={styles.buttonText}>Start Camera</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.button, styles.stopButton, !isActive && styles.buttonDisabled]}
+          onPress={stop}
+          disabled={!isActive}
+        >
+          <Text style={styles.buttonText}>Stop Camera</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.button, styles.calibrateButton, !isActive && styles.buttonDisabled]}
+          onPress={handleCalibrate}
+          disabled={!isActive}
+        >
+          <Text style={styles.buttonText}>Calibrate</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.button, styles.trackingButton]}
+          onPress={toggleTrackingPoints}
+        >
+          <Text style={styles.buttonText}>
+            {showTrackingPoints ? 'Hide Tracking Points' : 'Show Tracking Points'}
+          </Text>
+        </TouchableOpacity>
+      </View>
 
       <Modal
         animationType="slide"
@@ -165,43 +273,141 @@ const WebRTCViewer = ({ onStop }) => {
             />
           )}
 
-          <Canvas
-            ref={canvasRef}
-            style={styles.canvas}
-          />
-
-          <View style={styles.buttonContainer}>
-            <Button title="Close Camera" onPress={stop} color="#f44336" />
+          <View style={styles.statusBox}>
+            <Text style={styles.statusText}>{displayedStatus}</Text>
           </View>
+
+          <TouchableOpacity
+            style={[styles.button, styles.closeButton]}
+            onPress={stop}
+          >
+            <Text style={styles.buttonText}>Close Camera</Text>
+          </TouchableOpacity>
         </View>
       </Modal>
 
-      <View style={styles.buttons}>
-        <Button title="Start Camera" onPress={start} disabled={isActive} />
-      </View>
+      {calibratedImageSrc && (
+        <View style={styles.calibratedImageContainer}>
+          <Text style={styles.calibratedImageTitle}>Calibrated Image:</Text>
+          <Image 
+            source={{ uri: calibratedImageSrc }}
+            style={styles.calibratedImage}
+            resizeMode="contain"
+          />
+        </View>
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#000', justifyContent: 'center', alignItems: 'center' },
-  modalContainer: { flex: 1, backgroundColor: '#000', justifyContent: 'center', alignItems: 'center' },
-  video: { width: '100%', height: '100%' },
-  canvas: {
+  container: {
+    flex: 1,
+    backgroundColor: '#000',
+  },
+  controlsContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+    gap: 10,
+  },
+  statusIndicator: {
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    marginRight: 8,
+  },
+  button: {
+    padding: 12,
+    borderRadius: 4,
+    minWidth: 150,
+    flex: 1,
+  },
+  buttonDisabled: {
+    opacity: 0.5,
+  },
+  startButton: {
+    backgroundColor: '#4CAF50',
+  },
+  stopButton: {
+    backgroundColor: '#f44336',
+  },
+  calibrateButton: {
+    backgroundColor: '#FF9800',
+  },
+  trackingButton: {
+    backgroundColor: '#2196F3',
+  },
+  closeButton: {
+    backgroundColor: '#f44336',
     position: 'absolute',
-    top: 0,
-    left: 0,
+    bottom: 30,
+    alignSelf: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 16,
+  },
+  errorContainer: {
+    backgroundColor: '#ffebee',
+    padding: 10,
+    margin: 10,
+    borderRadius: 4,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  errorText: {
+    color: '#f44336',
+    flex: 1,
+  },
+  retryButton: {
+    backgroundColor: '#f44336',
+    padding: 8,
+    borderRadius: 4,
+    marginLeft: 10,
+  },
+  retryButtonText: {
+    color: 'white',
+  },
+  modalContainer: {
+    flex: 1,
+    backgroundColor: '#000',
+  },
+  video: {
+    flex: 1,
+  },
+  statusBox: {
+    position: 'absolute',
+    top: 20,
+    left: 20,
+    right: 20,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    padding: 10,
+    borderRadius: 4,
+  },
+  statusText: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 16,
+  },
+  calibratedImageContainer: {
+    marginTop: 20,
+    alignItems: 'center',
+  },
+  calibratedImageTitle: {
+    color: '#555',
+    fontSize: 18,
+    marginBottom: 10,
+  },
+  calibratedImage: {
     width: '100%',
-    height: '100%',
-    zIndex: 10
+    height: 300,
+    borderRadius: 8,
   },
-  buttonContainer: {
-    position: 'absolute',
-    bottom: '30%',
-    zIndex: 20,
-  },
-  buttons: { flexDirection: 'row', gap: 10, marginTop: 20 },
-  error: { color: '#f44336', margin: 10 }
 });
 
 export default WebRTCViewer;
