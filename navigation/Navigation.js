@@ -44,6 +44,7 @@ import SessionReportScreen from '../screens/SessionReportScreen';
 import AnalyticsScreen from '../screens/AnalyticsScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import UserPreferencesScreen from '../screens/UserPreferencesScreen';
+import IconTest from '../screens/IconTest';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -263,6 +264,14 @@ function Navigation() {
         <Stack.Screen
           name="UserPreferences"
           component={UserPreferencesScreen}
+          options={{
+            presentation: 'modal',
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="IconTest"
+          component={IconTest}
           options={{
             presentation: 'modal',
             headerShown: false,

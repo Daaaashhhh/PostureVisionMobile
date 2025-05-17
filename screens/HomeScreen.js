@@ -16,7 +16,7 @@ import CourseCardImage2 from '../assets/course-card-2.png';
 import PostureProgramImage from '../assets/posture-program.png';
 import ProfileImage from '../assets/profile-image.png';
 import {BlurView} from '@react-native-community/blur';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Ionicons';
 import VideoWidgetImage from '../assets/thumbnail-example1.png';
 import VideoWidgetImage2 from '../assets/thumbnail-example2.png';
 import VideoWidgetImage3 from '../assets/thumbnail-example3.png';
@@ -226,7 +226,8 @@ const DashboardOverview = ({navigation}) => {
             <WebRTCViewer onStop={() => setShowWebRTC(false)} />
           )}
         </View>
-
+          {/* Recent Courses Section
+          
         <CustomText style={styles.recentCoursesText}>
           RECENT COURSES
         </CustomText>
@@ -258,7 +259,7 @@ const DashboardOverview = ({navigation}) => {
         <CustomText style={styles.recentCoursesText}>
           RECENT TUTORIALS
         </CustomText>
-        {/* Video Widget Section */}
+       
         <View style={styles.videoSection}>
           {videoWidgets.map(widget => (
             <TouchableOpacity
@@ -288,7 +289,7 @@ const DashboardOverview = ({navigation}) => {
             </TouchableOpacity>
           ))}
         </View>
-
+   */}
         <View style={styles.metricsGrid}>
           {postureMetrics.map(metric => (
             <View key={metric.id} style={styles.metricCard}>
@@ -363,7 +364,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerText: {
-    fontSize: 34,
+    fontSize: 20,
     fontWeight: '800',
     color: '#FFFFFF',
   },
@@ -421,7 +422,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   mainVisualArea: {
-    height: 420,
+    height: 220,
     margin: 20,
     borderRadius: 24,
     overflow: 'hidden',
