@@ -33,6 +33,9 @@ const WebRTCViewer = forwardRef(({ onStop, onPostureUpdate }, ref) => {
   const [selectedDeviceId, setSelectedDeviceId] = useState('');
   const [calibratedImageSrc, setCalibratedImageSrc] = useState(null);
   const [displayedStatus, setDisplayedStatus] = useState('Status: Waiting for video...');
+  const [isReconnecting, setIsReconnecting] = useState(false);
+  const reconnectTimeoutRef = useRef(null);
+  const pingIntervalRef = useRef(null);
 
   const peerRef = useRef(null);
   const peerSocketRef = useRef(null);
@@ -85,6 +88,129 @@ const WebRTCViewer = forwardRef(({ onStop, onPostureUpdate }, ref) => {
     setIsActive(false);
   };
 
+  const setupWebSocket = () => {
+    if (socketRef.current) {
+      socketRef.current.close();
+    }
+
+    try {
+      socketRef.current = new WebSocket(`wss://${BACKEND_URL}/model/realtime/combined-realtime/results/${peerId}`);
+      
+      socketRef.current.onopen = () => {
+        console.log('Connected to object detection/results server', peerId);
+        setIsReconnecting(false);
+        setError(null);
+        
+        // Setup ping interval to keep connection alive
+        if (pingIntervalRef.current) {
+          clearInterval(pingIntervalRef.current);
+        }
+        
+        pingIntervalRef.current = setInterval(() => {
+          if (socketRef.current?.readyState === WebSocket.OPEN) {
+            try {
+              socketRef.current.send(JSON.stringify({ 
+                type: 'ping',
+                timestamp: Date.now()
+              }));
+            } catch (error) {
+              console.error('Error sending ping:', error);
+              // If we can't send a ping, the connection might be dead
+              socketRef.current.close();
+            }
+          }
+        }, 15000); // Reduced to 15 seconds for more frequent keep-alive
+      };
+
+      socketRef.current.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          console.log('Received data from object detection/results server:', data);
+          
+          if (data.type === 'pong') {
+            return; // Ignore pong messages
+          }
+
+          if (data.status === 'waiting') {
+            // Handle waiting state
+            setDisplayedStatus('Status: Waiting for video stream...');
+            return;
+          }
+
+          if (data.error) {
+            console.error('Server reported error:', data.error);
+            setError(`Server error: ${data.error}`);
+            return;
+          }
+
+          if (onPostureUpdate) {
+            const postureInfo = determinePostureStatus(data);
+            onPostureUpdate(postureInfo.status, postureInfo.details);
+          }
+
+          if (data.body_status) {
+            setDisplayedStatus(`Status: ${data.body_status}`);
+          }
+        } catch (error) {
+          console.error('Error processing message:', error);
+        }
+      };
+
+      socketRef.current.onclose = (event) => {
+        console.log('Results WebSocket connection closed', event.code, event.reason);
+        clearInterval(pingIntervalRef.current);
+        
+        // Handle different close codes
+        if (event.code === 1001) {
+          console.log('Stream end encountered, attempting to reconnect...');
+          // For stream end, try to reconnect immediately
+          if (isActive && !isReconnecting) {
+            setIsReconnecting(true);
+            reconnectTimeoutRef.current = setTimeout(() => {
+              console.log('Reconnecting after stream end...');
+              setupWebSocket();
+            }, 1000); // Shorter delay for stream end
+          }
+        } else if (event.code === 1006) {
+          console.log('Connection closed abnormally, attempting to reconnect...');
+          if (isActive && !isReconnecting) {
+            setIsReconnecting(true);
+            reconnectTimeoutRef.current = setTimeout(() => {
+              console.log('Reconnecting after abnormal closure...');
+              setupWebSocket();
+            }, 2000);
+          }
+        } else if (isActive && !isReconnecting) {
+          setIsReconnecting(true);
+          // For other cases, use normal reconnection delay
+          reconnectTimeoutRef.current = setTimeout(() => {
+            console.log('Attempting to reconnect...');
+            setupWebSocket();
+          }, 3000);
+        }
+      };
+
+      socketRef.current.onerror = (error) => {
+        console.error('Results WebSocket error:', error);
+        setError('Connection to posture analysis results failed.');
+        // Close the connection on error to trigger reconnection
+        if (socketRef.current) {
+          socketRef.current.close();
+        }
+      };
+    } catch (error) {
+      console.error('Error setting up WebSocket:', error);
+      setError('Failed to establish connection to server');
+      if (isActive && !isReconnecting) {
+        setIsReconnecting(true);
+        reconnectTimeoutRef.current = setTimeout(() => {
+          console.log('Retrying WebSocket setup...');
+          setupWebSocket();
+        }, 3000);
+      }
+    }
+  };
+
   const start = async () => {
     setError(null);
     setCalibratedImageSrc(null);
@@ -122,63 +248,147 @@ const WebRTCViewer = forwardRef(({ onStop, onPostureUpdate }, ref) => {
       setStream(localStream);
 
       // Setup WebRTC connection
+      if (peerSocketRef.current) {
+        peerSocketRef.current.close();
+      }
+
       peerSocketRef.current = new WebSocket(`wss://${BACKEND_URL}/model/realtime/combined-realtime/offer/${peerId}`);
 
       peerSocketRef.current.onopen = () => {
+        if (!localStream) {
+          console.warn("Local stream not available when trying to create RTCPeerConnection");
+          handlePermissionError({ name: "CustomError", message: "Camera stream was lost before WebRTC setup." });
+          return;
+        }
+
+        if (peerRef.current) {
+          peerRef.current.close();
+        }
+
         peerRef.current = new RTCPeerConnection({
-          iceServers: [{ urls: 'stun:stun.l.google.com:19302' }],
+          iceServers: [
+            { urls: 'stun:stun.l.google.com:19302' },
+            { urls: 'stun:stun1.l.google.com:19302' },
+            { urls: 'stun:stun2.l.google.com:19302' },
+            { urls: 'stun:stun3.l.google.com:19302' },
+            { urls: 'stun:stun4.l.google.com:19302' },
+            { urls: 'stun:stun.services.mozilla.com' },
+            { urls: 'stun:stun.stunprotocol.org:3478' },
+            { urls: 'stun:stun.voiparound.com' },
+            { urls: 'stun:stun.voipbuster.com' },
+            { urls: 'stun:stun.voipstunt.com' },
+            { urls: 'stun:stun.xten.com' }
+          ],
+          iceCandidatePoolSize: 10,
+          bundlePolicy: 'max-bundle',
+          rtcpMuxPolicy: 'require'
         });
 
-        localStream.getTracks().forEach(track => peerRef.current.addTrack(track, localStream));
-
-        peerRef.current.onicecandidate = event => {
-          if (event.candidate) {
-            peerSocketRef.current.send(JSON.stringify({ candidate: event.candidate }));
+        // Monitor connection state
+        peerRef.current.onconnectionstatechange = () => {
+          if (!peerRef.current) {
+            console.log('Connection state event fired after peerRef was cleared');
+            return;
+          }
+          console.log('Connection state:', peerRef.current.connectionState);
+          if (peerRef.current.connectionState === 'failed') {
+            console.log('Connection failed, attempting to restart...');
+            // Ensure peerRef.current still exists before calling restartIce
+            if (peerRef.current) {
+                peerRef.current.restartIce();
+            }
           }
         };
 
-        peerRef.current.createOffer()
+        peerRef.current.oniceconnectionstatechange = () => {
+          if (!peerRef.current) {
+            console.log('ICE connection state event fired after peerRef was cleared');
+            return;
+          }
+          console.log('ICE connection state:', peerRef.current.iceConnectionState);
+          if (peerRef.current.iceConnectionState === 'failed') {
+            console.log('ICE connection failed, attempting to restart...');
+            // Ensure peerRef.current still exists before calling restartIce
+            if (peerRef.current) {
+                peerRef.current.restartIce();
+            }
+          }
+        };
+
+        peerRef.current.onicegatheringstatechange = () => {
+          console.log('ICE gathering state:', peerRef.current.iceGatheringState);
+        };
+
+        peerRef.current.onsignalingstatechange = () => {
+          console.log('Signaling state:', peerRef.current.signalingState);
+        };
+
+        localStream.getTracks().forEach(track => {
+          peerRef.current.addTrack(track, localStream);
+        });
+
+        peerRef.current.onicecandidate = event => {
+          if (event.candidate && peerSocketRef.current?.readyState === WebSocket.OPEN) {
+            try {
+              peerSocketRef.current.send(JSON.stringify({ candidate: event.candidate }));
+            } catch (error) {
+              console.error('Error sending ICE candidate:', error);
+            }
+          }
+        };
+
+        peerRef.current.createOffer({
+          offerToReceiveAudio: false,
+          offerToReceiveVideo: false,
+          iceRestart: true
+        })
           .then(offer => {
-            peerRef.current.setLocalDescription(offer);
-            peerSocketRef.current.send(JSON.stringify({ sdp: offer }));
+            return peerRef.current.setLocalDescription(offer);
+          })
+          .then(() => {
+            if (peerSocketRef.current?.readyState === WebSocket.OPEN) {
+              try {
+                peerSocketRef.current.send(JSON.stringify({ sdp: peerRef.current.localDescription }));
+              } catch (error) {
+                console.error('Error sending offer:', error);
+                setError('Failed to establish video connection');
+              }
+            }
+          })
+          .catch(error => {
+            console.error('Error creating offer:', error);
+            setError('Failed to establish video connection');
           });
       };
 
       peerSocketRef.current.onmessage = event => {
-        const data = JSON.parse(event.data);
-        if (data.sdp) {
-          peerRef.current.setRemoteDescription(data.sdp);
-        } else if (data.candidate) {
-          peerRef.current.addIceCandidate(data.candidate);
+        try {
+          const data = JSON.parse(event.data);
+          if (data.sdp) {
+            peerRef.current.setRemoteDescription(data.sdp);
+          } else if (data.candidate) {
+            peerRef.current.addIceCandidate(data.candidate);
+          }
+        } catch (error) {
+          console.error('Error processing peer message:', error);
         }
       };
 
-      // Connect to results WebSocket
-      socketRef.current = new WebSocket(`wss://${BACKEND_URL}/model/realtime/combined-realtime/results/${peerId}`);
-      socketRef.current.onopen = () => {
-        console.log('Connected to object detection/results server');
-      };
-
-      socketRef.current.onmessage = (event) => {
-        const data = JSON.parse(event.data);
-        if (onPostureUpdate) {
-          const postureInfo = determinePostureStatus(data);
-          onPostureUpdate(postureInfo.status, postureInfo.details);
-        }
-
-        if (data.body_status) {
-          setDisplayedStatus(`Status: ${data.body_status}`);
+      peerSocketRef.current.onclose = () => {
+        console.log('Peer WebSocket connection closed');
+        if (isActive) {
+          // Attempt to reconnect the peer connection
+          setTimeout(() => {
+            if (isActive && peerSocketRef.current?.readyState !== WebSocket.OPEN) {
+              console.log('Attempting to reconnect peer connection...');
+              start();
+            }
+          }, 3000);
         }
       };
 
-      socketRef.current.onclose = () => {
-        console.log('Results WebSocket connection closed');
-      };
-
-      socketRef.current.onerror = (error) => {
-        console.error('Results WebSocket error:', error);
-        setError('Connection to posture analysis results failed.');
-      };
+      // Setup results WebSocket
+      setupWebSocket();
 
     } catch (error) {
       handlePermissionError(error);
@@ -189,6 +399,15 @@ const WebRTCViewer = forwardRef(({ onStop, onPostureUpdate }, ref) => {
   const stop = () => {
     setIsActive(false);
     setModalVisible(false);
+    setIsReconnecting(false);
+    
+    if (reconnectTimeoutRef.current) {
+      clearTimeout(reconnectTimeoutRef.current);
+    }
+    
+    if (pingIntervalRef.current) {
+      clearInterval(pingIntervalRef.current);
+    }
     
     if (stream) {
       stream.getTracks().forEach(track => track.stop());
@@ -206,6 +425,14 @@ const WebRTCViewer = forwardRef(({ onStop, onPostureUpdate }, ref) => {
     }
 
     if (peerRef.current) {
+      // Remove event listeners before closing and nullifying
+      peerRef.current.onconnectionstatechange = null;
+      peerRef.current.oniceconnectionstatechange = null;
+      peerRef.current.onicegatheringstatechange = null;
+      peerRef.current.onsignalingstatechange = null;
+      peerRef.current.onicecandidate = null;
+      // Potentially other listeners like ontrack, onnegotiationneeded if used
+
       peerRef.current.close();
       peerRef.current = null;
     }
@@ -220,16 +447,40 @@ const WebRTCViewer = forwardRef(({ onStop, onPostureUpdate }, ref) => {
       const response = await fetch(`https://${BACKEND_URL}/model/realtime/calibrate/${peerId}`, {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/json' // Not needed for GET request expecting JSON response
         },
       });
-      const data = await response.json();
-      if (data && data.image) {
-        setCalibratedImageSrc(data.image);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error(`Calibration request failed with status ${response.status}:`, errorText);
+        setError(`Failed to calibrate. Server returned status ${response.status}.`);
+        return;
+      }
+
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.indexOf('application/json') !== -1) {
+        const data = await response.json();
+        if (data && data.image) {
+          setCalibratedImageSrc(data.image);
+          setError(null); // Clear previous errors on success
+        } else {
+          console.error('Calibration response did not contain image data:', data);
+          setError('Calibration data is invalid. Please try again.');
+        }
+      } else {
+        const responseText = await response.text();
+        console.error('Calibration response was not JSON:', responseText);
+        setError('Failed to calibrate. Unexpected response from server.');
       }
     } catch (error) {
       console.error('Error during calibration:', error);
-      setError('Failed to calibrate. Please try again.');
+      // Check if it's a SyntaxError (JSON parse error) or a different kind of error
+      if (error instanceof SyntaxError) {
+        setError('Failed to calibrate. Invalid response format from server.');
+      } else {
+        setError('Failed to calibrate. Please check your connection and try again.');
+      }
     }
   };
 
@@ -311,12 +562,22 @@ const WebRTCViewer = forwardRef(({ onStop, onPostureUpdate }, ref) => {
             <Text style={styles.statusText}>{displayedStatus}</Text>
           </View>
 
-          <TouchableOpacity
-            style={[styles.button, styles.closeButton]}
-            onPress={stop}
-          >
-            <Text style={styles.buttonText}>Close Camera</Text>
-          </TouchableOpacity>
+          <View style={styles.bottomControls}>
+            <TouchableOpacity
+              style={[styles.button, styles.calibrateButton]}
+              onPress={handleCalibrate}
+              disabled={!isActive}
+            >
+              <Text style={styles.buttonText}>Calibrate</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[styles.button, styles.closeButton]}
+              onPress={stop}
+            >
+              <Text style={styles.buttonText}>Close Camera</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </Modal>
 
@@ -383,9 +644,7 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     backgroundColor: '#f44336',
-    position: 'absolute',
-    bottom: 30,
-    alignSelf: 'center',
+    flex: 1,
   },
   buttonText: {
     color: 'white',
@@ -423,7 +682,7 @@ const styles = StyleSheet.create({
   },
   statusBox: {
     position: 'absolute',
-    top: 20,
+    bottom: 90,
     left: 20,
     right: 20,
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
@@ -448,6 +707,15 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 300,
     borderRadius: 8,
+  },
+  bottomControls: {
+    position: 'absolute',
+    bottom: 30,
+    left: 20,
+    right: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 10,
   },
 });
 

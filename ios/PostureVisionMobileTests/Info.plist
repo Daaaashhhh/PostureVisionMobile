@@ -20,5 +20,9 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Microphone access is required for audio streaming</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Camera access is required for video streaming</string>
 </dict>
 </plist>
