@@ -1,11 +1,29 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, forwardRef, useImperativeHandle } from 'react';
+import PropTypes from 'prop-types';
 import { View, TouchableOpacity, Text, StyleSheet, Platform, Modal, Image } from 'react-native';
 import { mediaDevices, RTCView, RTCPeerConnection } from 'react-native-webrtc';
 import { check, PERMISSIONS, request, RESULTS } from 'react-native-permissions';
 
-const BACKEND_URL = "ec2-52-64-70-175.ap-southeast-2.compute.amazonaws.com:8000";
+const BACKEND_URL = "api.posture.vision";
 
-const WebRTCViewer = ({ onStop, onPostureUpdate }) => {
+const determinePostureStatus = (data) => {
+  let status = 'neutral';
+  const details = { rawData: data };
+
+  if (data && data.hns) {
+    if (data.hns.emotions && data.hns.emotions.length > 0) {
+      if (data.hns.emotions.includes('Happy')) {
+        status = 'good';
+      } else if (data.hns.emotions.some(e => ['Sad', 'Angry', 'Surprise'].includes(e))) {
+        status = 'poor';
+      }
+    }
+  }
+  
+  return { status, details };
+};
+
+const WebRTCViewer = forwardRef(({ onStop, onPostureUpdate }, ref) => {
   const [stream, setStream] = useState(null);
   const [isActive, setIsActive] = useState(false);
   const [error, setError] = useState(null);
@@ -20,6 +38,19 @@ const WebRTCViewer = ({ onStop, onPostureUpdate }) => {
   const peerSocketRef = useRef(null);
   const socketRef = useRef(null);
   const peerId = useRef(Math.floor(100000 + Math.random() * 900000)).current;
+
+  const capturePhoto = () => {
+    // In React Native, we'll need to implement photo capture differently
+    // This could be done using a native module or a different approach
+    console.warn("Photo capture not implemented in React Native version");
+    return null;
+  };
+
+  useImperativeHandle(ref, () => ({
+    startCamera: start,
+    stopCamera: stop,
+    capturePhoto: capturePhoto,
+  }));
 
   const getVideoDevices = async () => {
     try {
@@ -76,6 +107,10 @@ const WebRTCViewer = ({ onStop, onPostureUpdate }) => {
       setIsActive(true);
       setModalVisible(true);
 
+      if (availableDevices.length === 0) {
+        await getVideoDevices();
+      }
+
       const constraints = { 
         video: {
           ...(selectedDeviceId ? { deviceId: { exact: selectedDeviceId } } : {}),
@@ -87,7 +122,7 @@ const WebRTCViewer = ({ onStop, onPostureUpdate }) => {
       setStream(localStream);
 
       // Setup WebRTC connection
-      peerSocketRef.current = new WebSocket(`wss://${BACKEND_URL}/ws/${peerId}`);
+      peerSocketRef.current = new WebSocket(`wss://${BACKEND_URL}/model/realtime/combined-realtime/offer/${peerId}`);
 
       peerSocketRef.current.onopen = () => {
         peerRef.current = new RTCPeerConnection({
@@ -119,19 +154,30 @@ const WebRTCViewer = ({ onStop, onPostureUpdate }) => {
       };
 
       // Connect to results WebSocket
-      socketRef.current = new WebSocket(`ws://${BACKEND_URL}/results/${peerId}`);
+      socketRef.current = new WebSocket(`wss://${BACKEND_URL}/model/realtime/combined-realtime/results/${peerId}`);
       socketRef.current.onopen = () => {
-        console.log('Connected to results server');
+        console.log('Connected to object detection/results server');
       };
 
       socketRef.current.onmessage = (event) => {
         const data = JSON.parse(event.data);
         if (onPostureUpdate) {
-          const status = data.body_status || 'neutral';
-          const details = { poses: data.poses, boxes: data.boxes, rawData: data };
-          onPostureUpdate(status, details);
+          const postureInfo = determinePostureStatus(data);
+          onPostureUpdate(postureInfo.status, postureInfo.details);
         }
-        setDisplayedStatus(data.body_status ? `Status: ${data.body_status}` : 'Status: Processing...');
+
+        if (data.body_status) {
+          setDisplayedStatus(`Status: ${data.body_status}`);
+        }
+      };
+
+      socketRef.current.onclose = () => {
+        console.log('Results WebSocket connection closed');
+      };
+
+      socketRef.current.onerror = (error) => {
+        console.error('Results WebSocket error:', error);
+        setError('Connection to posture analysis results failed.');
       };
 
     } catch (error) {
@@ -149,6 +195,11 @@ const WebRTCViewer = ({ onStop, onPostureUpdate }) => {
       setStream(null);
     }
 
+    if (socketRef.current) {
+      socketRef.current.close();
+      socketRef.current = null;
+    }
+
     if (peerSocketRef.current) {
       peerSocketRef.current.close();
       peerSocketRef.current = null;
@@ -159,43 +210,26 @@ const WebRTCViewer = ({ onStop, onPostureUpdate }) => {
       peerRef.current = null;
     }
 
-    if (socketRef.current) {
-      socketRef.current.close();
-      socketRef.current = null;
-    }
-
     if (onStop) {
       onStop();
     }
   };
 
   const handleCalibrate = async () => {
-    if (!peerId) {
-      setError("Cannot calibrate: Peer ID not available. Please start the camera first.");
-      return;
-    }
-    setError(null);
     try {
-      const response = await fetch(`http://${BACKEND_URL}/calibrate/${peerId}`, {
+      const response = await fetch(`https://${BACKEND_URL}/model/realtime/calibrate/${peerId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         },
       });
-      if (!response.ok) {
-        const errorData = await response.text();
-        throw new Error(`Calibration failed: ${response.status} ${errorData || response.statusText}`);
-      }
       const data = await response.json();
       if (data && data.image) {
         setCalibratedImageSrc(data.image);
-      } else {
-        throw new Error("Calibration response did not include an image.");
       }
-    } catch (err) {
-      console.error('Error during calibration:', err);
-      setError(`Calibration error: ${err.message}`);
-      setCalibratedImageSrc(null);
+    } catch (error) {
+      console.error('Error during calibration:', error);
+      setError('Failed to calibrate. Please try again.');
     }
   };
 
@@ -298,6 +332,13 @@ const WebRTCViewer = ({ onStop, onPostureUpdate }) => {
       )}
     </View>
   );
+});
+
+WebRTCViewer.displayName = 'WebRTCViewer';
+
+WebRTCViewer.propTypes = {
+  onStop: PropTypes.func,
+  onPostureUpdate: PropTypes.func
 };
 
 const styles = StyleSheet.create({
