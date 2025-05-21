@@ -42,6 +42,23 @@ const fetchMockSessionById = sessionId => {
   return mockSessionsDatabase[sessionId] || null;
 };
 
+const getDefaultReportData = () => {
+  return {
+    percentPoorPosture: 0,
+    stabilityIndex: 0,
+    tiltFrequency: 0,
+    shoulderAsymmetryCount: 0,
+    forwardHeadCount: 0,
+    goodPostureDuration: 0,
+    poorPostureDuration: 0,
+    neutralPostureDuration: 0,
+    postureTimeline: [],
+    sessionDuration: 0,
+    recordedDate: new Date(), // Or null, or a specific placeholder date
+    isPlaceholder: true, // Flag to indicate this is default data
+  };
+};
+
 const calculateReportMetrics = (postureLog, sessionDuration) => {
   if (!postureLog || postureLog.length === 0 || !sessionDuration || sessionDuration === 0) {
     return {
@@ -112,10 +129,12 @@ const SessionReportScreen = ({route, navigation}) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    setReportData(null); // Clear previous data on change
-    setError(null); // Clear previous error on change
+    setReportData(null); // Clear previous data and ensure loading state initially
+    setError(null);     // Clear previous error
 
     let sessionDataForReport = null;
+    let dataLoadingError = null; // Temporary error holder for this effect run
+    let useDefaultData = false;
 
     if (route.params?.postureLog && route.params?.sessionDuration !== undefined) {
       sessionDataForReport = {
@@ -135,13 +154,17 @@ const SessionReportScreen = ({route, navigation}) => {
             : new Date(),
         };
       } else {
-        setError(`Session data not found for ID: ${route.params.sessionId}.`);
+        dataLoadingError = `Session data not found for ID: ${route.params.sessionId}.`;
       }
     } else {
-      setError('No session data provided to generate report.');
+      // No valid parameters to load a report. Use default data.
+      console.log('SessionReportScreen: Navigated without postureLog or sessionId. Using default report data.');
+      useDefaultData = true;
     }
 
-    if (sessionDataForReport) {
+    if (useDefaultData) {
+      setReportData(getDefaultReportData());
+    } else if (sessionDataForReport) {
       try {
         const metrics = calculateReportMetrics(
           sessionDataForReport.postureLog,
@@ -154,13 +177,18 @@ const SessionReportScreen = ({route, navigation}) => {
         });
       } catch (calcError) {
         console.error('Error calculating report metrics:', calcError);
-        setError('Failed to process session data.');
+        dataLoadingError = 'Failed to process session data.';
       }
-    } else if (!error) {
-      // Only set this generic error if no specific one was set before
-      setError('Could not load session data for the report.');
     }
-  }, [route.params, error]);
+
+    // Only set the error state if a specific error occurred during data loading/processing
+    if (dataLoadingError) {
+      setError(dataLoadingError);
+      setReportData(null); // Ensure loading/error state is shown if data loading fails
+    }
+    // If sessionDataForReport is still null, and no default data used, and no error, reportData will remain null (shows loading)
+
+  }, [route.params]);
 
   const formatDuration = seconds => {
     if (typeof seconds !== 'number' || isNaN(seconds)) return '0m 0s';
@@ -178,7 +206,7 @@ const SessionReportScreen = ({route, navigation}) => {
             onPress={() => navigation.goBack()}>
             <Icon name="arrow-back" size={24} color="#fff" />
           </TouchableOpacity>
-          <CustomText style={styles.headerTitle}>Session Report</CustomText>
+          <CustomText style={styles.headerTitle}>Error Loading Report</CustomText>
           <View style={styles.headerRight} />
         </View>
 
@@ -192,7 +220,7 @@ const SessionReportScreen = ({route, navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.button, styles.secondaryButton]}
-            onPress={() => navigation.navigate('RealTimeSession')}>
+            onPress={() => navigation.navigate('Session')}>
             <CustomText style={styles.secondaryButtonText}>
               Start New Session
             </CustomText>
@@ -211,13 +239,8 @@ const SessionReportScreen = ({route, navigation}) => {
             onPress={() => navigation.goBack()}>
             <Icon name="arrow-back" size={24} color="#fff" />
           </TouchableOpacity>
-          <CustomText style={styles.headerTitle}>Session Report</CustomText>
+          <CustomText style={styles.headerTitle}>Loading Report...</CustomText>
           <View style={styles.headerRight} />
-        </View>
-
-        <View style={styles.loadingCard}>
-          <ActivityIndicator size="large" color="#177ddc" />
-          <CustomText style={styles.loadingText}>Loading Report...</CustomText>
         </View>
       </View>
     );
@@ -232,11 +255,11 @@ const SessionReportScreen = ({route, navigation}) => {
           <Icon name="arrow-back" size={24} color="#fff" />
         </TouchableOpacity>
         <CustomText style={styles.headerTitle}>
-          Session Report {route.params?.sessionId ? `(ID: ${route.params.sessionId})` : ''}
+          {reportData?.isPlaceholder ? 'General Report' : `Session Report ${route.params?.sessionId ? `(ID: ${route.params.sessionId})` : ''}`}
         </CustomText>
         <TouchableOpacity
           style={styles.newSessionButton}
-          onPress={() => navigation.navigate('RealTimeSession')}>
+          onPress={() => navigation.navigate('Session')}>
           <CustomText style={styles.newSessionButtonText}>New Session</CustomText>
         </TouchableOpacity>
       </View>
@@ -244,11 +267,10 @@ const SessionReportScreen = ({route, navigation}) => {
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         <View style={styles.sessionInfoCard}>
           <CustomText style={styles.infoText}>
-            Session Date: {reportData.recordedDate.toLocaleDateString()}{' '}
-            {reportData.recordedDate.toLocaleTimeString()}
+            Session Date: {reportData.isPlaceholder ? 'N/A' : `${reportData.recordedDate.toLocaleDateString()} ${reportData.recordedDate.toLocaleTimeString()}`}
           </CustomText>
           <CustomText style={styles.infoText}>
-            Total Session Duration: {formatDuration(reportData.sessionDuration)}
+            Total Session Duration: {reportData.isPlaceholder ? 'N/A' : formatDuration(reportData.sessionDuration)}
           </CustomText>
         </View>
 
@@ -517,18 +539,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
     marginBottom: 24,
-  },
-  loadingCard: {
-    margin: 20,
-    padding: 20,
-    backgroundColor: 'rgba(255, 255, 255, 0.05)',
-    borderRadius: 12,
-    alignItems: 'center',
-  },
-  loadingText: {
-    color: '#FFFFFF',
-    fontSize: 16,
-    marginTop: 16,
   },
   button: {
     backgroundColor: '#177ddc',

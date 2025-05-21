@@ -76,12 +76,12 @@ function MainTabs() {
           let iconName;
           if (route.name === 'Home') {
             iconName = focused ? 'home' : 'home-outline';
-          } else if (route.name === 'Explore') {
-            iconName = focused ? 'compass' : 'compass-outline';
-          } else if (route.name === 'Notifications') {
-            iconName = focused ? 'notifications' : 'notifications-outline';
-          } else if (route.name === 'Library') {
-            iconName = focused ? 'library' : 'library-outline';
+          } else if (route.name === 'Session') {
+            iconName = focused ? 'videocam' : 'videocam-outline';
+          } else if (route.name === 'Calibrate') {
+            iconName = focused ? 'scan-circle' : 'scan-circle-outline';
+          } else if (route.name === 'Reports') {
+            iconName = focused ? 'document-text' : 'document-text-outline';
           }
           return <Icon name={iconName} size={28} color={color} />;
         },
@@ -89,9 +89,9 @@ function MainTabs() {
         tabBarInactiveTintColor: 'rgba(255,255,255,0.6)',
       })}>
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Explore" component={ExploreScreen} />
-      <Tab.Screen name="Notifications" component={NotificationScreen} />
-      <Tab.Screen name="Library" component={LibraryScreen} />
+      <Tab.Screen name="Session" component={RealTimeSessionScreen} />
+      <Tab.Screen name="Calibrate" component={CalibrationScreen} />
+      <Tab.Screen name="Reports" component={SessionReportScreen} />
     </Tab.Navigator>
   );
 }
@@ -214,38 +214,6 @@ function Navigation() {
           }}
         />
         <Stack.Screen
-          name="Calibration"
-          component={CalibrationScreen}
-          options={{
-            presentation: 'modal',
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="RealTimeSession"
-          component={RealTimeSessionScreen}
-          options={{
-            presentation: 'modal',
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="PhotoCalibration"
-          component={PhotoCalibrationScreen}
-          options={{
-            presentation: 'modal',
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="SessionReport"
-          component={SessionReportScreen}
-          options={{
-            presentation: 'modal',
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
           name="Analytics"
           component={AnalyticsScreen}
           options={{
@@ -359,6 +327,17 @@ function CustomTabBar({state, descriptors, navigation}) {
           };
           const color = isFocused ? '#96f4ff' : 'rgba(255,255,255,0.6)';
 
+          let iconName;
+          if (route.name === 'Home') {
+            iconName = isFocused ? 'home' : 'home-outline';
+          } else if (route.name === 'Session') {
+            iconName = isFocused ? 'videocam' : 'videocam-outline';
+          } else if (route.name === 'Calibrate') {
+            iconName = isFocused ? 'scan-circle' : 'scan-circle-outline';
+          } else if (route.name === 'Reports') {
+            iconName = isFocused ? 'document-text' : 'document-text-outline';
+          }
+
           return (
             <TouchableOpacity
               key={index}
@@ -369,23 +348,7 @@ function CustomTabBar({state, descriptors, navigation}) {
               onPress={onPress}
               activeOpacity={0.7}>
               <Icon
-                name={
-                  route.name === 'Home'
-                    ? isFocused
-                      ? 'home'
-                      : 'home-outline'
-                    : route.name === 'Explore'
-                    ? isFocused
-                      ? 'compass'
-                      : 'compass-outline'
-                    : route.name === 'Notifications'
-                    ? isFocused
-                      ? 'notifications'
-                      : 'notifications-outline'
-                    : isFocused
-                    ? 'library'
-                    : 'library-outline'
-                }
+                name={iconName}
                 size={24}
                 color={color}
               />
